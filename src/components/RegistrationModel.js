@@ -5,10 +5,9 @@ import {
 import Register from './Register'
 
 function RegistrationModel(props) {
-
   return (
-    <Modal className="reg-modal"show={props.show} onHide={props.onHide}>
-      <Register  checkUser={props.checkUser}/>
+    <Modal className="reg-modal" show={props.show} onHide={props.onHide}>
+      <Register checkUser={props.checkUser}/>
     </Modal>
   )
 

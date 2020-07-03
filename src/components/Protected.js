@@ -1,9 +1,10 @@
-import React from "react"
-import {Redirect, Route} from "react-router-dom"
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 
-
-export default function({component:Component, ...props}){
-    return props.user 
-    ? <Route {...props} render={()=> <Component {...props}/>} />
-    : <Redirect to="/"/>
+export default function ({ component: Component, ...props }) {
+  if (props.user) {
+    return <Route {...props} render={() => <Component {...props} />} />;
+  } else {
+    return <Redirect to="/" />;
+  }
 }
