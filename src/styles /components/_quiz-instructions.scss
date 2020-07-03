@@ -1,0 +1,65 @@
+.instructions {
+    border: 2px solid darken($blue, 1%);
+    border-radius: 5px;
+    margin-top: $sm;
+    margin-bottom: $sm;
+    padding: $md $md;
+
+
+h1 {
+    
+    color: $blue ;
+    font-size:$lg;
+    text-align: center;
+}
+
+.lifeline {
+    position:relative;
+    top:-3px;
+}
+
+.lifeline-icon {
+    color: $blue;
+    cursor:point;
+}
+
+.browswer-default {
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    
+}
+
+.left {
+        color: white;
+        background-color: darken($red,10%);
+        box-shadow: $shadow;
+        transition: 0.2s linear;
+    }
+.left:hover {
+    background-color: darken($red,20%); 
+            } 
+
+
+.right {
+    color: white;
+    background-color: darken($green,10%);
+    box-shadow: $shadow;
+    transition: 0.2s linear;
+}
+.right:hover {
+    background-color: darken($green,20%); 
+}
+
+//this is a test
+img {
+    width:80%;
+    height: 50%; 
+}
+}
+@media (max-width: $md-breakpoint) {
+    .instructions img {
+        width: 100% !important;
+        height: 150% !important;
+    }
+}
