@@ -2,12 +2,14 @@ import React, { Fragment } from "react";
 import classnames from "classnames";
 import { Helmet } from "react-helmet";
 import M from "materialize-css";
+
+import { withRouter } from "react-router-dom";
+import Axios from "axios";
+
 import isEmpty from "../../utils/is-empty";
 import correctNotification from "../../assets/audio/right.mp3";
 import wrongNotification from "../../assets/audio/wrong.mp3";
 import selectNotification from "../../assets/audio/select.mp3";
-import { withRouter } from "react-router-dom";
-import Axios from "axios";
 
 class Play extends React.Component {
   constructor(props) {
@@ -45,16 +47,18 @@ class Play extends React.Component {
   startGame() {
     const {
       questions,
-      currentQuestion,
       nextQuestion,
+      currentQuestion,
       previousQuestion,
     } = this.state;
+
     this.displayQuestions(
       questions,
       currentQuestion,
       nextQuestion,
       previousQuestion
     );
+
     this.startTimer();
   }
 
@@ -87,12 +91,12 @@ class Play extends React.Component {
       const answer = currentQuestion.answer;
       this.setState(
         {
-          currentQuestion,
-          nextQuestion,
-          previousQuestion,
-          numberOfQuestions: questions.length,
           answer,
+          nextQuestion,
+          currentQuestion,
+          previousQuestion,
           previousRandomNumbers: [],
+          numberOfQuestions: questions.length,
         },
         () => {
           this.showOptions();
@@ -158,22 +162,6 @@ class Play extends React.Component {
     this.playButtonSound();
     if (window.confirm("Are you sure you want to quit?")) {
       this.props.history.push("/");
-    }
-  };
-
-  handleButtonClick = (e) => {
-    switch (e.target.id) {
-      case "next-button":
-        this.handleNextButtonClick();
-        break;
-      case "previous-button":
-        this.handlePreviousButtonClick();
-        break;
-      case "quit-button":
-        this.handleQuitButtonClick();
-        break;
-      default:
-        break;
     }
   };
 
@@ -394,10 +382,10 @@ class Play extends React.Component {
       });
     }
   };
+
   endGame = () => {
     alert("Quiz has ended");
     const { state } = this;
-    console.log(state);
     const playerStats = {
       score: state.score,
       hintsUsed: 5 - state.hints,
@@ -483,8 +471,7 @@ class Play extends React.Component {
           </div>
           <div className="button-container">
             <button
-              id="previous-button"
-              onClick={this.handleButtonClick}
+              onClick={this.handlePreviousButtonClick}
               className={classnames("", {
                 disable: this.state.previousButtonDisabled,
               })}
@@ -492,15 +479,14 @@ class Play extends React.Component {
               Previous
             </button>
             <button
-              id="next-button"
-              onClick={this.handleButtonClick}
+              onClick={this.handleNextButtonClick}
               className={classnames("", {
                 disable: this.state.nextButtonDisabled,
               })}
             >
               Next
             </button>
-            <button id="quit-button" onClick={this.handleButtonClick}>
+            <button onClick={this.handleQuitButtonClick}>
               Quit
             </button>
           </div>
