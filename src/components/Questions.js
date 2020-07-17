@@ -34,18 +34,18 @@ export default function (props) {
   };
 
   const renderQuestions = () => {
-    return questions.map((eachQuestion) => {
+    return questions.map((question) => {
       return (
-        <table className="table col-md-6 mx-auto">
+        <table key={question._id} className="table col-md-6 mx-auto">
           <button
             className="mdi mdi-delete mdi-24px lifeline-icon"
             onClick={() => {
-              deletedQuestion(eachQuestion._id);
+              deletedQuestion(question._id);
             }}
           />
           <tr>
-            <td> {eachQuestion.question}</td>
-            <td style={{ color: "blue" }}> {eachQuestion.answer}</td>
+            <td> {question.question}</td>
+            <td style={{ color: "blue" }}> {question.answer}</td>
           </tr>
         </table>
       );

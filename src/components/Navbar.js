@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 class Navbarr extends Component {
   logOut(e) {
@@ -21,21 +21,6 @@ class Navbarr extends Component {
           <Link to="/register" className="nav-link">
             Register
           </Link>
-        </li>
-      </ul>
-    );
-
-    const userLink = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            User
-          </Link>
-        </li>
-        <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
-            Logout
-          </a>
         </li>
       </ul>
     );

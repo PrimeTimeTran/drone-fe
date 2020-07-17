@@ -47,7 +47,6 @@ class Chart extends Component {
   };
 
   render() {
-    console.log(this.state.data);
     return (
       <div className="chart">
         <Bar data={this.state.data} options={{}} />

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import QuizInstructions from "../components/quiz/QuizInstructions";
-import InputQuestions from "../components/InputQuestions";
-import Chart from "../components/Chart";
-import Questions from "../components/Questions";
+import QuizInstructions from "../../components/quiz/QuizInstructions";
+import InputQuestions from "../../components/InputQuestions";
+import Chart from "../../components/Chart";
+import Questions from "../../components/Questions";
 
 class HomePage extends Component {
   componentDidMount() {

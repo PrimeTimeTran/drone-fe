@@ -72,7 +72,7 @@ class Play extends React.Component {
       // if(res.status)
       this.setState({ questions: res.data }, () => this.startGame());
     } catch (e) {
-      console.log("error while geting questions", e);
+      console.log("error while getting questions", e);
     }
   };
 
