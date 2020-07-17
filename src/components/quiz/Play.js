@@ -64,7 +64,7 @@ class Play extends React.Component {
 
   getQuestions = async () => {
     try {
-      const res = await Axios.get("http://localhost:5000/QuestionsRoute/me", {
+      const res = await Axios.get("http://localhost:5000/questions/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
         },
@@ -396,7 +396,7 @@ class Play extends React.Component {
       numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
     };
     setTimeout(() => {
-      this.props.history.push("/play/quizSummary", playerStats);
+      this.props.history.push("/play/summary", playerStats);
     }, 1000);
   };
 

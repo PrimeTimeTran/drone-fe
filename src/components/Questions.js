@@ -13,7 +13,7 @@ export default function (props) {
 
   async function getQuestions() {
     try {
-      const res = await Axios.get("http://localhost:5000/QuestionsRoute/me", {
+      const res = await Axios.get(process.env.REACT_APP_SERVER_URL + "/questions/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
         },
@@ -33,7 +33,6 @@ export default function (props) {
   const renderQuestions = () => {
     return questions.map((eachQuestion) => {
       return (
-        <div>
           <table className="table col-md-6 mx-auto">
             <button
               className="mdi mdi-delete mdi-24px lifeline-icon"
@@ -46,7 +45,6 @@ export default function (props) {
               <td style={{ color: "blue" }}> {eachQuestion.answer}</td>
             </tr>
           </table>
-        </div>
       );
     });
   };

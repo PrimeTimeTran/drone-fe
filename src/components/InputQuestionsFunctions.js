@@ -15,7 +15,7 @@ export const postNewQuestion = newQuestion => {
     return axios
 
         .post(
-            process.env.REACT_APP_SERVER + '/QuestionsRoute',
+            process.env.REACT_APP_SERVER + '/questions',
             body,
             options
         ).then(res => {
@@ -31,7 +31,7 @@ export const deleteQuestion = id => {
     return axios
 
         .delete(
-            process.env.REACT_APP_SERVER + '/QuestionsRoute/me/'+ id,
+            process.env.REACT_APP_SERVER + '/questions/me/'+ id,
             options
         ).then(res => {
             console.log('Deleted')

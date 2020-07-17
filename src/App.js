@@ -33,7 +33,7 @@ function App() {
 
     // if there is token, we will fetch user information from api server using the token.
     try {
-      const url = process.env.REACT_APP_SERVER + "/users/me";
+      const url = process.env.REACT_APP_SERVER_URL + "/users/me";
       const resp = await fetch(url, {
         method: "GET",
         headers: {
@@ -66,7 +66,7 @@ function App() {
         exact
         user={user}
         component={QuizSummary}
-        path="/play/QuizSummary"
+        path="/play/summary"
       />
       <Protected path="/play/Quiz" exact user={user} component={Play} />
       <Route
