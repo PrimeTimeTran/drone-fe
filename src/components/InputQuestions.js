@@ -32,7 +32,7 @@ class InputQuestions extends Component {
         }
 
         postNewQuestion(updatedQuestion).then(res => {
-            this.props.history.push('/profile')
+            this.props.history.push('/home')
         })
     }
 

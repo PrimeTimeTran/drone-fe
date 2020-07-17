@@ -27,7 +27,7 @@ class Login extends Component {
       if (res) {
         this.props.checkUser();
         setTimeout(() => {
-          this.props.history.push("/profile");
+          this.props.history.push("/home");
         }, 500);
       }
     });

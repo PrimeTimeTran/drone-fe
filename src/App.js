@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "../src/components/Home";
+import LoginPage from "./pages/LoginPage";
 import QuizInstructions from "./components/quiz/QuizInstructions";
 import Play from "./components/quiz/Play";
 import QuizSummary from "./components/quiz/QuizSummary";
 import Register from "./components/Register";
-import Profile from "./components/Profile";
+import HomePage from "./pages/HomePage";
 import Login from "./components/Login";
 import Protected from "./components/Protected";
+
+import Navbar from './components/Navbar'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -62,13 +64,14 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <Protected
         exact
         user={user}
         component={QuizSummary}
         path="/play/summary"
       />
-      <Protected path="/play/Quiz" exact user={user} component={Play} />
+      <Protected path="/play/quiz" exact user={user} component={Play} />
       <Route
         exact
         path="/play/instructions"
@@ -77,10 +80,10 @@ function App() {
       <Route
         exact
         path="/"
-        render={() => <Home user={user} checkUser={checkUser} />}
+        render={() => <LoginPage user={user} checkUser={checkUser} />}
       />
       <Route path="/register" exact component={Register} />
-      <Protected path="/profile" exact user={user} component={Profile} />
+      <Protected path="/home" exact user={user} component={HomePage} />
       <Route
         exact
         path="/login"

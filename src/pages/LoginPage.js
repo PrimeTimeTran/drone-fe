@@ -1,13 +1,21 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
-import AddDepModal from "./AddDepModal";
-import RegistrationModel from "./RegistrationModel";
 
-class Home extends React.Component {
+import AddDepModal from "../components/AddDepModal";
+import RegistrationModel from "../components/RegistrationModel";
+
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { addModalShow: false };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem("usertoken");
+    if (token) {
+      this.props.history.push("profile");
+    }
   }
 
   addModalClose = () => this.setState({ addModalShow: false });
@@ -78,4 +86,4 @@ class Home extends React.Component {
   }
 }
 
-export default withRouter(Home);
+export default withRouter(LoginPage);
