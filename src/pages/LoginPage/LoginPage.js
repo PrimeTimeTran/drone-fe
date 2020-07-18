@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
 
-import AddDepModal from "../components/AddDepModal";
-import RegistrationModel from "../components/RegistrationModel";
+import AddDepModal from "../../components/AddDepModal";
+import RegistrationModel from "../../components/RegistrationModel";
 
 class LoginPage extends React.Component {
   constructor(props) {

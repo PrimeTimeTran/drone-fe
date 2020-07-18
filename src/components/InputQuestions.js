@@ -14,13 +14,13 @@ class InputQuestions extends Component {
       optionD: "",
       answer: "",
     };
-    this.onChange = this.onChange.bind(this);
-  }
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
 
-  addQuestion(e) {
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  addQuestion = (e) => {
     e.preventDefault();
     const updatedQuestion = {
       question: this.state.question,
@@ -36,25 +36,9 @@ class InputQuestions extends Component {
     });
   }
 
-  // deletedQuestion(e) {
-  //     e.preventDefault()
-  //     const removedQuestion = {
-  //         question: this.state.question,
-  //         optionA: this.state.optionA,
-  //         optionB: this.state.optionB,
-  //         optionC: this.state.optionC,
-  //         optionD: this.state.optionD,
-  //         answer: this.state.answer
-  //     }
-
-  //     deleteQuestion(removedQuestion).then(res => {
-  //         this.props.history.push('/profile')
-  //     })
-  // }
-
   render() {
     return (
-      <Form noValidate onSubmit={(e) => this.addQuestion(e)}>
+      <Form noValidate onSubmit={this.addQuestion}>
         <Form.Group controlId="exampleForm.ControlSelect2"></Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">

@@ -13,8 +13,7 @@ export const postNewQuestion = (newQuestion) => {
     headers: { Authorization: `Bearer ${localStorage.getItem("usertoken")}` },
   };
   return axios
-
-    .post(process.env.REACT_APP_SERVER + "/questions", body, options)
+    .post(process.env.REACT_APP_SERVER_URL + "/questions", body, options)
     .then((res) => {
       console.log("Registered!");
     });
@@ -25,8 +24,7 @@ export const deleteQuestion = (id) => {
     headers: { Authorization: `Bearer ${localStorage.getItem("usertoken")}` },
   };
   return axios
-
-    .delete(process.env.REACT_APP_SERVER + "/questions/me/" + id, options)
+    .delete(process.env.REACT_APP_SERVER_URL + "/questions/me/" + id, options)
     .then((res) => {
       console.log("Deleted");
     });
@@ -34,7 +32,7 @@ export const deleteQuestion = (id) => {
 
 export const login = (user) => {
   return axios
-    .post(process.env.REACT_APP_SERVER + "/users/login", {
+    .post(process.env.REACT_APP_SERVER_URL + "/users/login", {
       email: user.email,
       password: user.password,
     })

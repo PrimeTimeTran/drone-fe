@@ -9,8 +9,8 @@ class Navbarr extends Component {
     this.props.history.push("/");
   }
 
-  render() {
-    const logInRegLink = (
+  logInRegLink() {
+    return (
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/login" className="nav-link">
@@ -24,14 +24,16 @@ class Navbarr extends Component {
         </li>
       </ul>
     );
+  }
 
+  render() {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Drone Study Guide</Navbar.Brand>
+        <Navbar.Brand href="/home">Drone Study Guide</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -44,6 +46,11 @@ class Navbarr extends Component {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link eventKey={2} href="#memes">
+              {this.props.user.email}
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

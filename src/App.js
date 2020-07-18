@@ -66,7 +66,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar user={user}  />
       <Protected
         exact
         user={user}
