@@ -3,10 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 class Navbarr extends Component {
-  logOut(e) {
-    e.preventDefault();
+  logOut() {
     localStorage.removeItem("usertoken");
-    this.props.history.push("/");
+    window.location.replace("http://localhost:3000");
   }
 
   logInRegLink() {
@@ -26,6 +25,23 @@ class Navbarr extends Component {
     );
   }
 
+  renderRightToolBar() {
+    if (this.props.user)
+      return (
+        <Nav>
+          <NavDropdown title={this.props.user.email} id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">Quiz History</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Settings</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={(e) => this.logOut(e)}>
+              Log Out
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+      );
+  }
+
   render() {
     return (
       <Navbar bg="light" expand="lg" fixed="top">
@@ -35,19 +51,7 @@ class Navbarr extends Component {
           <Nav className="mr-auto">
             {/* <Nav.Link href="#link">Link</Nav.Link> */}
           </Nav>
-          <Nav>
-          <NavDropdown title={this.props.user && this.props.user.email} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Quiz History
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Settings</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Log Out
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+          {this.renderRightToolBar()}
         </Navbar.Collapse>
       </Navbar>
     );

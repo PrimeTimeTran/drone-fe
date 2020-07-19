@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="mt-5 pt-5">
         <Fragment>
           <Helmet>
             <title>PART 107 - Commercial UAS Study Guide</title>

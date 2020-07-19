@@ -30,7 +30,7 @@ class Register extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div className="container pt-5 mt-5">
         <div className="row">
           <div className="col-md-12 mt-5 mx-auto">
             <form noValidate onSubmit={(e) => this.onSubmit(e)}>
