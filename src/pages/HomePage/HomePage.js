@@ -11,12 +11,11 @@ class HomePage extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div className="container pt-5">
         <h2 style={{ textAlign: "center" }}>
           {" "}
           Welcome {this.props.user.first_name}!
         </h2>
-        <div className=""> Email: {this.props.user.email}</div>
         <Chart />
         <QuizInstructions />
         <h2 style={{ textAlign: "center" }}>Create New Questions Here!</h2>
