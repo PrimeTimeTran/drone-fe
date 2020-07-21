@@ -25,7 +25,8 @@ class Register extends Component {
       last_name: this.state.last_name,
     };
     register(user).then((res) => {
-      this.props.history.push("/login");
+      this.props.checkUser()
+      this.props.history.push("/");
     });
   }
   render() {

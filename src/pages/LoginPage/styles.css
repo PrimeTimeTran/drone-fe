@@ -1,0 +1,10 @@
+.back-button {
+  position: relative;
+  color: white;
+  top: 25px;
+  left: 10px;
+}
+
+i {
+  font-size: 4em;
+}

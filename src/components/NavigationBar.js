@@ -45,7 +45,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg" fixed="top">
-        <Link to="/home">
+        <Link to="/">
           <Navbar.Brand>Drone Study Guide</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

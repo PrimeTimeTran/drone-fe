@@ -24,10 +24,8 @@ class Login extends Component {
     };
     login(user).then((res) => {
       if (res) {
-        this.props.checkUser();
-        setTimeout(() => {
-          this.props.history.push("/home");
-        }, 500);
+        this.props.checkUser()
+        this.props.history.push("/home");
       }
     });
   };

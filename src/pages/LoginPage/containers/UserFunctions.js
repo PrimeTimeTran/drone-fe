@@ -2,8 +2,10 @@ import axios from "axios";
 
 export const register = (newUser) => {
   return axios
-    .post(process.env.REACT_APP_SERVER_URL + "/users/register", newUser)
+    .post(process.env.REACT_APP_SERVER_URL + "/users", newUser)
     .then((res) => {
+      console.log("Loi", res);
+      localStorage.setItem("usertoken", res.data.data);
       console.log("Registered!");
     });
 };

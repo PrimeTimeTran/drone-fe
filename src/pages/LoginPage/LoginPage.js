@@ -2,19 +2,23 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
 
+import "./styles.css";
+
 import Register from "./containers/Register";
 import Login from "./containers/Login";
 
-function LoginPage() {
+const LoginPage = (props) => {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("usertoken");
     if (token) {
-      this.props.history.push("profile");
+      props.history.push("home");
+    } else {
+      props.history.push("/");
     }
-  }, []);
+  }, [props.history]);
 
   const renderLoginChoices = () => {
     if (!showLogin && !showRegister) {
@@ -44,20 +48,36 @@ function LoginPage() {
               Register
             </Link>
           </div>
-          </>
+        </>
+      );
+    }
+  };
+
+  const renderBack = () => {
+    if (showLogin || showRegister) {
+      return (
+        <div
+          className="back-button"
+          onClick={() => {
+            setShowLogin(false);
+            setShowRegister(false);
+          }}
+        >
+          <i className="fas fa-angle-left"></i>
+        </div>
       );
     }
   };
 
   const renderRegister = () => {
     if (showRegister) {
-      return <Register />;
+      return <Register checkUser={props.checkUser} />;
     }
   };
 
   const renderLogin = () => {
     if (showLogin) {
-      return <Login />;
+      return <Login checkUser={props.checkUser} />;
     }
   };
 
@@ -69,6 +89,7 @@ function LoginPage() {
         </Helmet>
         <div id="home">
           <section>
+            {renderBack()}
             {renderLoginChoices()}
             {renderRegister()}
             {renderLogin()}
@@ -77,6 +98,6 @@ function LoginPage() {
       </Fragment>
     </div>
   );
-}
+};
 
 export default withRouter(LoginPage);
