@@ -40,71 +40,70 @@ class InputQuestions extends Component {
     return (
       <Form noValidate onSubmit={this.addQuestion}>
         <Form.Group controlId="exampleForm.ControlSelect2"></Form.Group>
-
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Enter Your Question Here </Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
             type="text"
-            className="form-control"
+            as="textarea"
             name="question"
+            onChange={this.onChange}
+            className="form-control"
             placeholder="Question Here"
             value={this.state.question}
-            onChange={this.onChange}
           />
         </Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Option A</Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
             type="text"
-            className="form-control"
+            as="textarea"
             name="optionA"
-            placeholder="Enter First Option"
-            value={this.state.optionA}
+            className="form-control"
             onChange={this.onChange}
+            value={this.state.optionA}
+            placeholder="Enter First Option"
           />
         </Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Option B</Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
-            className="form-control"
+            as="textarea"
             name="optionB"
-            placeholder="Enter Second Option"
-            value={this.state.optionB}
+            className="form-control"
             onChange={this.onChange}
+            value={this.state.optionB}
+            placeholder="Enter Second Option"
           />
         </Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Option C</Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
-            className="form-control"
+            as="textarea"
             name="optionC"
-            placeholder="Enter Third Option"
-            value={this.state.optionC}
+            className="form-control"
             onChange={this.onChange}
+            value={this.state.optionC}
+            placeholder="Enter Third Option"
           />
         </Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Option D</Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
-            className="form-control"
+            as="textarea"
             name="optionD"
-            placeholder="Enter Fourth Option"
-            value={this.state.optionD}
+            className="form-control"
             onChange={this.onChange}
+            value={this.state.optionD}
+            placeholder="Enter Fourth Option"
           />
         </Form.Group>
 
@@ -113,19 +112,19 @@ class InputQuestions extends Component {
             Enter Correct Answer Here (must be one of the options defined)
           </Form.Label>
           <Form.Control
-            as="textarea"
             rows="3"
-            className="form-control"
+            as="textarea"
             name="answer"
-            placeholder="Enter Answer"
-            value={this.state.answer}
             onChange={this.onChange}
+            className="form-control"
+            value={this.state.answer}
+            placeholder="Enter Answer"
           />
         </Form.Group>
         <button
           type="submit"
-          className="btn btn-lg btn-block"
           id="login-button"
+          className="btn btn-lg btn-block"
         >
           Add Question
         </button>

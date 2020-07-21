@@ -32,7 +32,7 @@ class Register extends Component {
     return (
       <div className="container pt-5 mt-5">
         <div className="row">
-          <div className="col-md-12 mt-5 mx-auto">
+          <div className="col-md-12 mt-5 mx-auto text-white">
             <form noValidate onSubmit={(e) => this.onSubmit(e)}>
               <h1 className="h3 mb-3 font-weight-normal">
                 Register Your Account
@@ -42,7 +42,7 @@ class Register extends Component {
                 <input
                   type="text"
                   name="first_name"
-                  className="form-control"
+                  className="form-control text-white"
                   onChange={this.onChange}
                   placeholder="Enter First Name"
                   value={this.state.first_name}

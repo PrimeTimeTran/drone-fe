@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
-class Navbarr extends Component {
+class NavigationBar extends Component {
   logOut() {
     localStorage.removeItem("usertoken");
     window.location.replace("http://localhost:3000");
@@ -45,7 +45,9 @@ class Navbarr extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg" fixed="top">
-        <Navbar.Brand href="/home">Drone Study Guide</Navbar.Brand>
+        <Link to="/home">
+          <Navbar.Brand>Drone Study Guide</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -58,4 +60,4 @@ class Navbarr extends Component {
   }
 }
 
-export default withRouter(Navbarr);
+export default withRouter(NavigationBar);

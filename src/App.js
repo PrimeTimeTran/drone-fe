@@ -4,14 +4,13 @@ import LoginPage from "./pages/LoginPage";
 import QuizInstructions from "./components/quiz/QuizInstructions";
 import Play from "./components/quiz/Play";
 import QuizSummary from "./components/quiz/QuizSummary";
-import Register from "./components/Register";
+// import Register from "./components/Register";
 // import HomePage from "./pages/HomePage";
 import HomePage from './pages/HomePage'
 import TestingPage from './pages/TestingPage'
-import Login from "./components/Login";
 import Protected from "./components/Protected";
 
-import Navbar from './components/Navbar'
+import NavigationBar from './components/NavigationBar'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -66,7 +65,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar user={user}  />
+      <NavigationBar user={user}  />
       <Protected
         exact
         user={user}
@@ -80,18 +79,12 @@ function App() {
         render={() => <QuizInstructions checkUser={checkUser} />}
       />
       
-      <Route path="/register" exact component={Register} />
       <Protected path="/home" exact user={user} component={HomePage} />
       <Route path="/testing" component={TestingPage} />
       <Route
         exact
         path="/"
         render={() => <LoginPage user={user} checkUser={checkUser} />}
-      />
-      <Route
-        exact
-        path="/login"
-        render={() => <Login checkUser={checkUser} />}
       />
     </Router>
   );
