@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import QuizInstructions from "./components/quiz/QuizInstructions";
 import Play from "./components/quiz/Play";
 import QuizSummary from "./components/quiz/QuizSummary";
 import HomePage from "./pages/HomePage";
@@ -12,11 +11,10 @@ import NavigationBar from "./components/NavigationBar";
 function App() {
   const [user, setUser] = useState(null);
 
-
   async function checkUser() {
-    const token = localStorage.getItem("usertoken")
+    const token = localStorage.getItem("usertoken");
 
-    if (!token) return
+    if (!token) return;
 
     try {
       const url = process.env.REACT_APP_SERVER_URL + "/users/me";
@@ -26,17 +24,16 @@ function App() {
           Authorization: "Bearer " + token,
         },
       });
-      const data = await resp.json();
-      setUser(data.data)
+      const { data } = await resp.json();
+      setUser(data);
     } catch (e) {
-      console.log({e})
+      console.log({ e });
     }
-  };
+  }
 
   useEffect(() => {
-    checkUser()
+    checkUser();
   }, []);
-
 
   return (
     <Router>
@@ -48,11 +45,6 @@ function App() {
         path="/play/summary"
       />
       <Protected path="/play/quiz" exact user={user} component={Play} />
-      <Route
-        exact
-        path="/play/instructions"
-        render={() => <QuizInstructions checkUser={checkUser} />}
-      />
       <Protected path="/home" exact user={user} component={HomePage} />
       <Route
         exact
