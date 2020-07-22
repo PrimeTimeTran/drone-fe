@@ -4,37 +4,20 @@ import LoginPage from "./pages/LoginPage";
 import QuizInstructions from "./components/quiz/QuizInstructions";
 import Play from "./components/quiz/Play";
 import QuizSummary from "./components/quiz/QuizSummary";
-// import Register from "./components/Register";
-// import HomePage from "./pages/HomePage";
-import HomePage from './pages/HomePage'
-import TestingPage from './pages/TestingPage'
+import HomePage from "./pages/HomePage";
 import Protected from "./components/Protected";
 
-import NavigationBar from './components/NavigationBar'
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    checkUser();
-  }, []);
 
-  const checkUser = async () => {
-    // extracting token from url
-    const urlToken = window.location.href.split("?token=")[1]
-      ? window.location.href.split("?token=")[1].replace("#_=_", "")
-      : null;
-    // get token from storage or urlToken
-    const token = localStorage.getItem("usertoken") || urlToken;
+  async function checkUser() {
+    const token = localStorage.getItem("usertoken")
 
-    // if there is no token, we don't need to do anything else, just set our app state as LOADED
-    if (!token) {
-      setLoaded(true);
-      return;
-    }
+    if (!token) return
 
-    // if there is token, we will fetch user information from api server using the token.
     try {
       const url = process.env.REACT_APP_SERVER_URL + "/users/me";
       const resp = await fetch(url, {
@@ -44,28 +27,20 @@ function App() {
         },
       });
       const data = await resp.json();
-      // if we get user object from response, it means token is correct, we save it back to storage, as well as setState our user to the value we just got from the response
-      if (data.status === "success") {
-        localStorage.setItem("usertoken", token);
-        setUser(data.data);
-        setLoaded(true);
-      } else {
-        // token is not valid, clear the token so that we don't have to check again
-        localStorage.removeItem("usertoken");
-        setLoaded(true);
-      }
-    } catch (err) {
-      console.log(err);
-      setLoaded(true);
+      setUser(data.data)
+    } catch (e) {
+      console.log({e})
     }
-    // finally set our app state to LOADED
   };
 
-  if (!loaded) return <h1> loading </h1>;
+  useEffect(() => {
+    checkUser()
+  }, []);
+
 
   return (
     <Router>
-      <NavigationBar user={user}  />
+      <NavigationBar user={user} />
       <Protected
         exact
         user={user}
@@ -78,9 +53,7 @@ function App() {
         path="/play/instructions"
         render={() => <QuizInstructions checkUser={checkUser} />}
       />
-      
       <Protected path="/home" exact user={user} component={HomePage} />
-      <Route path="/testing" component={TestingPage} />
       <Route
         exact
         path="/"

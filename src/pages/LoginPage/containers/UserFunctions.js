@@ -4,8 +4,8 @@ export const register = (newUser) => {
   return axios
     .post(process.env.REACT_APP_SERVER_URL + "/users", newUser)
     .then((res) => {
-      console.log("Loi", res);
-      localStorage.setItem("usertoken", res.data.data);
+      const { token } = res.data
+      localStorage.setItem("usertoken", token);
       console.log("Registered!");
     });
 };

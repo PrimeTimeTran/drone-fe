@@ -26,7 +26,7 @@ class Register extends Component {
     };
     register(user).then((res) => {
       this.props.checkUser()
-      this.props.history.push("/");
+      window.location.replace("http://localhost:3000");
     });
   }
   render() {

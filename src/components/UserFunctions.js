@@ -4,7 +4,7 @@ export const register = (newUser) => {
   return axios
     .post(process.env.REACT_APP_SERVER_URL + "/users/register", newUser)
     .then((res) => {
-      console.log("Registered!");
+      console.log("Registered!");      
     });
 };
 
