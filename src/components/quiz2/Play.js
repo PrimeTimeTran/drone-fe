@@ -8,8 +8,7 @@ import Axios from "axios";
 import isEmpty from "../../utils/is-empty";
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
-import AnswerOptions from "./containers/AnswerOptions";
-import ControlOptions from "./containers/ControlOptions";
+import { AnswerOptions, ControlOptions } from './containers'
 
 import { defaultState } from "./utils";
 
@@ -44,25 +43,12 @@ class Play extends React.Component {
   };
 
   startGame = () => {
-    const {
-      questions,
-      nextQuestion,
-      currentQuestion,
-      previousQuestion,
-    } = this.state;
-
-    this.displayQuestions(
-      questions,
-      currentQuestion,
-      nextQuestion,
-      previousQuestion
-    );
-
+    this.displayQuestions();
     this.startTimer();
   };
 
-  displayQuestions = (questions = this.state.questions) => {
-    let { currentQuestionIndex } = this.state;
+  displayQuestions = () => {
+    let { currentQuestionIndex, questions } = this.state;
     let currentQuestion, nextQuestion, previousQuestion;
     if (!isEmpty(questions)) {
       currentQuestion = questions[currentQuestionIndex];
@@ -73,10 +59,10 @@ class Play extends React.Component {
             ? currentQuestionIndex
             : currentQuestionIndex - 1
         ];
-      const answer = currentQuestion.answer;
+      const { answer } = currentQuestion;
       this.setState(
         {
-          answer,
+          answer: answer.toLowerCase(),
           nextQuestion,
           currentQuestion,
           previousQuestion,
@@ -91,10 +77,8 @@ class Play extends React.Component {
     }
   };
 
-  handleOptionClick = (option) => {
-    console.log(option);
-    const correctAnswer =
-      option.toLowerCase() === this.state.answer.toLowerCase();
+  handleSelectAnswer = (option) => {
+    const correctAnswer = option.toLowerCase() === this.state.answer;
     if (correctAnswer) {
       setTimeout(() => {
         this.correctSound.current.play();
@@ -108,45 +92,27 @@ class Play extends React.Component {
     }
   };
 
-  handleNextButtonClick = () => {
+  handleNext = () => {
     this.playButtonSound();
-    if (this.state.nextQuestion !== undefined) {
-      this.setState(
-        (prevState) => ({
-          currentQuestionIndex: prevState.currentQuestionIndex + 1,
-        }),
-        () => {
-          this.displayQuestions(
-            this.state.state,
-            this.state.currentQuestion,
-            this.state.nextionQuestion,
-            this.state.previousQuestion
-          );
-        }
-      );
-    }
+    this.setState(
+      (prevState) => ({
+        currentQuestionIndex: prevState.currentQuestionIndex + 1,
+      }),
+      this.displayQuestions
+    );
   };
 
-  handlePreviousButtonClick = () => {
+  handlePrevious = () => {
     this.playButtonSound();
-    if (this.state.previousQuestion !== undefined) {
-      this.setState(
-        (prevState) => ({
-          currentQuestionIndex: prevState.currentQuestionIndex - 1,
-        }),
-        () => {
-          this.displayQuestions(
-            this.state.state,
-            this.state.currentQuestion,
-            this.state.nextionQuestion,
-            this.state.previousQuestion
-          );
-        }
-      );
-    }
+    this.setState(
+      (prevState) => ({
+        currentQuestionIndex: prevState.currentQuestionIndex - 1,
+      }),
+      this.displayQuestions
+    );
   };
 
-  handleQuitButtonClick = () => {
+  handleQuit = () => {
     this.playButtonSound();
     if (window.confirm("Are you sure you want to quit?")) {
       this.setState(defaultState);
@@ -154,9 +120,7 @@ class Play extends React.Component {
     }
   };
 
-  playButtonSound = () => {
-    this.buttonSound.current.play();
-  };
+  playButtonSound = () => this.buttonSound.current.play();
 
   correctAnswer = () => {
     M.toast({
@@ -175,12 +139,7 @@ class Play extends React.Component {
         if (this.state.nextQuestion === undefined) {
           this.endGame();
         } else {
-          this.displayQuestions(
-            this.state.questions,
-            this.state.currentQuestion,
-            this.state.nextQuestion,
-            this.state.previousQuestion
-          );
+          this.displayQuestions();
         }
       }
     );
@@ -203,12 +162,7 @@ class Play extends React.Component {
         if (this.state.nextQuestion === undefined) {
           this.endGame();
         } else {
-          this.displayQuestions(
-            this.state.questions,
-            this.state.currentQuestion,
-            this.state.nextQuestion,
-            this.state.previousQuestion
-          );
+          this.displayQuestions();
         }
       }
     );
@@ -231,12 +185,11 @@ class Play extends React.Component {
       let indexOfAnswer;
 
       options.forEach((option, index) => {
-        if (
-          option.innerHTML.toLowerCase() === this.state.answer.toLowerCase()
-        ) {
+        if (option.innerHTML.toLowerCase() === this.state.answer) {
           indexOfAnswer = index;
         }
       });
+
       while (true) {
         const randomNumber = Math.round(Math.random() * 3);
         if (
@@ -268,9 +221,7 @@ class Play extends React.Component {
       let indexOfAnswer;
 
       options.forEach((option, index) => {
-        if (
-          option.innerHTML.toLowerCase() === this.state.answer.toLowerCase()
-        ) {
+        if (option.innerHTML.toLowerCase() === this.state.answer) {
           indexOfAnswer = index;
         }
       });
@@ -378,7 +329,6 @@ class Play extends React.Component {
         },
       }
     );
-    const json = await response.json();
     setTimeout(() => {
       this.props.history.push("/play/summary", playerStats);
     }, 1000);
@@ -437,18 +387,17 @@ class Play extends React.Component {
               </span>
             </p>
           </div>
-
           <h5>{currentQuestion.question}</h5>
           <AnswerOptions
             currentQuestion={currentQuestion}
-            handleOptionClick={this.handleOptionClick}
+            handleSelectAnswer={this.handleSelectAnswer}
           />
           <ControlOptions
+            handleNext={this.handleNext}
+            handleQuit={this.handleQuit}
+            handlePrevious={this.handlePrevious}
             disableNextButton={disableNextButton}
             previousButtonDisabled={disablePreviousButton}
-            handleNextButtonClick={this.handleNextButtonClick}
-            handleQuitButtonClick={this.handleQuitButtonClick}
-            handlePreviousButtonClick={this.handlePreviousButtonClick}
           />
         </div>
       </Fragment>

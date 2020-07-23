@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import Play from "./components/quiz2/Play";
-import QuizSummary from "./components/quiz/QuizSummary";
+import QuizSummary from "./components/quiz2/QuizSummary";
 import HomePage from "./pages/HomePage";
 import Protected from "./components/Protected";
 

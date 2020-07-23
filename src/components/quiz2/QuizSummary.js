@@ -18,6 +18,7 @@ class QuizSummary extends Component {
   }
 
   componentDidMount() {
+    console.log({loi: this.props.location})
     const { state } = this.props.location;
     if (state) {
       this.setState({
