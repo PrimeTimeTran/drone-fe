@@ -7,7 +7,6 @@ import Questions from "../../components/Questions";
 
 class HomePage extends Component {
   componentDidMount() {
-    console.log('Home page', this.props.user)
     if (!this.props.user) return this.props.history.push("/");
   }
   render() {
