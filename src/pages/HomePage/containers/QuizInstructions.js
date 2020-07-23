@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Jumbotron, Button } from "react-bootstrap";
+
 import fiftyfifty from "../../../assets/img/fiftyfifty.png";
 import answer from "../../../assets/img/answer.png";
 import options from "../../../assets/img/options.png";
@@ -11,8 +13,7 @@ const QuizInstructions = () => (
     <Helmet>
       <title>PART 107 - Commercial UAS Study Guide</title>
     </Helmet>
-    <div className="instructions container">
-      {/* <h1>Getting Started</h1>
+    {/* <h1>Getting Started</h1>
       <ul className="browser-default" id="main-list">
         <li>The Quiz lasts for 60 minutes and ends when your time elapses.</li>
         <li>
@@ -55,15 +56,22 @@ const QuizInstructions = () => (
         </li>
       </ul> */}
 
-      <div>
-        <button className="left" id="next-button" to="/">
-          No Take me Back
-        </button>
-        <Link className="right" id="next-button" to="/play/quiz">
-          Okay lets Do This!{" "}
-        </Link>
-      </div>
-    </div>
+    <Jumbotron>
+      <h1>Hello, world!</h1>
+      <p>
+        This is a simple hero unit, a simple jumbotron-style component for
+        calling extra attention to featured content or information.
+      </p>
+      <p>
+      <Link className="right" id="next-button" to="/play/quiz">
+        <Button variant="primary" href="/play/quiz">
+          {" "}
+          Play
+        </Button>
+      </Link>
+      </p>
+
+    </Jumbotron>
   </Fragment>
 );
 
