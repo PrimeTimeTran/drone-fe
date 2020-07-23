@@ -26,8 +26,8 @@ class Play extends React.Component {
   }
 
   startGame = () => {
-    this.displayQuestions();
     this.startTimer();
+    this.displayQuestions();
   };
 
   displayQuestions = () => {
@@ -35,14 +35,13 @@ class Play extends React.Component {
     const currentQuestion = questions[currentQuestionIndex];
     const gameOver = questions[currentQuestionIndex + 1];
 
-    const { answer } = currentQuestion;
     this.setState(
       {
         gameOver,
         currentQuestion,
         previousRandomNumbers: [],
-        answer: answer.toLowerCase(),
         numberOfQuestions: questions.length,
+        answer: currentQuestion.answer.toLowerCase(),
       },
       () => {
         this.showOptions();
@@ -61,12 +60,12 @@ class Play extends React.Component {
       navigator.vibrate(1000);
       toastWrong();
     }
-    this.updateAnswers(correct);
+    this.updateScore(correct);
   };
 
   playButtonSound = () => this.buttonSound.current.play();
 
-  updateAnswers = (correct) => {
+  updateScore = (correct) => {
     const incrementor = correct ? "correctAnswers" : "wrongAnswers";
     this.setState(
       (prevState) => ({
