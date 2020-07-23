@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import classnames from "classnames";
 import { Helmet } from "react-helmet";
 import M from "materialize-css";
 
@@ -7,28 +6,12 @@ import { withRouter } from "react-router-dom";
 import Axios from "axios";
 
 import isEmpty from "../../utils/is-empty";
-import { correctSound, wrongSound, selectSound } from "../../assets/audio"
+import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
-const defaultState = {
-  score: 0,
-  time: {},
-  hints: 5,
-  answer: " ",
-  questions: [],
-  fiftyFifty: 2,
-  wrongAnswers: 0,
-  nextQuestion: {},
-  correctAnswers: 0,
-  currentQuestion: {},
-  previousQuestion: {},
-  numberOfQuestions: 0,
-  usedFiftyFifty: false,
-  currentQuestionIndex: 0,
-  previousRandomNumbers: [],
-  nextButtonDisabled: false,
-  previousButtonDisabled: true,
-  numberOfAnsweredQuestions: 0,
-}
+import AnswerOptions from "./containers/AnswerOptions";
+import ControlOptions from "./components/ControlOptions";
+
+import { defaultState } from "./utils";
 
 class Play extends React.Component {
   constructor(props) {
@@ -44,7 +27,23 @@ class Play extends React.Component {
     this.getQuestions();
   }
 
-  startGame() {
+  getQuestions = async () => {
+    try {
+      const res = await Axios.get(
+        process.env.REACT_APP_SERVER_URL + "/questions/me",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
+          },
+        }
+      );
+      this.setState({ questions: res.data }, this.startGame);
+    } catch (e) {
+      console.log("error while getting questions", e);
+    }
+  };
+
+  startGame = () => {
     const {
       questions,
       nextQuestion,
@@ -60,23 +59,6 @@ class Play extends React.Component {
     );
 
     this.startTimer();
-  }
-
-  getQuestions = async () => {
-    try {
-      const res = await Axios.get(
-        process.env.REACT_APP_SERVER_URL + "/questions/me",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
-          },
-        }
-      );
-      console.log({ data: res.data });
-      this.setState({ questions: res.data }, () => this.startGame());
-    } catch (e) {
-      console.log("error while getting questions", e);
-    }
   };
 
   displayQuestions = (questions = this.state.questions) => {
@@ -109,8 +91,11 @@ class Play extends React.Component {
     }
   };
 
-  handleOptionClick = (e) => {
-    if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
+  handleOptionClick = (option) => {
+    console.log(option);
+    const correctAnswer =
+      option.toLowerCase() === this.state.answer.toLowerCase();
+    if (correctAnswer) {
       setTimeout(() => {
         this.correctSound.current.play();
       }, 200);
@@ -164,7 +149,7 @@ class Play extends React.Component {
   handleQuitButtonClick = () => {
     this.playButtonSound();
     if (window.confirm("Are you sure you want to quit?")) {
-      this.setState(defaultState)
+      this.setState(defaultState);
       this.props.history.push("/");
     }
   };
@@ -378,11 +363,11 @@ class Play extends React.Component {
       this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions
     ) {
       this.setState({
-        nextButtonDisabled: true,
+        disableNextButton: true,
       });
     } else {
       this.setState({
-        nextButtonDisabled: false,
+        disableNextButton: false,
       });
     }
   };
@@ -413,7 +398,6 @@ class Play extends React.Component {
       }
     );
     const json = await response.json();
-    console.log({ json });
     setTimeout(() => {
       this.props.history.push("/play/summary", playerStats);
     }, 1000);
@@ -426,6 +410,7 @@ class Play extends React.Component {
       fiftyFifty,
       currentQuestion,
       numberOfQuestions,
+      disableNextButton,
       currentQuestionIndex,
     } = this.state;
 
@@ -472,41 +457,17 @@ class Play extends React.Component {
           </div>
 
           <h5>{currentQuestion.question}</h5>
-          <div className="options-container">
-            <p onClick={this.handleOptionClick} className="option">
-              {currentQuestion.optionB}
-            </p>
-            <p onClick={this.handleOptionClick} className="option">
-              {currentQuestion.optionA}
-            </p>
-          </div>
-          <div className="options-container">
-            <p onClick={this.handleOptionClick} className="option">
-              {currentQuestion.optionC}
-            </p>
-            <p onClick={this.handleOptionClick} className="option">
-              {currentQuestion.optionD}
-            </p>
-          </div>
-          <div className="button-container">
-            <button
-              onClick={this.handlePreviousButtonClick}
-              className={classnames("", {
-                disable: this.state.previousButtonDisabled,
-              })}
-            >
-              Previous
-            </button>
-            <button
-              onClick={this.handleNextButtonClick}
-              className={classnames("", {
-                disable: this.state.nextButtonDisabled,
-              })}
-            >
-              Next
-            </button>
-            <button onClick={this.handleQuitButtonClick}>Quit</button>
-          </div>
+          <AnswerOptions
+            currentQuestion={currentQuestion}
+            handleOptionClick={this.handleOptionClick}
+          />
+          <ControlOptions
+            handleNextButtonClick={this.handleNextButtonClick}
+            disableNextButton={disableNextButton}
+            handleQuitButtonClick={this.handleQuitButtonClick}
+            handlePreviousButtonClick={this.handlePreviousButtonClick}
+            previousButtonDisabled={this.state.handlePreviousButtonClick}
+          />
         </div>
       </Fragment>
     );

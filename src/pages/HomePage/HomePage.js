@@ -16,7 +16,7 @@ class HomePage extends Component {
           {" "}
           Welcome {this.props.user.first_name}!
         </h2>
-        <Chart />
+        {/* <Chart /> */}
         <QuizInstructions />
         <h2 style={{ textAlign: "center" }}>Create New Questions Here!</h2>
         <InputQuestions />
