@@ -8,17 +8,16 @@ class QuizSummary extends Component {
     super(props);
     this.state = {
       score: 0,
+      hintsUsed: 0,
+      wrongAnswers: 0,
+      correctAnswers: 0,
+      fiftyFiftyUsed: 0,
       numberOfQuestions: 0,
       numberOfAnsweredQuestions: 0,
-      correctAnswers: 0,
-      wrongAnswers: 0,
-      hintsUsed: 0,
-      fiftyFiftyUsed: 0,
     };
   }
 
   componentDidMount() {
-    console.log({loi: this.props.location})
     const { state } = this.props.location;
     if (state) {
       this.setState({

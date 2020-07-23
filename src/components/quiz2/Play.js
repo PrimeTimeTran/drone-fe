@@ -1,16 +1,14 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
-import M from "materialize-css";
 
 import { withRouter } from "react-router-dom";
-import Axios from "axios";
 
-import isEmpty from "../../utils/is-empty";
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
-import { AnswerOptions, ControlOptions } from './containers'
+import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
 
-import { defaultState } from "./utils";
+import { defaultState, toastCorrect, toastWrong } from "./utils";
+import { sendQuizScore, getQuestions } from "../../api";
 
 class Play extends React.Component {
   constructor(props) {
@@ -22,25 +20,10 @@ class Play extends React.Component {
     this.buttonSound = React.createRef();
   }
 
-  componentDidMount() {
-    this.getQuestions();
+  async componentDidMount() {
+    const questions = await getQuestions();
+    this.setState({ questions }, this.startGame);
   }
-
-  getQuestions = async () => {
-    try {
-      const res = await Axios.get(
-        process.env.REACT_APP_SERVER_URL + "/questions/me",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
-          },
-        }
-      );
-      this.setState({ questions: res.data }, this.startGame);
-    } catch (e) {
-      console.log("error while getting questions", e);
-    }
-  };
 
   startGame = () => {
     this.displayQuestions();
@@ -48,74 +31,48 @@ class Play extends React.Component {
   };
 
   displayQuestions = () => {
-    let { currentQuestionIndex, questions } = this.state;
-    let currentQuestion, nextQuestion, previousQuestion;
-    if (!isEmpty(questions)) {
-      currentQuestion = questions[currentQuestionIndex];
-      nextQuestion = questions[currentQuestionIndex + 1];
-      previousQuestion =
-        questions[
-          currentQuestionIndex === 0
-            ? currentQuestionIndex
-            : currentQuestionIndex - 1
-        ];
-      const { answer } = currentQuestion;
-      this.setState(
-        {
-          answer: answer.toLowerCase(),
-          nextQuestion,
-          currentQuestion,
-          previousQuestion,
-          previousRandomNumbers: [],
-          numberOfQuestions: questions.length,
-        },
-        () => {
-          this.showOptions();
-          this.handleDisablingButtons();
-        }
-      );
-    }
+    const { currentQuestionIndex, questions } = this.state;
+    const currentQuestion = questions[currentQuestionIndex];
+    const gameOver = questions[currentQuestionIndex + 1];
+
+    const { answer } = currentQuestion;
+    this.setState(
+      {
+        gameOver,
+        currentQuestion,
+        previousRandomNumbers: [],
+        answer: answer.toLowerCase(),
+        numberOfQuestions: questions.length,
+      },
+      () => {
+        this.showOptions();
+        this.handleDisablingButtons();
+      }
+    );
   };
 
   handleSelectAnswer = (option) => {
     const correctAnswer = option.toLowerCase() === this.state.answer;
     if (correctAnswer) {
-      setTimeout(() => {
-        this.correctSound.current.play();
-      }, 200);
+      this.correctSound.current.play();
       this.correctAnswer();
     } else {
-      setTimeout(() => {
-        this.wrongSound.current.play();
-      }, 200);
+      this.wrongSound.current.play();
       this.wrongAnswer();
     }
   };
 
-  handleNext = () => {
+  handleNav = (direction) => {
     this.playButtonSound();
-    this.setState(
-      (prevState) => ({
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
-      }),
-      this.displayQuestions
-    );
-  };
-
-  handlePrevious = () => {
-    this.playButtonSound();
-    this.setState(
-      (prevState) => ({
-        currentQuestionIndex: prevState.currentQuestionIndex - 1,
-      }),
-      this.displayQuestions
-    );
+    this.setState(({ currentQuestionIndex }) => {
+      const idx = currentQuestionIndex + (direction === "forward" ? 1 : -1);
+      return { currentQuestionIndex: idx };
+    }, this.displayQuestions);
   };
 
   handleQuit = () => {
     this.playButtonSound();
     if (window.confirm("Are you sure you want to quit?")) {
-      this.setState(defaultState);
       this.props.history.push("/");
     }
   };
@@ -123,11 +80,7 @@ class Play extends React.Component {
   playButtonSound = () => this.buttonSound.current.play();
 
   correctAnswer = () => {
-    M.toast({
-      html: "Correct!",
-      classes: "toast-valid",
-      displayLength: 1500,
-    });
+    toastCorrect();
     this.setState(
       (prevState) => ({
         score: prevState.score + 1,
@@ -136,7 +89,7 @@ class Play extends React.Component {
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
       }),
       () => {
-        if (this.state.nextQuestion === undefined) {
+        if (this.state.gameOver === undefined) {
           this.endGame();
         } else {
           this.displayQuestions();
@@ -147,11 +100,7 @@ class Play extends React.Component {
 
   wrongAnswer = () => {
     navigator.vibrate(1000);
-    M.toast({
-      html: "Wrong Answer",
-      classes: "toast-invalid",
-      displayLength: 1500,
-    });
+    toastWrong();
     this.setState(
       (prevState) => ({
         wrongAnswers: prevState.wrongAnswers + 1,
@@ -159,7 +108,7 @@ class Play extends React.Component {
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
       }),
       () => {
-        if (this.state.nextQuestion === undefined) {
+        if (this.state.gameOver === undefined) {
           this.endGame();
         } else {
           this.displayQuestions();
@@ -174,9 +123,7 @@ class Play extends React.Component {
     options.forEach((option) => {
       option.style.visibility = "visible";
     });
-    this.setState({
-      usedFiftyFifty: false,
-    });
+    this.setState({ usedFiftyFifty: false });
   };
 
   handleHints = () => {
@@ -268,10 +215,8 @@ class Play extends React.Component {
     this.interval = setInterval(() => {
       const now = new Date();
       const distance = countDownTime - now;
-
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       if (distance < 0) {
         clearInterval(this.interval);
         this.setState(
@@ -281,9 +226,7 @@ class Play extends React.Component {
               seconds: 0,
             },
           },
-          () => {
-            this.endGame();
-          }
+          this.endGame
         );
       } else {
         this.setState({
@@ -305,30 +248,27 @@ class Play extends React.Component {
   };
 
   endGame = async () => {
-    alert("Quiz has ended");
-    const token = localStorage.getItem("usertoken");
-    const { state } = this;
+    const {
+      score,
+      hints,
+      fiftyFifty,
+      wrongAnswers,
+      correctAnswers,
+      numberOfQuestions,
+      numberOfAnsweredQuestions,
+    } = this.state;
+
     const playerStats = {
-      score: state.score,
-      hintsUsed: 5 - state.hints,
-      wrongAnswers: state.wrongAnswers,
-      correctAnswers: state.correctAnswers,
-      fiftyFiftyUsed: 2 - state.fiftyFifty,
-      numberOfQuestions: state.numberOfQuestions,
-      numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
+      score,
+      wrongAnswers,
+      correctAnswers,
+      numberOfQuestions,
+      hintsUsed: 5 - hints,
+      numberOfAnsweredQuestions,
+      fiftyFiftyUsed: 2 - fiftyFifty,
     };
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/quizzes",
-      {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        body: {
-          score: state.score,
-        },
-      }
-    );
+
+    sendQuizScore(score);
     setTimeout(() => {
       this.props.history.push("/play/summary", playerStats);
     }, 1000);
@@ -358,44 +298,23 @@ class Play extends React.Component {
         </Fragment>
         <div className="questions">
           <h2>Commercial UAS Study Guide</h2>
-          <div className="lifeline-container">
-            <p>
-              <span
-                onClick={this.handleFiftyFifty}
-                className="mdi mdi-set-center mdi-24px lifeline-icon"
-              >
-                <span className="lifeline">{fiftyFifty}</span>
-              </span>
-            </p>
-            <p>
-              <span
-                onClick={this.handleHints}
-                className="mdi mdi-lightbulb-on-outline mdi-24px lifeline-icon"
-              >
-                <span className="lifeline">{hints}</span>
-              </span>
-            </p>
-          </div>
-          <div className="timer-container">
-            <p>
-              <span className="left" style={{ float: "left" }}>
-                {currentQuestionIndex + 1} of {numberOfQuestions}{" "}
-              </span>
-              <span className="right">
-                {time.minutes}:{time.seconds}
-                <span className="mdi mdi-clock-outline mdi-24px"></span>
-              </span>
-            </p>
-          </div>
+          <HelpBar
+            time={time}
+            hints={hints}
+            fiftyFifty={fiftyFifty}
+            handleHints={this.handleHints}
+            numberOfQuestions={numberOfQuestions}
+            handleFiftyFifty={this.handleFiftyFifty}
+            currentQuestionIndex={currentQuestionIndex}
+          />
           <h5>{currentQuestion.question}</h5>
           <AnswerOptions
             currentQuestion={currentQuestion}
             handleSelectAnswer={this.handleSelectAnswer}
           />
           <ControlOptions
-            handleNext={this.handleNext}
+            handleNav={this.handleNav}
             handleQuit={this.handleQuit}
-            handlePrevious={this.handlePrevious}
             disableNextButton={disableNextButton}
             previousButtonDisabled={disablePreviousButton}
           />

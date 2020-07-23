@@ -2,16 +2,15 @@ import React from "react";
 import classnames from "classnames";
 
 export default function ControlOptions({
-  handlePrevious,
-  previousButtonDisabled,
-  handleNext,
-  disableNextButton,
+  handleNav,
   handleQuit,
+  disableNextButton,
+  previousButtonDisabled,
 }) {
   return (
     <div className="button-container">
       <button
-        onClick={handlePrevious}
+        onClick={handleNav}
         className={classnames("", {
           disable: previousButtonDisabled,
         })}
@@ -19,7 +18,7 @@ export default function ControlOptions({
         Previous
       </button>
       <button
-        onClick={handleNext}
+        onClick={() => handleNav('forward') }
         className={classnames("", {
           disable: disableNextButton,
         })}
