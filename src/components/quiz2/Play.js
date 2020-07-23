@@ -9,7 +9,7 @@ import isEmpty from "../../utils/is-empty";
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
 import AnswerOptions from "./containers/AnswerOptions";
-import ControlOptions from "./components/ControlOptions";
+import ControlOptions from "./containers/ControlOptions";
 
 import { defaultState } from "./utils";
 
@@ -85,7 +85,7 @@ class Play extends React.Component {
         },
         () => {
           this.showOptions();
-          this.handleDisableButton();
+          this.handleDisablingButtons();
         }
       );
     }
@@ -345,31 +345,12 @@ class Play extends React.Component {
     }, 1000);
   };
 
-  handleDisableButton = () => {
-    if (
-      this.state.previousQuestion === undefined ||
-      this.state.currentQuestionIndex === 0
-    ) {
-      this.setState({
-        previousButtonDisabled: true,
-      });
-    } else {
-      this.setState({
-        previousButtonDisabled: false,
-      });
-    }
-    if (
-      this.state.nextQuestion === undefined ||
-      this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions
-    ) {
-      this.setState({
-        disableNextButton: true,
-      });
-    } else {
-      this.setState({
-        disableNextButton: false,
-      });
-    }
+  handleDisablingButtons = () => {
+    const { currentQuestionIndex, numberOfQuestions } = this.state;
+    this.setState({
+      disablePreviousButton: currentQuestionIndex === 0,
+      disableNextButton: currentQuestionIndex + 1 === numberOfQuestions,
+    });
   };
 
   endGame = async () => {
@@ -412,6 +393,7 @@ class Play extends React.Component {
       numberOfQuestions,
       disableNextButton,
       currentQuestionIndex,
+      disablePreviousButton,
     } = this.state;
 
     return (
@@ -462,11 +444,11 @@ class Play extends React.Component {
             handleOptionClick={this.handleOptionClick}
           />
           <ControlOptions
-            handleNextButtonClick={this.handleNextButtonClick}
             disableNextButton={disableNextButton}
+            previousButtonDisabled={disablePreviousButton}
+            handleNextButtonClick={this.handleNextButtonClick}
             handleQuitButtonClick={this.handleQuitButtonClick}
             handlePreviousButtonClick={this.handlePreviousButtonClick}
-            previousButtonDisabled={this.state.handlePreviousButtonClick}
           />
         </div>
       </Fragment>

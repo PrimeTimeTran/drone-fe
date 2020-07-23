@@ -15,6 +15,6 @@ export const defaultState = {
   currentQuestionIndex: 0,
   previousRandomNumbers: [],
   disableNextButton: false,
-  previousButtonDisabled: true,
+  disablePreviousButton: true,
   numberOfAnsweredQuestions: 0,
 };
