@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import HistoryPage from "./pages/HistoryPage";
+
 import Play from "./components/quiz2/Play";
 import QuizSummary from "./components/quiz2/QuizSummary";
-import HomePage from "./pages/HomePage";
 import Protected from "./components/Protected";
 
 import NavigationBar from "./components/NavigationBar";
@@ -38,19 +41,22 @@ function App() {
   return (
     <Router>
       <NavigationBar user={user} />
-      <Protected
-        exact
-        user={user}
-        component={QuizSummary}
-        path="/play/summary"
-      />
-      <Protected path="/play/quiz" exact user={user} component={Play} />
-      <Protected path="/home" exact user={user} component={HomePage} />
-      <Route
-        exact
-        path="/"
-        render={() => <LoginPage user={user} checkUser={checkUser} />}
-      />
+      <Switch>
+        <Protected user={user} path="/history" component={HistoryPage} />
+        <Protected
+          user={user}
+          path="/play/summary"
+          component={QuizSummary}
+        />
+        <Protected exact user={user} path="/play/quiz" component={Play} />
+        <Protected exact user={user} path="/home" component={HomePage} />
+        <Route
+          exact
+          path="/"
+          user={user}
+          render={() => <LoginPage checkUser={checkUser} />}
+        />
+      </Switch>
     </Router>
   );
 }

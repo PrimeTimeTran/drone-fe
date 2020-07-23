@@ -14,7 +14,17 @@ const NavigationBar = (props) => {
         <Nav>
           <NavDropdown title={props.user.email} id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Quiz History</NavDropdown.Item>
+            <Link
+              className="dropdown-item"
+              to={{
+                pathname: "/history",
+                search: "?sort=name",
+                hash: "#the-hash",
+                state: { fromDashboard: true }
+              }}
+            >
+              Quiz History
+            </Link>
             <NavDropdown.Item href="#action/3.3">Settings</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logOut}>Log Out</NavDropdown.Item>
