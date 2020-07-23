@@ -63,14 +63,10 @@ const QuizInstructions = () => (
         calling extra attention to featured content or information.
       </p>
       <p>
-      <Link className="right" id="next-button" to="/play/quiz">
-        <Button variant="primary" href="/play/quiz">
-          {" "}
-          Play
-        </Button>
-      </Link>
+        <Link className="right" id="next-button" to="/play/quiz">
+          <Button variant="primary"> Play</Button>
+        </Link>
       </p>
-
     </Jumbotron>
   </Fragment>
 );

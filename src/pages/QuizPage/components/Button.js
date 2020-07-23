@@ -1,11 +1,12 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
-function Button({ option, onClick }) {
+function CustomButton({ option, onClick }) {
   return (
-    <p onClick={() => onClick(option)} className="option">
+    <Button onClick={() => onClick(option)} className="m-3 btn-block option">
       {option}
-    </p>
+    </Button>
   );
 }
 
-export default Button;
+export default CustomButton;

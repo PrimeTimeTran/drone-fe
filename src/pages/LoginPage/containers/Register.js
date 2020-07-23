@@ -31,9 +31,9 @@ class Register extends Component {
   }
   render() {
     return (
-      <div className="container pt-5 mt-5">
+      <div className="container">
         <div className="row">
-          <div className="col-md-12 mt-5 mx-auto text-white">
+          <div className="col-md-12 mx-auto text-white">
             <form noValidate onSubmit={(e) => this.onSubmit(e)}>
               <h1 className="h3 mb-3 font-weight-normal">
                 Register Your Account

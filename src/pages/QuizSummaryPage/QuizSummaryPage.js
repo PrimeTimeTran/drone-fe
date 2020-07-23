@@ -1,7 +1,19 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
+import { Container, Row, Button, Col } from "react-bootstrap";
+
 import AdSense from "react-adsense";
+{
+  /* <AdSense.Google
+style={{ width: "100%", display: "block" }}
+client="ca-pub-9583663176602133"
+slot="4428685352"
+format="auto"
+responsive="true"
+layoutKey="-gw-1+2a-9x+5c"
+/> */
+}
 
 class QuizSummary extends Component {
   constructor(props) {
@@ -50,7 +62,7 @@ class QuizSummary extends Component {
 
     if (state !== undefined) {
       stats = (
-        <Fragment>
+        <Container>
           <div>
             <span
               style={{ display: "flex", justifyContent: "center" }}
@@ -89,25 +101,25 @@ class QuizSummary extends Component {
             <span className="right">{this.state.fiftyFiftyUsed}</span>
             <br />
           </div>
-          <section style={{ width: "100%", backgroundColor: "white" }}>
-            <ul>
-              <li>
-                <Link to="/play/quiz"> Play Again</Link>
-              </li>
-              <li>
-                <Link to="/home"> Back to Home</Link>
-              </li>
-            </ul>
-          </section>
-          {/* <AdSense.Google
-            style={{ width: "100%", display: "block" }}
-            client="ca-pub-9583663176602133"
-            slot="4428685352"
-            format="auto"
-            responsive="true"
-            layoutKey="-gw-1+2a-9x+5c"
-          /> */}
-        </Fragment>
+          <Container>
+            <Row className="justify-content-sm-center">
+              <Col></Col>
+              <Col>
+                <Link to="/home" className="btn btn-block">
+                  <Button block size="lg" variant="primary">
+                    Home
+                  </Button>
+                </Link>
+                <Link to="/play/quiz" className="btn btn-block">
+                  <Button block size="lg" variant="success">
+                    Play Again
+                  </Button>
+                </Link>
+              </Col>
+              <Col></Col>
+            </Row>
+          </Container>
+        </Container>
       );
     } else {
       stats = (
@@ -125,12 +137,12 @@ class QuizSummary extends Component {
       );
     }
     return (
-      <Fragment>
+      <Container fluid className="border">
         <Helmet>
-          <title>Quiz App- Summary</title>
+          <title>Quiz App - Summary</title>
         </Helmet>
         <div className="quiz-summary">{stats}</div>
-      </Fragment>
+      </Container>
     );
   }
 }

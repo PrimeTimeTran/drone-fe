@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 export default function ControlOptions({
   handleNav,
@@ -8,24 +9,31 @@ export default function ControlOptions({
   previousButtonDisabled,
 }) {
   return (
-    <div className="button-container">
-      <button
+    <Container className="d-flex justify-content-sm-around">
+      <Button
         onClick={handleNav}
-        className={classnames("", {
+        className={classnames("go", {
           disable: previousButtonDisabled,
         })}
       >
         Previous
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => handleNav('forward') }
         className={classnames("", {
           disable: disableNextButton,
         })}
       >
         Next
-      </button>
-      <button onClick={handleQuit}>Quit</button>
-    </div>
+      </Button>
+      <Button
+        onClick={handleQuit}
+        className={classnames("btn-danger", {
+          disable: disableNextButton,
+        })}
+      >
+        Quit
+      </Button>
+    </Container>
   );
 }

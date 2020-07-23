@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 export default function HelpBar({
   time,
@@ -11,32 +12,27 @@ export default function HelpBar({
 }) {
   return (
     <>
-      <div className="lifeline-container">
-        <p>
-          <span
-            onClick={handleFiftyFifty}
-            className="mdi mdi-set-center mdi-24px lifeline-icon"
-          >
-            <span className="lifeline">{fiftyFifty}</span>
-          </span>
-        </p>
-        <p>
-          <span
-            onClick={handleHints}
-            className="mdi mdi-lightbulb-on-outline mdi-24px lifeline-icon"
-          >
-            <span className="lifeline">{hints}</span>
-          </span>
-        </p>
-      </div>
+      <Container fluid>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <Button onClick={handleFiftyFifty}>
+              <span>{fiftyFifty} 50 / 50</span>
+            </Button>
+          </Col>
+          <Col className="d-flex justify-content-center">
+            <Button onClick={handleHints}>
+              <span>{hints} Remove 1</span>
+            </Button>
+          </Col>
+        </Row>
+      </Container>
       <div className="timer-container">
         <p>
-          <span className="left" style={{ float: "left" }}>
+          <span>
             {currentQuestionIdx + 1} of {numberOfQuestions}{" "}
           </span>
-          <span className="right">
+          <span>
             {time.minutes}:{time.seconds}
-            <span className="mdi mdi-clock-outline mdi-24px"></span>
           </span>
         </p>
       </div>

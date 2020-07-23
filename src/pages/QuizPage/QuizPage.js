@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
@@ -33,13 +34,15 @@ export default class QuizPage extends React.Component {
     const currentQuestion = questions[currentQuestionIdx];
     const gameOver = questions[currentQuestionIdx + 1];
 
+    const { answer } = currentQuestion
+
     this.setState(
       {
         gameOver,
         currentQuestion,
         previousRandomNumbers: [],
         numberOfQuestions: questions.length,
-        answer: currentQuestion.answer.toLowerCase(),
+        answer: answer.toLowerCase(),
       },
       () => {
         this.showOptions();
@@ -276,29 +279,34 @@ export default class QuizPage extends React.Component {
           <audio ref={this.wrongSound} src={wrongSound}></audio>
           <audio ref={this.buttonSound} src={selectSound}></audio>
         </Fragment>
-        <div className="questions">
-          <h2>Commercial UAS Study Guide</h2>
-          <HelpBar
-            time={time}
-            hints={hints}
-            fiftyFifty={fiftyFifty}
-            handleHints={this.handleHints}
-            numberOfQuestions={numberOfQuestions}
-            handleFiftyFifty={this.handleFiftyFifty}
-            currentQuestionIdx={currentQuestionIdx}
-          />
-          <h5>{currentQuestion.question}</h5>
-          <AnswerOptions
-            currentQuestion={currentQuestion}
-            handleSelectAnswer={this.handleSelectAnswer}
-          />
-          <ControlOptions
-            handleNav={this.handleNav}
-            handleQuit={this.handleQuit}
-            disableNextButton={disableNextButton}
-            previousButtonDisabled={disablePreviousButton}
-          />
-        </div>
+        <Container fluid className="border">
+          <Row className="p-5">
+            <Col className="border m-5 p-5">
+              {" "}
+              <h2>Commercial UAS Study Guide</h2>
+              <HelpBar
+                time={time}
+                hints={hints}
+                fiftyFifty={fiftyFifty}
+                handleHints={this.handleHints}
+                numberOfQuestions={numberOfQuestions}
+                handleFiftyFifty={this.handleFiftyFifty}
+                currentQuestionIdx={currentQuestionIdx}
+              />
+              <h5>{currentQuestion.question}</h5>
+              <AnswerOptions
+                currentQuestion={currentQuestion}
+                handleSelectAnswer={this.handleSelectAnswer}
+              />
+              <ControlOptions
+                handleNav={this.handleNav}
+                handleQuit={this.handleQuit}
+                disableNextButton={disableNextButton}
+                previousButtonDisabled={disablePreviousButton}
+              />
+            </Col>
+          </Row>
+        </Container>
       </Fragment>
     );
   }

@@ -88,14 +88,12 @@ const LoginPage = (props) => {
         <Helmet>
           <title>PART 107 - Commercial UAS Study Guide</title>
         </Helmet>
-        <div id="home">
           <section>
             {renderBack()}
             {renderLoginChoices()}
             {renderRegister()}
             {renderLogin()}
           </section>
-        </div>
       </Fragment>
     </div>
   );
