@@ -7,7 +7,7 @@ import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
 import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
 
-import { defaultState, toastCorrect, toastWrong } from "./utils";
+import { defaultState, toastCorrect, toastIncorrect } from "./utils";
 import { sendQuizScore, getQuestions } from "../../api";
 
 class Play extends React.Component {
@@ -31,9 +31,9 @@ class Play extends React.Component {
   };
 
   displayQuestions = () => {
-    const { currentQuestionIndex, questions } = this.state;
-    const currentQuestion = questions[currentQuestionIndex];
-    const gameOver = questions[currentQuestionIndex + 1];
+    const { currentQuestionIdx, questions } = this.state;
+    const currentQuestion = questions[currentQuestionIdx];
+    const gameOver = questions[currentQuestionIdx + 1];
 
     this.setState(
       {
@@ -58,7 +58,7 @@ class Play extends React.Component {
     } else {
       this.wrongSound.current.play();
       navigator.vibrate(1000);
-      toastWrong();
+      toastIncorrect();
     }
     this.updateScore(correct);
   };
@@ -66,11 +66,11 @@ class Play extends React.Component {
   playButtonSound = () => this.buttonSound.current.play();
 
   updateScore = (correct) => {
-    const incrementor = correct ? "correctAnswers" : "wrongAnswers";
+    const incrementor = correct ? "correctCount" : "wrongCount";
     this.setState(
       (prevState) => ({
         [incrementor]: prevState[incrementor] + 1,
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
+        currentQuestionIdx: prevState.currentQuestionIdx + 1,
         score: correct ? prevState.score + 1 : prevState.score,
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
       }),
@@ -86,9 +86,9 @@ class Play extends React.Component {
 
   handleNav = (direction) => {
     this.playButtonSound();
-    this.setState(({ currentQuestionIndex }) => {
-      const idx = currentQuestionIndex + (direction === "forward" ? 1 : -1);
-      return { currentQuestionIndex: idx };
+    this.setState(({ currentQuestionIdx }) => {
+      const idx = currentQuestionIdx + (direction === "forward" ? 1 : -1);
+      return { currentQuestionIdx: idx };
     }, this.displayQuestions);
   };
 
@@ -222,10 +222,10 @@ class Play extends React.Component {
   };
 
   handleDisablingButtons = () => {
-    const { currentQuestionIndex, numberOfQuestions } = this.state;
+    const { currentQuestionIdx, numberOfQuestions } = this.state;
     this.setState({
-      disablePreviousButton: currentQuestionIndex === 0,
-      disableNextButton: currentQuestionIndex + 1 === numberOfQuestions,
+      disablePreviousButton: currentQuestionIdx === 0,
+      disableNextButton: currentQuestionIdx + 1 === numberOfQuestions,
     });
   };
 
@@ -234,16 +234,16 @@ class Play extends React.Component {
       score,
       hints,
       fiftyFifty,
-      wrongAnswers,
-      correctAnswers,
+      wrongCount,
+      correctCount,
       numberOfQuestions,
       numberOfAnsweredQuestions,
     } = this.state;
 
     const playerStats = {
       score,
-      wrongAnswers,
-      correctAnswers,
+      wrongCount,
+      correctCount,
       numberOfQuestions,
       hintsUsed: 5 - hints,
       numberOfAnsweredQuestions,
@@ -264,7 +264,7 @@ class Play extends React.Component {
       currentQuestion,
       numberOfQuestions,
       disableNextButton,
-      currentQuestionIndex,
+      currentQuestionIdx,
       disablePreviousButton,
     } = this.state;
 
@@ -287,7 +287,7 @@ class Play extends React.Component {
             handleHints={this.handleHints}
             numberOfQuestions={numberOfQuestions}
             handleFiftyFifty={this.handleFiftyFifty}
-            currentQuestionIndex={currentQuestionIndex}
+            currentQuestionIdx={currentQuestionIdx}
           />
           <h5>{currentQuestion.question}</h5>
           <AnswerOptions

@@ -12,7 +12,7 @@ export const sendQuizScore = async (score) => {
           Authorization: "Bearer " + token,
         },
         body: {
-          score: score,
+          score,
         },
       }
     );

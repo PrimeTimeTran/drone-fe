@@ -7,7 +7,7 @@ export default function HelpBar({
   handleHints,
   handleFiftyFifty,
   numberOfQuestions,
-  currentQuestionIndex,
+  currentQuestionIdx,
 }) {
   return (
     <>
@@ -32,7 +32,7 @@ export default function HelpBar({
       <div className="timer-container">
         <p>
           <span className="left" style={{ float: "left" }}>
-            {currentQuestionIndex + 1} of {numberOfQuestions}{" "}
+            {currentQuestionIdx + 1} of {numberOfQuestions}{" "}
           </span>
           <span className="right">
             {time.minutes}:{time.seconds}

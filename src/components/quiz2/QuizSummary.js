@@ -9,8 +9,8 @@ class QuizSummary extends Component {
     this.state = {
       score: 0,
       hintsUsed: 0,
-      wrongAnswers: 0,
-      correctAnswers: 0,
+      wrongCount: 0,
+      correctCount: 0,
       fiftyFiftyUsed: 0,
       numberOfQuestions: 0,
       numberOfAnsweredQuestions: 0,
@@ -24,8 +24,8 @@ class QuizSummary extends Component {
         score: (state.score / state.numberOfQuestions) * 100,
         numberOfQuestions: state.numberOfQuestions,
         numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
-        correctAnswers: state.correctAnswers,
-        wrongAnswers: state.wrongAnswers,
+        correctCount: state.correctCount,
+        wrongCount: state.wrongCount,
         hintsUsed: state.hintsUsed,
         fiftyFiftyUsed: state.fiftyFiftyUsed,
       });
@@ -74,11 +74,11 @@ class QuizSummary extends Component {
             <br />
 
             <span className="stat left">Total Number of Correct Answers:</span>
-            <span className="right">{this.state.correctAnswers}</span>
+            <span className="right">{this.state.correctCount}</span>
             <br />
 
             <span className="stat left">Total Number of Wrong Answers:</span>
-            <span className="right">{this.state.wrongAnswers}</span>
+            <span className="right">{this.state.wrongCount}</span>
             <br />
 
             <span className="stat left">Hints Used:</span>

@@ -7,13 +7,13 @@ export const defaultState = {
   answer: "",
   questions: [],
   fiftyFifty: 2,
-  wrongAnswers: 0,
+  wrongCount: 0,
   gameOver: false,
-  correctAnswers: 0,
+  correctCount: 0,
   currentQuestion: {},
   numberOfQuestions: 0,
+  currentQuestionIdx: 0,
   usedFiftyFifty: false,
-  currentQuestionIndex: 0,
   previousRandomNumbers: [],
   disableNextButton: false,
   disablePreviousButton: true,
@@ -28,7 +28,7 @@ export const toastCorrect = () => {
   });
 };
 
-export const toastWrong = () => {
+export const toastIncorrect = () => {
   M.toast({
     html: "Wrong Answer",
     classes: "toast-invalid",
