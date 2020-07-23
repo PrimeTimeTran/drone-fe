@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
+import QuizPage from "./pages/QuizPage";
 
-import Play from "./components/quiz2/Play";
 import QuizSummary from "./components/quiz2/QuizSummary";
 import Protected from "./components/Protected";
 
@@ -48,7 +48,7 @@ function App() {
           path="/play/summary"
           component={QuizSummary}
         />
-        <Protected exact user={user} path="/play/quiz" component={Play} />
+        <Protected exact user={user} path="/play/quiz" component={QuizPage} />
         <Protected exact user={user} path="/home" component={HomePage} />
         <Route
           exact

@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 
-import { withRouter } from "react-router-dom";
-
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
 import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
@@ -10,7 +8,7 @@ import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
 import { defaultState, toastCorrect, toastIncorrect } from "./utils";
 import { sendQuizScore, getQuestions } from "../../api";
 
-class Play extends React.Component {
+export default class QuizPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = defaultState;
@@ -305,5 +303,3 @@ class Play extends React.Component {
     );
   }
 }
-
-export default withRouter(Play);

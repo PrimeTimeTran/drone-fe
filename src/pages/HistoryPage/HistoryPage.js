@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import Chart from '../../components/Chart'
+import { Container, Row, Col } from "react-bootstrap";
+
+import Chart from "../../components/Chart";
 
 export default function QuizHistoryPage() {
   return (
-    <div>
-      <h1>History Page!</h1>
-      <Chart />
-    </div>
-  )
+    <Container>
+      <Row>
+        <Col>
+          <Chart />
+        </Col>
+      </Row>
+    </Container>
+  );
 }

@@ -1,28 +1,28 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    font-family: $quicksand;
+body {
+  padding-top: 70px;
+  font-family: $quicksand;
 }
 
 .toast-invalid {
-    background-color: $error-text !important;
-    border-radius: 5px !important;
-    color: $off-white !important;
+  color: $off-white !important;
+  border-radius: 5px !important;
+  background-color: $error-text !important;
 }
 
 .toast-valid {
-    background-color: $success-text !important;
-    border-radius: 5px !important;
-    color: $off-white !important;
+  color: $off-white !important;
+  border-radius: 5px !important;
+  background-color: $success-text !important;
 }
 
 .disable {
- background-color:#ccc !important;
- box-shadow: none !important;
- opacity:0.9 !important;
-    pointer-events: none;
-
+  pointer-events: none;
+  opacity: 0.9 !important;
+  box-shadow: none !important;
+  background-color: #ccc !important;
 }
