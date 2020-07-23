@@ -52,15 +52,20 @@ export default class QuizPage extends React.Component {
   };
 
   showToast(correct) {
+    const x = document.getElementById("toast");
     const el = document.getElementById("toast-header");
+    const toastBG = document.getElementsByClassName('toast-header')
     if (correct) {
-      el.innerHTML = 'Correct!'
+      el.innerHTML = "Correct!";
+      toastBG[0].classList.add("bg-success");
     } else {
-      el.innerHTML = 'Incorrect'
+      el.innerHTML = "Incorrect";
+      toastBG[0].classList.add("bg-danger");
     }
-    var x = document.getElementById("toast");
     x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () {
+      x.className = x.className.replace("show", "");
+    }, 3000);
   }
 
   handleSelectAnswer = (choice) => {
