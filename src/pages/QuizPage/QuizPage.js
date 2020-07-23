@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
-import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
+import { HelpBar, AnswerOptions, ControlOptions, Toast } from "./containers";
 
 import { defaultState, toastCorrect, toastIncorrect } from "./utils";
 import { sendQuizScore, getQuestions } from "../../api";
@@ -34,7 +34,7 @@ export default class QuizPage extends React.Component {
     const currentQuestion = questions[currentQuestionIdx];
     const gameOver = questions[currentQuestionIdx + 1];
 
-    const { answer } = currentQuestion
+    const { answer } = currentQuestion;
 
     this.setState(
       {
@@ -51,15 +51,27 @@ export default class QuizPage extends React.Component {
     );
   };
 
+  showToast(correct) {
+    const el = document.getElementById("toast-header");
+    if (correct) {
+      el.innerHTML = 'Correct!'
+    } else {
+      el.innerHTML = 'Incorrect'
+    }
+    var x = document.getElementById("toast");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
   handleSelectAnswer = (choice) => {
     const correct = choice.toLowerCase() === this.state.answer;
     if (correct) {
       this.correctSound.current.play();
-      toastCorrect();
+      this.showToast(true);
     } else {
       this.wrongSound.current.play();
       navigator.vibrate(1000);
-      toastIncorrect();
+      this.showToast(false);
     }
     this.updateScore(correct);
   };
@@ -280,8 +292,9 @@ export default class QuizPage extends React.Component {
           <audio ref={this.buttonSound} src={selectSound}></audio>
         </Fragment>
         <Container fluid className="border">
+          <Toast />
           <Row className="p-5">
-            <Col className="border m-5 p-5">
+            <Col className="p-5">
               {" "}
               <h2>Commercial UAS Study Guide</h2>
               <HelpBar

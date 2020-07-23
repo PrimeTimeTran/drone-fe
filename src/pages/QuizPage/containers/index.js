@@ -1,9 +1,6 @@
-import AnswerOptions from './AnswerOptions'
-import ControlOptions from './ControlOptions'
-import HelpBar from './HelpBar'
+import AnswerOptions from "./AnswerOptions";
+import ControlOptions from "./ControlOptions";
+import HelpBar from "./HelpBar";
+import Toast from "./Toast";
 
-export { 
-  HelpBar,
-  AnswerOptions,
-  ControlOptions
-}
+export { Toast, HelpBar, AnswerOptions, ControlOptions };
