@@ -64,12 +64,15 @@ class Play extends React.Component {
 
   getQuestions = async () => {
     try {
-      const res = await Axios.get("http://localhost:5000/questions/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
-        },
-      });
-      // if(res.status)
+      const res = await Axios.get(
+        (process.env.REACT_APP_SERVER_URL + "/questions/me"),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
+          },
+        }
+      );
+      console.log({ data: res.data });
       this.setState({ questions: res.data }, () => this.startGame());
     } catch (e) {
       console.log("error while getting questions", e);
@@ -486,9 +489,7 @@ class Play extends React.Component {
             >
               Next
             </button>
-            <button onClick={this.handleQuitButtonClick}>
-              Quit
-            </button>
+            <button onClick={this.handleQuitButtonClick}>Quit</button>
           </div>
         </div>
       </Fragment>
