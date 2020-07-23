@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { login } from "./UserFunctions";
 import { withRouter } from "react-router-dom";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
+
+import { login } from "./UserFunctions";
 
 class Login extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class Login extends Component {
     };
     login(user).then((res) => {
       if (res) {
-        this.props.checkUser()
+        this.props.checkUser();
         this.props.history.push("/home");
       }
     });
@@ -32,44 +34,51 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 mt-5 mx-auto">
-            <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Enter password"
-                  value={this.state.password}
-                />
-              </div>
-              <button
-                type="submit"
-                id="login-button"
-                className="btn btn-lg btn-block"
-              >
-                Login
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Body className="text-center">
+                <Card.Header as="h5">Sign In</Card.Header>
+              </Card.Body>
+              <Card.Body>
+                <Card.Title>Special title treatment</Card.Title>
+                <Card.Text>
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </Card.Text>
+                <form noValidate onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter"
+                      className="form-control"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      onChange={this.onChange}
+                      placeholder="Enter password"
+                      value={this.state.password}
+                    />
+                  </div>
+                  <Button variant="primary" type="submit">
+                    Login
+                  </Button>
+                </form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

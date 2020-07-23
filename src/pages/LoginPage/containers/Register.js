@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { register } from "./UserFunctions";
 import { withRouter } from "react-router-dom";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
+
+import { register } from "./UserFunctions";
 
 class Register extends Component {
   constructor() {
@@ -14,7 +16,7 @@ class Register extends Component {
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   onSubmit(e) {
     e.preventDefault();
@@ -25,74 +27,80 @@ class Register extends Component {
       last_name: this.state.last_name,
     };
     register(user).then((res) => {
-      this.props.checkUser()
+      this.props.checkUser();
       window.location.replace("http://localhost:3000");
     });
   }
+
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 mx-auto text-white">
-            <form noValidate onSubmit={(e) => this.onSubmit(e)}>
-              <h1 className="h3 mb-3 font-weight-normal">
-                Register Your Account
-              </h1>
-              <div className="form-group">
-                <label htmlFor="first_name">First Name</label>
-                <input
-                  type="text"
-                  name="first_name"
-                  className="form-control text-white"
-                  onChange={this.onChange}
-                  placeholder="Enter First Name"
-                  value={this.state.first_name}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="last_name">Last Name</label>
-                <input
-                  type="email"
-                  name="last_name"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Enter Last name"
-                  value={this.state.last_name}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  onChange={this.onChange}
-                  placeholder="Enter password"
-                  value={this.state.password}
-                />
-              </div>
-              <button
-                type="submit"
-                id="signup-button"
-                className="btn btn-lg btn-primary btn-block"
-              >
-                Register
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Body className="text-center">
+                <Card.Header as="h5">Register</Card.Header>
+              </Card.Body>
+              <Card.Body>
+                <Card.Title>Special title treatment</Card.Title>
+                <Card.Text>
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </Card.Text>
+                <form noValidate onSubmit={(e) => this.onSubmit(e)}>
+                  <div className="form-group">
+                    <label htmlFor="first_name">First Name</label>
+                    <input
+                      type="text"
+                      name="first_name"
+                      className="form-control text-white"
+                      onChange={this.onChange}
+                      placeholder="Enter First Name"
+                      value={this.state.first_name}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="last_name">Last Name</label>
+                    <input
+                      type="email"
+                      name="last_name"
+                      className="form-control"
+                      onChange={this.onChange}
+                      placeholder="Enter Last name"
+                      value={this.state.last_name}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter"
+                      className="form-control"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      onChange={this.onChange}
+                      placeholder="Enter password"
+                      value={this.state.password}
+                    />
+                  </div>
+                  <Button variant="primary" type="submit">
+                    Register
+                  </Button>
+                </form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -1,6 +1,14 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
+import {
+  Card,
+  Row,
+  Col,
+  Button,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 
 import "./styles.css";
 
@@ -8,7 +16,7 @@ import Register from "./containers/Register";
 import Login from "./containers/Login";
 
 const LoginPage = (props) => {
-  console.log({loi:props})
+  console.log({ loi: props });
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -24,32 +32,28 @@ const LoginPage = (props) => {
   const renderLoginChoices = () => {
     if (!showLogin && !showRegister) {
       return (
-        <>
-          <div style={{ textAlign: "center" }}>
-            <span>
-              <span className="mdi mdi-quadcopter cube"></span>
-            </span>
-          </div>
-          <h1>PART 107 - Commercial UAS Study Guide </h1>
-          <div className="auth-container">
-            <Link
-              id="login-button"
-              variant="primary"
-              className="auth-buttons"
-              onClick={() => setShowLogin(!showLogin)}
-            >
-              Login
+        <Card>
+          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+          <Card.Body>
+            <Card.Title>PART 107 - Commercial UAS Study Guide</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </Card.Text>
+          </Card.Body>
+          <Card.Body className="text-right">
+            <Link variant="primary" onClick={() => setShowLogin(!showLogin)}>
+              <Button>Login</Button>
             </Link>
             <Link
               variant="primary"
-              id="signup-button"
-              className="auth-buttons"
+              className="ml-3"
               onClick={() => setShowRegister(!showRegister)}
             >
-              Register
+              <Button>Register</Button>
             </Link>
-          </div>
-        </>
+          </Card.Body>
+        </Card>
       );
     }
   };
@@ -83,19 +87,15 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div className="mt-5 pt-5">
-      <Fragment>
-        <Helmet>
-          <title>PART 107 - Commercial UAS Study Guide</title>
-        </Helmet>
-          <section>
-            {renderBack()}
-            {renderLoginChoices()}
-            {renderRegister()}
-            {renderLogin()}
-          </section>
-      </Fragment>
-    </div>
+    <Fragment>
+      <Helmet>
+        <title>PART 107 - Commercial UAS Study Guide</title>
+      </Helmet>
+      {renderBack()}
+      {renderLoginChoices()}
+      {renderRegister()}
+      {renderLogin()}
+    </Fragment>
   );
 };
 
