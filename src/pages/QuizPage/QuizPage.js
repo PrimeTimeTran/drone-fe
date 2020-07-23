@@ -248,7 +248,7 @@ export default class QuizPage extends React.Component {
       fiftyFiftyUsed: 2 - fiftyFifty,
     };
 
-    sendQuizScore(score);
+    sendQuizScore(playerStats);
     setTimeout(() => {
       this.props.history.push("/play/summary", playerStats);
     }, 1000);

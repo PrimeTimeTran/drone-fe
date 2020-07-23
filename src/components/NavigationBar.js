@@ -27,9 +27,9 @@ const NavigationBar = (props) => {
 
   return (
     <Navbar bg="light" expand="lg" fixed="top" className="mb-5">
-      <Link to="/">
-        <Navbar.Brand>Drone Study Guide</Navbar.Brand>
-      </Link>
+      <Link className="navbar-brand" to="/">
+        Drone Study Guide
+      </Link>   
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

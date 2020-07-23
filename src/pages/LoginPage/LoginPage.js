@@ -8,6 +8,7 @@ import Register from "./containers/Register";
 import Login from "./containers/Login";
 
 const LoginPage = (props) => {
+  console.log({loi:props})
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 

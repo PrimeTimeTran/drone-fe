@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import QuizInstructions from "../../components/quiz/QuizInstructions";
+
+import QuizInstructions from "./containers/QuizInstructions";
 import InputQuestions from "../../components/InputQuestions";
-import Chart from "../../components/Chart";
 import Questions from "../../components/Questions";
 
 class HomePage extends Component {
@@ -14,9 +14,8 @@ class HomePage extends Component {
       <div className="container pt-5">
         <h2 style={{ textAlign: "center" }}>
           {" "}
-          Welcome {this.props.user.first_name}!
+          Welcome {this.props.user.first_name}
         </h2>
-        {/* <Chart /> */}
         <QuizInstructions />
         <h2 style={{ textAlign: "center" }}>Create New Questions Here!</h2>
         <InputQuestions />

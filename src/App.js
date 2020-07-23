@@ -5,8 +5,8 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import QuizPage from "./pages/QuizPage";
+import QuizSummaryPage from "./pages/QuizSummaryPage";
 
-import QuizSummary from "./components/quiz2/QuizSummary";
 import Protected from "./components/Protected";
 
 import NavigationBar from "./components/NavigationBar";
@@ -46,7 +46,7 @@ function App() {
         <Protected
           user={user}
           path="/play/summary"
-          component={QuizSummary}
+          component={QuizSummaryPage}
         />
         <Protected exact user={user} path="/play/quiz" component={QuizPage} />
         <Protected exact user={user} path="/home" component={HomePage} />

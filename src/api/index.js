@@ -2,18 +2,24 @@ import Axios from "axios";
 
 const token = localStorage.getItem("usertoken");
 
-export const sendQuizScore = async (score) => {
+const produceScoreSummary = ({ score, numberOfQuestions }) => {
+  const body = {
+    score: (score / numberOfQuestions) * 100,
+  };
+  return JSON.stringify(body);
+};
+
+export const sendQuizScore = async (stats) => {
   try {
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + "/quizzes",
       {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-        body: {
-          score,
-        },
+        body: produceScoreSummary(stats),
       }
     );
     const json = await response.json();
@@ -34,6 +40,23 @@ export const getQuestions = async () => {
       }
     );
     return res.data;
+  } catch (e) {
+    console.log("Error:", e);
+  }
+};
+
+export const getQuizHistory = async () => {
+  try {
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + "/quizzes",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    const json = await response.json();
+    return json;
   } catch (e) {
     console.log("Error:", e);
   }

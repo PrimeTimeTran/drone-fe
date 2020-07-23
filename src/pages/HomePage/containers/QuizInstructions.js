@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import fiftyfifty from "../../assets/img/fiftyfifty.png";
-import answer from "../../assets/img/answer.png";
-import options from "../../assets/img/options.png";
-import hints from "../../assets/img/hints.png";
+import fiftyfifty from "../../../assets/img/fiftyfifty.png";
+import answer from "../../../assets/img/answer.png";
+import options from "../../../assets/img/options.png";
+import hints from "../../../assets/img/hints.png";
 
 const QuizInstructions = () => (
   <Fragment>
@@ -13,7 +13,6 @@ const QuizInstructions = () => (
     </Helmet>
     <div className="instructions container">
       {/* <h1>Getting Started</h1>
-
       <ul className="browser-default" id="main-list">
         <li>The Quiz lasts for 60 minutes and ends when your time elapses.</li>
         <li>
