@@ -4,7 +4,7 @@ export const defaultState = {
   score: 0,
   time: {},
   hints: 5,
-  answer: " ",
+  answer: "",
   questions: [],
   fiftyFifty: 2,
   wrongAnswers: 0,

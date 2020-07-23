@@ -51,15 +51,38 @@ class Play extends React.Component {
     );
   };
 
-  handleSelectAnswer = (option) => {
-    const correctAnswer = option.toLowerCase() === this.state.answer;
-    if (correctAnswer) {
+  handleSelectAnswer = (choice) => {
+    const correct = choice.toLowerCase() === this.state.answer;
+    if (correct) {
       this.correctSound.current.play();
-      this.correctAnswer();
+      toastCorrect();
     } else {
       this.wrongSound.current.play();
-      this.wrongAnswer();
+      navigator.vibrate(1000);
+      toastWrong();
     }
+    this.updateAnswers(correct);
+  };
+
+  playButtonSound = () => this.buttonSound.current.play();
+
+  updateAnswers = (correct) => {
+    const incrementor = correct ? "correctAnswers" : "wrongAnswers";
+    this.setState(
+      (prevState) => ({
+        [incrementor]: prevState[incrementor] + 1,
+        currentQuestionIndex: prevState.currentQuestionIndex + 1,
+        score: correct ? prevState.score + 1 : prevState.score,
+        numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
+      }),
+      () => {
+        if (this.state.gameOver === undefined) {
+          this.endGame();
+        } else {
+          this.displayQuestions();
+        }
+      }
+    );
   };
 
   handleNav = (direction) => {
@@ -75,46 +98,6 @@ class Play extends React.Component {
     if (window.confirm("Are you sure you want to quit?")) {
       this.props.history.push("/");
     }
-  };
-
-  playButtonSound = () => this.buttonSound.current.play();
-
-  correctAnswer = () => {
-    toastCorrect();
-    this.setState(
-      (prevState) => ({
-        score: prevState.score + 1,
-        correctAnswers: prevState.correctAnswers + 1,
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
-        numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
-      }),
-      () => {
-        if (this.state.gameOver === undefined) {
-          this.endGame();
-        } else {
-          this.displayQuestions();
-        }
-      }
-    );
-  };
-
-  wrongAnswer = () => {
-    navigator.vibrate(1000);
-    toastWrong();
-    this.setState(
-      (prevState) => ({
-        wrongAnswers: prevState.wrongAnswers + 1,
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
-        numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
-      }),
-      () => {
-        if (this.state.gameOver === undefined) {
-          this.endGame();
-        } else {
-          this.displayQuestions();
-        }
-      }
-    );
   };
 
   showOptions = () => {
@@ -204,8 +187,8 @@ class Play extends React.Component {
         }
       });
       this.setState((prevState) => ({
-        fiftyFifty: prevState.fiftyFifty - 1,
         usedFifty: true,
+        fiftyFifty: prevState.fiftyFifty - 1,
       }));
     }
   };
