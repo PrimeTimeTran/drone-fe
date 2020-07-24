@@ -1,5 +1,3 @@
-import M from "materialize-css";
-
 export const defaultState = {
   score: 0,
   time: {},
@@ -20,18 +18,21 @@ export const defaultState = {
   numberOfAnsweredQuestions: 0,
 };
 
-export const toastCorrect = () => {
-  M.toast({
-    html: "Correct!",
-    classes: "toast-valid",
-    displayLength: 1500,
-  });
-};
-
-export const toastIncorrect = () => {
-  M.toast({
-    html: "Wrong Answer",
-    classes: "toast-invalid",
-    displayLength: 1500,
-  });
-};
+export const showToast = (correct) => {
+  const x = document.getElementById("toast");
+  const el = document.getElementById("toast-header");
+  const toastBG = document.getElementsByClassName('toast-header')
+  if (correct) {
+    el.innerHTML = "Correct!";
+    toastBG[0].classList.remove("bg-danger");
+    toastBG[0].classList.add("bg-success");
+  } else {
+    el.innerHTML = "Incorrect";
+    toastBG[0].classList.remove("bg-success");
+    toastBG[0].classList.add("bg-danger");
+  }
+  x.className = "show";
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}

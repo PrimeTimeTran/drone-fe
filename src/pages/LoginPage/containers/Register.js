@@ -38,6 +38,7 @@ class Register extends Component {
         <Row>
           <Col>
             <Card>
+              {this.props.renderBack()}
               <Card.Body className="text-center">
                 <Card.Header as="h5">Register</Card.Header>
               </Card.Body>

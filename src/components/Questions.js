@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
 
-import { deleteQuestion } from "./InputQuestionsFunctions";
+import { deleteQuestion } from "../components/InputQuestionsFunctions";
 
-export default function (props) {
+export default function Questions(props) {
   const [questions, setQuestions] = useState([]);
   const history = useHistory();
   useEffect(() => {
@@ -36,20 +37,22 @@ export default function (props) {
   const renderQuestions = () => {
     return questions.map((question) => {
       return (
-        <table key={question._id} className="table col-md-6 mx-auto">
-          <button
-            className="mdi mdi-delete mdi-24px lifeline-icon"
-            onClick={() => {
-              deletedQuestion(question._id);
-            }}
-          />
-          <tr>
-            <td> {question.question}</td>
-            <td style={{ color: "blue" }}> {question.answer}</td>
-          </tr>
-        </table>
+        <Col md={4}>
+          <Card className="mb-3">
+            <Card.Header>{question.question}</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item>{question.answer}</ListGroup.Item>
+              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
       );
     });
   };
-  return <div>{renderQuestions()}</div>;
+  return (
+    <Container className="p-5">
+      <Row>{renderQuestions()}</Row>
+    </Container>
+  );
 }

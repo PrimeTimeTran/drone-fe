@@ -38,6 +38,7 @@ class Login extends Component {
         <Row>
           <Col>
             <Card>
+            {this.props.renderBack()}
               <Card.Body className="text-center">
                 <Card.Header as="h5">Sign In</Card.Header>
               </Card.Body>

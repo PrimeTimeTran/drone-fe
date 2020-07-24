@@ -6,7 +6,7 @@ import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
 import { HelpBar, AnswerOptions, ControlOptions, Toast } from "./containers";
 
-import { defaultState, toastCorrect, toastIncorrect } from "./utils";
+import { defaultState, showToast } from "./utils";
 import { sendQuizScore, getQuestions } from "../../api";
 
 export default class QuizPage extends React.Component {
@@ -51,32 +51,17 @@ export default class QuizPage extends React.Component {
     );
   };
 
-  showToast(correct) {
-    const x = document.getElementById("toast");
-    const el = document.getElementById("toast-header");
-    const toastBG = document.getElementsByClassName('toast-header')
-    if (correct) {
-      el.innerHTML = "Correct!";
-      toastBG[0].classList.add("bg-success");
-    } else {
-      el.innerHTML = "Incorrect";
-      toastBG[0].classList.add("bg-danger");
-    }
-    x.className = "show";
-    setTimeout(function () {
-      x.className = x.className.replace("show", "");
-    }, 3000);
-  }
+  
 
   handleSelectAnswer = (choice) => {
     const correct = choice.toLowerCase() === this.state.answer;
     if (correct) {
       this.correctSound.current.play();
-      this.showToast(true);
+      showToast(true);
     } else {
       this.wrongSound.current.play();
       navigator.vibrate(1000);
-      this.showToast(false);
+      showToast(false);
     }
     this.updateScore(correct);
   };

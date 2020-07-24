@@ -1,5 +1,12 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHistory,
+  faSignOutAlt,
+  faQuestionCircle,
+  faChalkboardTeacher,
+} from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const NavigationBar = (props) => {
@@ -13,23 +20,31 @@ const NavigationBar = (props) => {
       return (
         <Nav>
           <NavDropdown title={props.user.email} id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
-            <Link className="dropdown-item" to="/history">
-              Quiz History
+            <Link className="dropdown-item" to="/">
+              <FontAwesomeIcon className="mr-3" icon={faChalkboardTeacher} />
+              About Us
             </Link>
-            <NavDropdown.Item href="#action/3.3">Settings</NavDropdown.Item>
+            <Link className="dropdown-item" to="/history">
+              <FontAwesomeIcon className="mr-2" icon={faHistory} /> Quiz History
+            </Link>
+            <NavDropdown.Item href="#action/3.3">
+              <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} /> Settings
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={logOut}>Log Out</NavDropdown.Item>
+            <NavDropdown.Item onClick={logOut}>
+              <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} />
+              Log Out
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       );
   };
 
   return (
-    <Navbar bg="light" expand="lg" fixed="top" className="mb-5">
+    <Navbar bg="light" expand="lg" fixed="top">
       <Link className="navbar-brand" to="/">
         Drone Study Guide
-      </Link>   
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
