@@ -19,12 +19,13 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer }) {
   const renderAnswerOptions = () => {
     return answerOptions.map((answer) => {
       return (
-        <Col
-          sm="6"
-          onClick={() => handleSelectAnswer(answer)}
-          className="d-flex justify-content-center border p-5 option"
-        >
-          <h3>{answer}</h3>
+        <Col sm="6">
+          <div
+            onClick={() => handleSelectAnswer(answer)}
+            className="d-flex justify-content-center align-items-center text-center border option answer-button m-1"
+          >
+            <h2>{answer}</h2>
+          </div>
         </Col>
       );
     });

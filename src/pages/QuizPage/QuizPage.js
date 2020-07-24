@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
@@ -106,11 +105,11 @@ export default class QuizPage extends React.Component {
     options.forEach((option) => {
       option.style.visibility = "visible";
     });
+
     this.setState({ usedFiftyFifty: false });
   };
 
   handleHints = () => {
-    console.log('handleHints')
     if (this.state.hints > 0) {
       const options = Array.from(document.querySelectorAll(".option"));
       let indexOfAnswer;
@@ -272,14 +271,9 @@ export default class QuizPage extends React.Component {
 
     return (
       <Fragment>
-        <Helmet>
-          <title>PART 107 - Commercial UAS Study Guide</title>
-        </Helmet>
-        <Fragment>
-          <audio ref={this.correctSound} src={correctSound}></audio>
-          <audio ref={this.wrongSound} src={wrongSound}></audio>
-          <audio ref={this.buttonSound} src={selectSound}></audio>
-        </Fragment>
+        <audio ref={this.correctSound} src={correctSound}></audio>
+        <audio ref={this.wrongSound} src={wrongSound}></audio>
+        <audio ref={this.buttonSound} src={selectSound}></audio>
         <Container className="border">
           <Toast />
           <Row>
@@ -293,7 +287,7 @@ export default class QuizPage extends React.Component {
                 handleFiftyFifty={this.handleFiftyFifty}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              <h1 className="m-5 p-5" style={{ textAlign: "center" }}>
+              <h1 className="m-5 p-5 text-center">
                 {currentQuestion.question}
               </h1>
               <AnswerOptions

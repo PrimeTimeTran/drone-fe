@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 export default function ControlOptions({
   handleNav,

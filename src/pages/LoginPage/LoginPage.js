@@ -28,7 +28,6 @@ const LoginPage = (props) => {
       return (
         <section id="login">
           <Container>
-            
             <Row>
               <Col>
                 <Card className="m-5 p-5">
