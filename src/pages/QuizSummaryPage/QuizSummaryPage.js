@@ -110,7 +110,7 @@ class QuizSummary extends Component {
                     Home
                   </Button>
                 </Link>
-                <Link to="/play/quiz" className="btn btn-block">
+                <Link to="/quiz" className="btn btn-block">
                   <Button block size="lg" variant="success">
                     Play Again
                   </Button>
@@ -127,7 +127,7 @@ class QuizSummary extends Component {
           <h1 className="no-stats">No Statistics Available</h1>
           <ul>
             <li>
-              <Link to="/play/quiz"> Take a Quiz</Link>
+              <Link to="/quiz"> Take a Quiz</Link>
             </li>
             <li>
               <Link to="/"> Back to Home</Link>

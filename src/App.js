@@ -42,20 +42,21 @@ function App() {
     <Router>
       <NavigationBar user={user} />
       <Switch>
-        <Protected user={user} path="/history" component={HistoryPage} />
-        <Protected
-          user={user}
-          path="/play/summary"
-          component={QuizSummaryPage}
-        />
-        <Protected exact user={user} path="/play/quiz" component={QuizPage} />
-        <Protected exact user={user} path="/home" component={HomePage} />
         <Route
           exact
           path="/"
           user={user}
           render={() => <LoginPage checkUser={checkUser} />}
         />
+        <Protected
+          exact
+          user={user}
+          path="/summary"
+          component={QuizSummaryPage}
+        />
+        <Protected exact user={user} path="/home" component={HomePage} />
+        <Protected exact user={user} path="/history" component={HistoryPage} />
+        <Protected exact user={user} path="/quiz" component={QuizPage} />
       </Switch>
     </Router>
   );
