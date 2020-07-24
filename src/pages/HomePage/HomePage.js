@@ -18,7 +18,7 @@ import QuizHistoryPage from "../HistoryPage";
 
 import QuizInstructions from "./containers/QuizInstructions";
 import InputQuestions from "../../components/InputQuestions";
-import QuestionsContainer from "../../components/Questions";
+import QuestionsContainer from "../../containers/Questions";
 
 class HomePage extends Component {
   componentDidMount() {
