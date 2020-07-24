@@ -23,7 +23,7 @@ export default function Questions() {
         process.env.REACT_APP_SERVER_URL + "/questions/me",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         }
       );

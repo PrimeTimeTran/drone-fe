@@ -51,8 +51,6 @@ export default class QuizPage extends React.Component {
     );
   };
 
-  
-
   handleSelectAnswer = (choice) => {
     const correct = choice.toLowerCase() === this.state.answer;
     if (correct) {
@@ -112,6 +110,7 @@ export default class QuizPage extends React.Component {
   };
 
   handleHints = () => {
+    console.log('handleHints')
     if (this.state.hints > 0) {
       const options = Array.from(document.querySelectorAll(".option"));
       let indexOfAnswer;
@@ -281,12 +280,10 @@ export default class QuizPage extends React.Component {
           <audio ref={this.wrongSound} src={wrongSound}></audio>
           <audio ref={this.buttonSound} src={selectSound}></audio>
         </Fragment>
-        <Container  className="border">
+        <Container className="border">
           <Toast />
-          <Row className="p-5">
-            <Col className="p-5">
-              {" "}
-              <h2>Commercial UAS Study Guide</h2>
+          <Row>
+            <Col className="p-3">
               <HelpBar
                 time={time}
                 hints={hints}
@@ -296,7 +293,9 @@ export default class QuizPage extends React.Component {
                 handleFiftyFifty={this.handleFiftyFifty}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              <h5>{currentQuestion.question}</h5>
+              <h1 className="m-5 p-5" style={{ textAlign: "center" }}>
+                {currentQuestion.question}
+              </h1>
               <AnswerOptions
                 currentQuestion={currentQuestion}
                 handleSelectAnswer={this.handleSelectAnswer}

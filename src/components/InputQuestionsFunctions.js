@@ -10,7 +10,7 @@ export const postNewQuestion = (newQuestion) => {
     answer: newQuestion.answer,
   };
   const options = {
-    headers: { Authorization: `Bearer ${localStorage.getItem("usertoken")}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
   };
   return axios
     .post(process.env.REACT_APP_SERVER_URL + "/questions", body, options)
@@ -21,7 +21,7 @@ export const postNewQuestion = (newQuestion) => {
 
 export const deleteQuestion = (id) => {
   const options = {
-    headers: { Authorization: `Bearer ${localStorage.getItem("usertoken")}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
   };
   return axios
     .delete(process.env.REACT_APP_SERVER_URL + "/questions/me/" + id, options)
@@ -38,7 +38,7 @@ export const login = (user) => {
     })
     .then((res) => {
       console.log(res);
-      localStorage.setItem("usertoken", res.data.data);
+      localStorage.setItem("userToken", res.data.data);
       return res.data.data;
     })
     .catch((err) => {

@@ -4,11 +4,15 @@ import { Bar } from "react-chartjs-2";
 import { produceChartData } from "./utils";
 
 const Chart = ({ data: quizData = [] }) => {
-  console.log(quizData);
+  const onSelectQuiz = (el) => {
+    const idx = el[0]._index;
+    const quiz = quizData[idx];
+    console.log({ loi: quiz });
+  };
   const data = produceChartData(quizData);
   return (
     <div className="chart">
-      <Bar data={data} options={{}} />
+      <Bar data={data} options={{}} getElementAtEvent={onSelectQuiz} />
     </div>
   );
 };

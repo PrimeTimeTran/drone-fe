@@ -15,7 +15,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   async function checkUser() {
-    const token = localStorage.getItem("usertoken");
+    const token = localStorage.getItem("userToken");
 
     if (!token) return;
 
@@ -44,8 +44,8 @@ function App() {
       <Switch>
         <Route
           exact
-          path="/"
           user={user}
+          path="/"
           render={() => <LoginPage checkUser={checkUser} />}
         />
         <Protected

@@ -11,7 +11,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const NavigationBar = (props) => {
   const logOut = () => {
-    localStorage.removeItem("usertoken");
+    localStorage.removeItem("userToken");
     window.location.replace("http://localhost:3000");
   };
 

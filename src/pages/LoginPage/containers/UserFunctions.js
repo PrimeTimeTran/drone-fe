@@ -5,7 +5,7 @@ export const register = (newUser) => {
     .post(process.env.REACT_APP_SERVER_URL + "/users", newUser)
     .then((res) => {
       const { token } = res.data
-      localStorage.setItem("usertoken", token);
+      localStorage.setItem("userToken", token);
       console.log("Registered!");
     });
 };
@@ -14,7 +14,7 @@ export const login = (user) => {
   return axios
     .post(process.env.REACT_APP_SERVER_URL + "/users/login", user)
     .then((res) => {
-      localStorage.setItem("usertoken", res.data.data);
+      localStorage.setItem("userToken", res.data.data);
       return res.data.data;
     })
     .catch((err) => {

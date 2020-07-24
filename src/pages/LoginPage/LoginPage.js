@@ -14,7 +14,7 @@ const LoginPage = (props) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("usertoken");
+    const token = localStorage.getItem("userToken");
     if (token) {
       props.history.push("home");
     } else {

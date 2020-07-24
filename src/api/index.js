@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const token = localStorage.getItem("usertoken");
+const token = localStorage.getItem("userToken");
 
 const produceScoreSummary = ({ score, numberOfQuestions }) => {
   const body = {
@@ -35,7 +35,7 @@ export const getQuestions = async () => {
       process.env.REACT_APP_SERVER_URL + "/questions/me",
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("usertoken")}`,
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       }
     );
