@@ -137,7 +137,7 @@ class QuizSummary extends Component {
       );
     }
     return (
-      <Container fluid className="border">
+      <Container className="border">
         <Helmet>
           <title>Quiz App - Summary</title>
         </Helmet>

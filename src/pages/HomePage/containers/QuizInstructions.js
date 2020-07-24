@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Jumbotron, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import fiftyfifty from "../../../assets/img/fiftyfifty.png";
 import answer from "../../../assets/img/answer.png";
@@ -64,7 +66,9 @@ const QuizInstructions = () => (
       </p>
       <p>
         <Link className="right" id="next-button" to="/play/quiz">
-          <Button variant="primary"> Play</Button>
+          <Button variant="primary">
+            <FontAwesomeIcon icon={faPlay} /> Play
+          </Button>
         </Link>
       </p>
     </Jumbotron>

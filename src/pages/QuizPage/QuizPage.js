@@ -281,7 +281,7 @@ export default class QuizPage extends React.Component {
           <audio ref={this.wrongSound} src={wrongSound}></audio>
           <audio ref={this.buttonSound} src={selectSound}></audio>
         </Fragment>
-        <Container fluid className="border">
+        <Container  className="border">
           <Toast />
           <Row className="p-5">
             <Col className="p-5">

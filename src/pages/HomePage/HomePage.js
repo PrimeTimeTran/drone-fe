@@ -34,6 +34,7 @@ class HomePage extends Component {
                 <Nav.Item>
                   <Nav.Link eventKey="first">
                     <FontAwesomeIcon icon={faHome} /> Home
+                    
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>

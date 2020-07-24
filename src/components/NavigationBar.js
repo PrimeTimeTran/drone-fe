@@ -2,9 +2,9 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCog,
   faHistory,
   faSignOutAlt,
-  faQuestionCircle,
   faChalkboardTeacher,
 } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -28,7 +28,7 @@ const NavigationBar = (props) => {
               <FontAwesomeIcon className="mr-2" icon={faHistory} /> Quiz History
             </Link>
             <NavDropdown.Item href="#action/3.3">
-              <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} /> Settings
+              <FontAwesomeIcon className="mr-2" icon={faCog} /> Settings
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logOut}>
