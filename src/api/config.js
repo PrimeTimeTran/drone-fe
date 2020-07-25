@@ -5,7 +5,9 @@ let ApiHelper
 
 const api = () => {
   const token = localStorage.getItem("userToken");
-  if (ApiHelper && token !== null) { return ApiHelper }
+  console.log('before ')
+  if (ApiHelper && token !== null) return ApiHelper
+  console.log('after ')
 
   const defaultOptions = {
     headers: {

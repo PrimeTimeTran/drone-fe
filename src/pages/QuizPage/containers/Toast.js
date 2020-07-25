@@ -2,7 +2,7 @@ import React from "react";
 
 import { Toast } from "react-bootstrap";
 
-import "./toaststyles.css";
+import "./toast.css";
 
 export default function Toastt() {
   return (

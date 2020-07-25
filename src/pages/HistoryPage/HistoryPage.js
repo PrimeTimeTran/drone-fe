@@ -6,7 +6,7 @@ import Chart from "../../components/Chart";
 
 import { getQuizHistory } from "../../api";
 
-export default function QuizHistoryPage() {
+export default function() {
   const [quizzes, setQuizzes] = useState([]);
   useEffect(() => {
     async function getQuizzes() {

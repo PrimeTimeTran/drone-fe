@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 
-export default function ResetPasswordPage() {
+export default function() {
   const onSubmit = (e) => {
     e.preventDefault()
   }
