@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import QuizPage from "./pages/QuizPage";
 import QuizSummaryPage from "./pages/QuizSummaryPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 import Protected from "./components/Protected";
 
@@ -42,6 +43,7 @@ function App() {
     <Router>
       <NavigationBar user={user} />
       <Switch>
+        <Route exact path="/reset-password" component={ResetPasswordPage} />
         <Route
           exact
           user={user}
@@ -54,6 +56,7 @@ function App() {
           path="/summary"
           component={QuizSummaryPage}
         />
+
         <Protected exact user={user} path="/home" component={HomePage} />
         <Protected exact user={user} path="/history" component={HistoryPage} />
         <Protected exact user={user} path="/quiz" component={QuizPage} />

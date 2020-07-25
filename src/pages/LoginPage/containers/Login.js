@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
 import { login } from "./UserFunctions";
@@ -81,6 +83,9 @@ class Login extends Component {
                     Login
                   </Button>
                 </form>
+                <Link to="/reset-password">
+                  Reset Password
+                </Link>
               </Card.Body>
             </Card>
           </Col>
