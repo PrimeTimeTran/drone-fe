@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-export default function AnswerOptions({ currentQuestion, handleSelectAnswer }) {
+export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gameOver }) {
   const [answerOptions, setAnswerOptions] = useState([]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer }) {
   };
 
   return (
-    <Container>
+    <Container id="answer-container">
       <Row className="mb-3">{renderAnswerOptions()}</Row>
     </Container>
   );

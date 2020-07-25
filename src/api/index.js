@@ -1,6 +1,4 @@
-import Axios from "axios";
-
-const token = localStorage.getItem("userToken");
+import api from './config'
 
 const produceScoreSummary = ({ score, numberOfQuestions }) => {
   const body = {
@@ -9,21 +7,9 @@ const produceScoreSummary = ({ score, numberOfQuestions }) => {
   return JSON.stringify(body);
 };
 
-export const sendQuizScore = async (stats) => {
+export const postQuizScore = async (stats) => {
   try {
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/quizzes",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        body: produceScoreSummary(stats),
-      }
-    );
-    const json = await response.json();
-    console.log({ scoreSent: json });
+    await api().post('/quizzes', produceScoreSummary(stats))
   } catch (e) {
     console.log("Error:", e);
   }
@@ -31,15 +17,8 @@ export const sendQuizScore = async (stats) => {
 
 export const getQuestions = async () => {
   try {
-    const res = await Axios.get(
-      process.env.REACT_APP_SERVER_URL + "/questions/me",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-        },
-      }
-    );
-    return res.data;
+    const response = await api().get('/questions/me')
+    return response.data
   } catch (e) {
     console.log("Error:", e);
   }
@@ -47,16 +26,8 @@ export const getQuestions = async () => {
 
 export const getQuizHistory = async () => {
   try {
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/quizzes",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    const json = await response.json();
-    return json;
+    const response = await api().get('/quizzes')
+    return response.data
   } catch (e) {
     console.log("Error:", e);
   }

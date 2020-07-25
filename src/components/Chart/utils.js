@@ -3,7 +3,6 @@ import moment from "moment";
 export const produceChartData = (data) => {
   const labels = [];
   const scoreData = [];
-  console.log({data})
   Array.isArray(data) && data.forEach(quiz => {
     scoreData.push(quiz.score);
     labels.push(moment(quiz.createdAt).format("LL"));

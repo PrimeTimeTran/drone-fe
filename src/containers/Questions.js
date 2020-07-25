@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
@@ -9,29 +8,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { deleteQuestion } from "../components/InputQuestionsFunctions";
+import { getQuestions } from '../api'
 
 export default function Questions() {
   const [questions, setQuestions] = useState([]);
   const history = useHistory();
-  useEffect(() => {
-    getQuestions();
-  }, []);
 
-  async function getQuestions() {
-    try {
-      const res = await Axios.get(
-        process.env.REACT_APP_SERVER_URL + "/questions/me",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-      setQuestions(res.data);
-    } catch (e) {
-      console.log("error while geting questions", e);
+  useEffect(() => {
+    async function fetchQuestions() {
+      const questions = await getQuestions();
+      setQuestions(questions)
     }
-  }
+    fetchQuestions()
+  }, []);
 
   const deletedQuestion = (id) => {
     deleteQuestion(id).then((res) => {
@@ -41,10 +30,9 @@ export default function Questions() {
 
   const renderItem = (answer, option) => {
     const correct = option.toLowerCase() === answer.toLowerCase();
-    const classNames = 'mr-3 ' + (correct ? 'text-success' : 'text-danger')
+    const classNames = "mr-3 " + (correct ? "text-success" : "text-danger");
     return (
       <ListGroup.Item>
-        {" "}
         <FontAwesomeIcon
           className={classNames}
           icon={correct ? faCheckCircle : faTimesCircle}
@@ -56,9 +44,9 @@ export default function Questions() {
 
   const renderQuestions = () => {
     return questions.map(
-      ({ question, answer, optionA, optionB, optionC, optionD }) => {
+      ({ _id, question, answer, optionA, optionB, optionC, optionD }) => {
         return (
-          <Col md={4}>
+          <Col md={4} key={_id}>
             <Card className="mb-3">
               <Card.Header className="font-weight-bold">{question}</Card.Header>
               <ListGroup>

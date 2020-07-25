@@ -16,7 +16,7 @@ export default function HelpBar({
         <Row>
           <Col md={6} className="d-flex justify-content-start">
             <h1>
-              {currentQuestionIdx + 1} of {numberOfQuestions}{" "}
+              {currentQuestionIdx + 1} of {numberOfQuestions}
             </h1>
           </Col>
           <Col md={6} className="d-flex justify-content-end">

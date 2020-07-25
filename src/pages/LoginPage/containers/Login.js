@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Card, Container, Row, Col, Button, Toast } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
 import { login } from "./UserFunctions";
 
@@ -14,8 +15,14 @@ class Login extends Component {
 
     this.onChange = this.onChange.bind(this);
   }
+
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onChangeCaptcha(value) {
+    console.log("Captcha value:", value);
   }
 
   onSubmit = (e) => {
@@ -38,7 +45,7 @@ class Login extends Component {
         <Row>
           <Col>
             <Card>
-            {this.props.renderBack()}
+              {this.props.renderBack()}
               <Card.Body className="text-center">
                 <Card.Header as="h5">Sign In</Card.Header>
               </Card.Body>
@@ -71,6 +78,10 @@ class Login extends Component {
                       value={this.state.password}
                     />
                   </div>
+                  <ReCAPTCHA
+                    sitekey="6Lcc_rUZAAAAAGHL0JVwTcvs1VEKHWH2M_8b1J0i"
+                    onChange={this.onChangeCaptcha}
+                  />
                   <Button variant="primary" type="submit">
                     Login
                   </Button>

@@ -36,8 +36,8 @@ class QuizSummary extends Component {
         score: (state.score / state.numberOfQuestions) * 100,
         numberOfQuestions: state.numberOfQuestions,
         numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
-        correctAnswers: state.correctAnswers,
-        wrongAnswers: state.wrongAnswers,
+        correctAnswers: state.correctCount,
+        wrongAnswers: state.wrongCount,
         hintsUsed: state.hintsUsed,
         fiftyFiftyUsed: state.fiftyFiftyUsed,
       });

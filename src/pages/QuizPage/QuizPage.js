@@ -6,7 +6,7 @@ import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 import { HelpBar, AnswerOptions, ControlOptions, Toast } from "./containers";
 
 import { defaultState, showToast } from "./utils";
-import { sendQuizScore, getQuestions } from "../../api";
+import { postQuizScore, getQuestions } from "../../api";
 
 export default class QuizPage extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ export default class QuizPage extends React.Component {
   displayQuestions = () => {
     const { currentQuestionIdx, questions } = this.state;
     const currentQuestion = questions[currentQuestionIdx];
-    const gameOver = questions[currentQuestionIdx + 1];
+    const gameOver = questions[currentQuestionIdx + 1] === undefined;
 
     const { answer } = currentQuestion;
 
@@ -75,7 +75,7 @@ export default class QuizPage extends React.Component {
         numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
       }),
       () => {
-        if (this.state.gameOver === undefined) {
+        if (this.state.gameOver) {
           this.endGame();
         } else {
           this.displayQuestions();
@@ -194,25 +194,24 @@ export default class QuizPage extends React.Component {
   };
 
   startTimer = () => {
-    const fiveMinutes = 60 * 5
-      let timer = fiveMinutes,
-        minutes,
-        seconds;
-      this.interval = setInterval(() => {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+    const fiveMinutes = 60 * 5;
+    let timer = fiveMinutes,
+      minutes,
+      seconds;
+    this.interval = setInterval(() => {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        const newTime = minutes + ":" + seconds;
-        this.setState({ time: newTime });
-        if (--timer < 0) {
-          this.endGame()
-          clearInterval(this.interval);
-        }
-      }, 1000);
-
+      const newTime = minutes + ":" + seconds;
+      this.setState({ time: newTime });
+      if (--timer < 0) {
+        this.endGame();
+        clearInterval(this.interval);
+      }
+    }, 1000);
   };
 
   handleDisablingButtons = () => {
@@ -223,7 +222,7 @@ export default class QuizPage extends React.Component {
     });
   };
 
-  endGame = async () => {
+  endGame = () => {
     const {
       score,
       hints,
@@ -243,8 +242,7 @@ export default class QuizPage extends React.Component {
       numberOfAnsweredQuestions,
       fiftyFiftyUsed: 2 - fiftyFifty,
     };
-
-    sendQuizScore(playerStats);
+    postQuizScore(playerStats);
     setTimeout(() => {
       this.props.history.push("/summary", playerStats);
     }, 1000);
@@ -254,6 +252,7 @@ export default class QuizPage extends React.Component {
     const {
       time,
       hints,
+      gameOver,
       fiftyFifty,
       currentQuestion,
       numberOfQuestions,
@@ -272,6 +271,7 @@ export default class QuizPage extends React.Component {
           <Row>
             <Col className="p-3">
               <HelpBar
+                gameOver={gameOver}
                 time={time}
                 hints={hints}
                 fiftyFifty={fiftyFifty}
@@ -291,7 +291,7 @@ export default class QuizPage extends React.Component {
                 handleNav={this.handleNav}
                 handleQuit={this.handleQuit}
                 disableNextButton={disableNextButton}
-                previousButtonDisabled={disablePreviousButton}
+                disablePrevButton={disablePreviousButton}
               />
             </Col>
           </Row>
