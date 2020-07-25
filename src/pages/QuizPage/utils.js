@@ -1,6 +1,6 @@
 export const defaultState = {
   score: 0,
-  time: {},
+  time: "",
   hints: 5,
   answer: "",
   questions: [],

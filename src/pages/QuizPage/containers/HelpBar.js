@@ -21,7 +21,7 @@ export default function HelpBar({
           </Col>
           <Col md={6} className="d-flex justify-content-end">
             <h1>
-              {time.minutes}:{time.seconds}
+              {time}
             </h1>
           </Col>
         </Row>

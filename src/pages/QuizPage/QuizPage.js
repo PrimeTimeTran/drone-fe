@@ -194,32 +194,25 @@ export default class QuizPage extends React.Component {
   };
 
   startTimer = () => {
-    const countDownTime = Date.now() + 180000;
-    this.interval = setInterval(() => {
-      const now = new Date();
-      const distance = countDownTime - now;
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      if (distance < 0) {
-        clearInterval(this.interval);
-        this.setState(
-          {
-            time: {
-              minutes: 0,
-              seconds: 0,
-            },
-          },
-          this.endGame
-        );
-      } else {
-        this.setState({
-          time: {
-            minutes,
-            seconds,
-          },
-        });
-      }
-    }, 1000);
+    const fiveMinutes = 60 * 5
+      let timer = fiveMinutes,
+        minutes,
+        seconds;
+      this.interval = setInterval(() => {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        const newTime = minutes + ":" + seconds;
+        this.setState({ time: newTime });
+        if (--timer < 0) {
+          this.endGame()
+          clearInterval(this.interval);
+        }
+      }, 1000);
+
   };
 
   handleDisablingButtons = () => {
