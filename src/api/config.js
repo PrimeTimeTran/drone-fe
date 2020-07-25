@@ -1,11 +1,10 @@
 import Axios from "axios";
-
-const token = localStorage.getItem("userToken");
 const API_ROOT = process.env.REACT_APP_SERVER_URL
 
 let ApiHelper
 
 const api = () => {
+  const token = localStorage.getItem("userToken");
   if (ApiHelper && token !== null) { return ApiHelper }
 
   const defaultOptions = {
