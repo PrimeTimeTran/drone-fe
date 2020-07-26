@@ -22,11 +22,9 @@ class Login extends Component {
   componentDidMount() {
     const container = document.getElementById("recaptcha");
     if (container) {
-      console.log({ container });
       setTimeout(() => {
         const captchaContainer = container.firstChild;
         if (captchaContainer) {
-          console.log({ captchaContainer });
           captchaContainer.classList.add("d-flex");
           captchaContainer.classList.add("justify-content-center");
         }
