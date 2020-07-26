@@ -12,7 +12,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 const NavigationBar = (props) => {
   const logOut = () => {
     localStorage.removeItem("userToken");
-    window.location.replace("http://localhost:3000");
+    window.location.replace(process.env.REACT_APP_SITE_URL);
   };
 
   const renderRightToolBar = () => {
