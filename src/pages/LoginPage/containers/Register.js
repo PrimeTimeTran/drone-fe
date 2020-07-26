@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
+
 
 import { register } from "./UserFunctions";
 
@@ -99,6 +101,10 @@ class Register extends Component {
                 </form>
               </Card.Body>
             </Card>
+            <ReCAPTCHA
+              onChange={this.onChangeRecap}
+              sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+            />
           </Col>
         </Row>
       </Container>
