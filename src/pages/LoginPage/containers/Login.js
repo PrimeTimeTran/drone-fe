@@ -13,6 +13,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      verifiedCaptcha: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -22,27 +23,31 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onChangeCaptcha(value) {
-    console.log("Captcha value:", value);
-  }
-
   onSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-    login(user).then((res) => {
-      if (res) {
-        this.props.checkUser();
-        this.props.history.push("/home");
-      }
-    });
+
+    console.log({la: this.state.verifiedCaptcha})
+
+    if (this.state.verifiedCaptcha) {
+      const user = {
+        email: this.state.email,
+        password: this.state.password,
+      };
+      login(user).then((res) => {
+        if (res) {
+          this.props.checkUser();
+          this.props.history.push("/home");
+        }
+      });
+    }
   };
 
-  onChangeRecap() {}
+  onRecaptcha = async (e) => {
+    this.setState({ verifiedCaptcha: true });
+  }
 
   render() {
+    console.log({state: this.state})
     return (
       <Container>
         <Row>
@@ -89,10 +94,9 @@ class Login extends Component {
               </Card.Body>
             </Card>
             <ReCAPTCHA
-              onChange={this.onChangeRecap}
+              onChange={this.onRecaptcha}
               sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
             />
-            ,
           </Col>
         </Row>
       </Container>

@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
-
 import { register } from "./UserFunctions";
 
 class Register extends Component {
@@ -14,8 +13,10 @@ class Register extends Component {
       password: "",
       last_name: "",
       first_name: "",
+      verifiedCaptcha: false,
     };
   }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -28,11 +29,17 @@ class Register extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
     };
-    register(user).then((res) => {
-      this.props.checkUser();
-      window.location.replace("http://localhost:3000");
-    });
+    if (this.state.verifiedCaptcha) {
+      register(user).then((res) => {
+        this.props.checkUser();
+        window.location.replace(process.env.REACT_APP_SITE_URL);
+      });
+    }
   }
+
+  onRecaptcha = async (e) => {
+    this.setState({ verifiedCaptcha: true });
+  };
 
   render() {
     return (
@@ -102,7 +109,7 @@ class Register extends Component {
               </Card.Body>
             </Card>
             <ReCAPTCHA
-              onChange={this.onChangeRecap}
+              onChange={this.onRecaptcha}
               sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
             />
           </Col>
