@@ -19,6 +19,21 @@ class Login extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount() {
+    const container = document.getElementById("recaptcha");
+    if (container) {
+      console.log({ container });
+      setTimeout(() => {
+        const captchaContainer = container.firstChild;
+        if (captchaContainer) {
+          console.log({ captchaContainer });
+          captchaContainer.classList.add("d-flex");
+          captchaContainer.classList.add("justify-content-center");
+        }
+      }, 100);
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -26,7 +41,7 @@ class Login extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    console.log({la: this.state.verifiedCaptcha})
+    console.log({ la: this.state.verifiedCaptcha });
 
     if (this.state.verifiedCaptcha) {
       const user = {
@@ -44,10 +59,10 @@ class Login extends Component {
 
   onRecaptcha = async (e) => {
     this.setState({ verifiedCaptcha: true });
-  }
+  };
 
   render() {
-    console.log({state: this.state})
+    console.log({ state: this.state });
     return (
       <Container>
         <Row>
@@ -86,17 +101,25 @@ class Login extends Component {
                       value={this.state.password}
                     />
                   </div>
-                  <Button variant="primary" type="submit">
-                    Login
-                  </Button>
+                  <ReCAPTCHA
+                    id="recaptcha"
+                    className="my-3"
+                    onChange={this.onRecaptcha}
+                    sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+                  />
+                  <Row>
+                    <Col className="d-flex flex-column">
+                      <Button variant="primary" type="submit">
+                        Login
+                      </Button>
+                      <Link to="/reset-password" className="text-right">
+                        Forgot Password?
+                      </Link>
+                    </Col>
+                  </Row>
                 </form>
-                <Link to="/reset-password">Reset Password</Link>
               </Card.Body>
             </Card>
-            <ReCAPTCHA
-              onChange={this.onRecaptcha}
-              sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
-            />
           </Col>
         </Row>
       </Container>
