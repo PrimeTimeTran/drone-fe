@@ -14,8 +14,8 @@ export const login = (user) => {
   return axios
     .post(process.env.REACT_APP_SERVER_URL + "/users/login", user)
     .then((res) => {
-      localStorage.setItem("userToken", res.data.data);
-      return res.data.data;
+      localStorage.setItem("userToken", res.data.token);
+      return res.data.token;
     })
     .catch((err) => {
       console.log(err);
