@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
@@ -16,7 +17,6 @@ class Login extends Component {
 
     this.onChange = this.onChange.bind(this);
   }
-
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -39,6 +39,8 @@ class Login extends Component {
       }
     });
   };
+
+  onChangeRecap() {}
 
   render() {
     return (
@@ -83,11 +85,14 @@ class Login extends Component {
                     Login
                   </Button>
                 </form>
-                <Link to="/reset-password">
-                  Reset Password
-                </Link>
+                <Link to="/reset-password">Reset Password</Link>
               </Card.Body>
             </Card>
+            <ReCAPTCHA
+              onChange={this.onChangeRecap}
+              sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+            />
+            ,
           </Col>
         </Row>
       </Container>

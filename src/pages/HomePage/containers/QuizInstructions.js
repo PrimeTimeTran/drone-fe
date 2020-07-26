@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { Jumbotron, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -12,9 +11,6 @@ import hints from "../../../assets/img/hints.png";
 
 const QuizInstructions = () => (
   <Fragment>
-    <Helmet>
-      <title>PART 107 - Commercial UAS Study Guide</title>
-    </Helmet>
     {/* <h1>Getting Started</h1>
       <ul className="browser-default" id="main-list">
         <li>The Quiz lasts for 60 minutes and ends when your time elapses.</li>
