@@ -66,15 +66,13 @@ class Login extends Component {
         <Row>
           <Col>
             <Card>
-              {this.props.renderBack()}
-              <Card.Body className="text-center">
-                <Card.Header as="h5">Sign In</Card.Header>
-              </Card.Body>
+              <Card.Header>
+                {this.props.renderBack()}
+              </Card.Header>
               <Card.Body>
-                <Card.Title>Special title treatment</Card.Title>
+                <Card.Title>Log In</Card.Title>
                 <Card.Text>
-                  With supporting text below as a natural lead-in to additional
-                  content.
+                  Get back to studying to get your certification and change your life with drones.
                 </Card.Text>
                 <form noValidate onSubmit={this.onSubmit}>
                   <div className="form-group">

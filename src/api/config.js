@@ -1,20 +1,17 @@
 import Axios from "axios";
-const API_ROOT = process.env.REACT_APP_SERVER_URL
+const API_ROOT = process.env.REACT_APP_SERVER_URL;
 
-let ApiHelper
+let ApiHelper;
 
 const api = () => {
   const token = localStorage.getItem("userToken");
-  console.log('before ')
-  if (ApiHelper && token !== null) return ApiHelper
-  console.log('after ')
-
+  if (ApiHelper && token !== null) return ApiHelper;
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : ''
-    }
-  }
+      Authorization: token ? `Bearer ${token}` : "",
+    },
+  };
 
   ApiHelper = {
     get: (url, options = {}) =>
@@ -24,9 +21,9 @@ const api = () => {
     put: (url, data, options = {}) =>
       Axios.put(API_ROOT + url, data, { ...defaultOptions, ...options }),
     delete: (url, options = {}) =>
-      Axios.delete(API_ROOT + url, { ...defaultOptions, ...options })
-  }
-  return ApiHelper
-}
+      Axios.delete(API_ROOT + url, { ...defaultOptions, ...options }),
+  };
+  return ApiHelper;
+};
 
-export default api
+export default api;

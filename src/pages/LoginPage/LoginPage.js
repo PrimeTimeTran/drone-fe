@@ -68,7 +68,6 @@ const LoginPage = (props) => {
     if (showLogin || showRegister) {
       return (
         <div
-          className="back-button"
           onClick={() => {
             setShowLogin(false);
             setShowRegister(false);

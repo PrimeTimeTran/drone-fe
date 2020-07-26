@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 
-export default function() {
-  const onSubmit = (e) => {
-    e.preventDefault()
-  }
+import { confirmEmail } from "../../api";
+
+export default function () {
+  const [email, setEmail] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const resp = await confirmEmail(email);
+    if (resp.emailFound) {
+      console.log("Foun email!");
+    } else {
+      console.log("Not foound~!");
+    }
+  };
+
+  const onChange = (e) => {
+    setEmail(e.target.value);
+  };
   return (
     <Container>
       <Row>
@@ -13,7 +27,11 @@ export default function() {
           <Form onSubmit={onSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={onChange}
+              />
               <Form.Text className="text-muted">
                 Please enter your email
               </Form.Text>
