@@ -30,11 +30,10 @@ class HomePage extends Component {
         <Container fluid>
           <Row>
             <Col sm={2}>
-              <Nav variant="pills" className="flex-column">
+              <Nav variant="pills" className="flex-md-column flex-sm-row">
                 <Nav.Item>
                   <Nav.Link eventKey="first">
                     <FontAwesomeIcon icon={faHome} /> Home
-                    
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
