@@ -16,7 +16,6 @@ const NavigationBar = (props) => {
   };
 
   const renderRightToolBar = () => {
-    if (props.user)
       return (
         <Nav>
           <NavDropdown title={props.user.email} id="basic-nav-dropdown">
@@ -41,16 +40,16 @@ const NavigationBar = (props) => {
   };
 
   return (
-    <Navbar bg="light" expand="lg" fixed="top">
+    <Navbar bg="light" fixed="top">
       <Link className="navbar-brand" to="/">
         Drone Study Guide
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse>
         <Nav className="mr-auto">
           {/* <Nav.Link href="#link">Link</Nav.Link> */}
         </Nav>
-        {renderRightToolBar()}
+        {props.user && renderRightToolBar()}
       </Navbar.Collapse>
     </Navbar>
   );
