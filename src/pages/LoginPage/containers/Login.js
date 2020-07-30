@@ -5,6 +5,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
+// import Firebase from '../../components/Firebase'
+import Firebase from '../../../components/Firebase'
+
 import { login } from "./UserFunctions";
 
 const Login = (props) => {

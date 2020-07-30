@@ -12,6 +12,8 @@ import Protected from "./components/Protected";
 
 import NavigationBar from "./components/NavigationBar";
 
+window.fb.logEvent('Page View Loi!')
+
 function App() {
   const [user, setUser] = useState(null);
 

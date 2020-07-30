@@ -41,19 +41,15 @@ const LoginPage = (props) => {
                     </Card.Text>
                   </Card.Body>
                   <Card.Body className="text-right">
-                    <Link
-                      variant="primary"
+                    <Button
+                      className="mr-2"
                       onClick={() => setShowLogin(!showLogin)}
                     >
-                      <Button>Login</Button>
-                    </Link>
-                    <Link
-                      variant="primary"
-                      className="ml-3"
-                      onClick={() => setShowRegister(!showRegister)}
-                    >
-                      <Button>Register</Button>
-                    </Link>
+                      Login
+                    </Button>
+                    <Button onClick={() => setShowRegister(!showRegister)}>
+                      Register
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
