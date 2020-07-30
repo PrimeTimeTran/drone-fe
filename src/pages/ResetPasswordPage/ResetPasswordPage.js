@@ -10,9 +10,9 @@ export default function () {
     e.preventDefault();
     const resp = await confirmEmail(email);
     if (resp.emailFound) {
-      console.log("Foun email!");
+      console.log("Found email!");
     } else {
-      console.log("Not foound~!");
+      console.log("Not found~!");
     }
   };
 

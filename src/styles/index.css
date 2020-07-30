@@ -1,5 +1,5 @@
 body {
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 section#login {
@@ -13,4 +13,10 @@ section#login {
 
 .answer-button {
   min-height: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding-top: 10%;
+  }
 }

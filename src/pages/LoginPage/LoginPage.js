@@ -65,18 +65,16 @@ const LoginPage = (props) => {
   };
 
   const renderBack = () => {
-    if (showLogin || showRegister) {
-      return (
-        <div
-          onClick={() => {
-            setShowLogin(false);
-            setShowRegister(false);
-          }}
-        >
-          <i className="fas fa-angle-left"></i>
-        </div>
-      );
-    }
+    return (
+      <div
+        onClick={() => {
+          setShowLogin(false);
+          setShowRegister(false);
+        }}
+      >
+        <i className="fas fa-angle-left"></i>
+      </div>
+    );
   };
 
   const renderRegister = () => {

@@ -9,7 +9,7 @@ import answer from "../../../assets/img/answer.png";
 import options from "../../../assets/img/options.png";
 import hints from "../../../assets/img/hints.png";
 
-const QuizInstructions = () => (
+const QuizInstructions = (props) => (
   <Fragment>
     {/* <h1>Getting Started</h1>
       <ul className="browser-default" id="main-list">
@@ -55,7 +55,7 @@ const QuizInstructions = () => (
       </ul> */}
 
     <Jumbotron>
-      <h1>Hello, world!</h1>
+      <h1>Welcome {props.name}</h1>
       <p>
         This is a simple hero unit, a simple jumbotron-style component for
         calling extra attention to featured content or information.

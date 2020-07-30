@@ -29,8 +29,8 @@ class HomePage extends Component {
       <Tab.Container id="main" defaultActiveKey="first" className="border mt-5">
         <Container fluid>
           <Row>
-            <Col sm={2}>
-              <Nav variant="pills" className="flex-md-column flex-sm-row">
+            <Col sm={2} className="pt-sm-3">
+              <Nav variant="pills" className="flex-sm-row flex-md-column my-2">
                 <Nav.Item>
                   <Nav.Link eventKey="first">
                     <FontAwesomeIcon icon={faHome} /> Home
@@ -52,11 +52,7 @@ class HomePage extends Component {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div className="container pt-5">
-                    <h2 style={{ textAlign: "center" }}>
-                      {" "}
-                      Welcome {this.props.user.first_name}
-                    </h2>
-                    <QuizInstructions />
+                    <QuizInstructions name={this.props.user.first_name}/>
                     <h2 style={{ textAlign: "center" }}>
                       Create New Questions Here!
                     </h2>
