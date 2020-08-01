@@ -240,7 +240,7 @@ export default class QuizPage extends React.Component {
       score,
       wrongCount,
       questionIds,
-      correctCount,``
+      correctCount,
       numberOfQuestions,
       hintsUsed: 5 - hints,
       numberOfAnsweredQuestions,
