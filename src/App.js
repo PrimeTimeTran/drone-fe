@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import HistoryPage from "./pages/HistoryPage";
 import QuizPage from "./pages/QuizPage";
+import LoginPage from "./pages/LoginPage";
+import HistoryPage from "./pages/HistoryPage";
 import QuizSummaryPage from "./pages/QuizSummaryPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 import Protected from "./components/Protected";
-
 import NavigationBar from "./components/NavigationBar";
-
-window.fb.logEvent('Page View Loi!')
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,6 +35,7 @@ function App() {
   }
 
   useEffect(() => {
+    window.fb.logEvent('page_view')
     checkUser();
   }, []);
 
