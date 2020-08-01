@@ -43,3 +43,21 @@ export const confirmEmail = async (email) => {
     console.log("Error: ", e);
   }
 };
+
+export const postQuestion = async (newQuestion) => {
+  console.log({newQuestion})
+  const body = {
+    question: newQuestion.question,
+    optionA: newQuestion.optionA,
+    optionB: newQuestion.optionB,
+    optionC: newQuestion.optionC,
+    optionD: newQuestion.optionD,
+    answer: newQuestion.answer,
+  };
+  try {
+    await api().post("/questions", body);
+  } catch (e) {
+    console.log("Error:", e);
+  }
+  
+};

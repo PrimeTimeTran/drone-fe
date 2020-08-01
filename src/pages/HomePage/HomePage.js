@@ -17,7 +17,7 @@ import {
 import QuizHistoryPage from "../HistoryPage";
 
 import QuizInstructions from "./containers/QuizInstructions";
-import InputQuestions from "../../components/InputQuestions";
+import CreateQuestion from "../../containers/CreateQuestion";
 import QuestionsContainer from "../../containers/Questions";
 
 class HomePage extends Component {
@@ -56,7 +56,7 @@ class HomePage extends Component {
                     <h2 style={{ textAlign: "center" }}>
                       Create New Questions Here!
                     </h2>
-                    <InputQuestions />
+                    <CreateQuestion user={this.props.user}/>
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second" className="p-5">

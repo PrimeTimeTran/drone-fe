@@ -7,7 +7,6 @@ import {
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { deleteQuestion } from "../components/InputQuestionsFunctions";
 import { getQuestions } from '../api'
 
 export default function Questions() {
@@ -21,12 +20,6 @@ export default function Questions() {
     }
     fetchQuestions()
   }, []);
-
-  const deletedQuestion = (id) => {
-    deleteQuestion(id).then((res) => {
-      history.push("/home");
-    });
-  };
 
   const renderItem = (answer, option) => {
     const correct = option.toLowerCase() === answer.toLowerCase();
