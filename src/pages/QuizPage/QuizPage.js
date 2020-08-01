@@ -226,6 +226,7 @@ export default class QuizPage extends React.Component {
     const {
       score,
       hints,
+      questions,
       fiftyFifty,
       wrongCount,
       correctCount,
@@ -233,10 +234,13 @@ export default class QuizPage extends React.Component {
       numberOfAnsweredQuestions,
     } = this.state;
 
+    const questionIds = questions.map(q => q._id)
+
     const playerStats = {
       score,
       wrongCount,
-      correctCount,
+      questionIds,
+      correctCount,``
       numberOfQuestions,
       hintsUsed: 5 - hints,
       numberOfAnsweredQuestions,
@@ -271,9 +275,9 @@ export default class QuizPage extends React.Component {
           <Row>
             <Col className="p-3">
               <HelpBar
-                gameOver={gameOver}
                 time={time}
                 hints={hints}
+                gameOver={gameOver}
                 fiftyFifty={fiftyFifty}
                 handleHints={this.handleHints}
                 numberOfQuestions={numberOfQuestions}

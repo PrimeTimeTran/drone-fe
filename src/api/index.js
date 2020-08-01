@@ -1,7 +1,8 @@
 import api from "./config";
 
-const produceScoreSummary = ({ score, numberOfQuestions }) => {
+const produceScoreSummary = ({ score, numberOfQuestions, questionIds } ) => {
   const body = {
+    questionIds,
     score: (score / numberOfQuestions) * 100,
   };
   return JSON.stringify(body);
