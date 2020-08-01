@@ -9,7 +9,7 @@ import QuizSummaryPage from "./pages/QuizSummaryPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 import Protected from "./components/Protected";
-import NavigationBar from "./components/NavigationBar";
+import NavigationBar from "./containers/NavigationBar";
 
 function App() {
   const [user, setUser] = useState(null);

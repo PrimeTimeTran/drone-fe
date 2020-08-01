@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
 import {
@@ -11,7 +10,6 @@ import { getQuestions } from '../api'
 
 export default function Questions() {
   const [questions, setQuestions] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     async function fetchQuestions() {

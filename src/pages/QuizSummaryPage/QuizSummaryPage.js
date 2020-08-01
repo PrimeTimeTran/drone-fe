@@ -3,18 +3,6 @@ import { Helmet } from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
 import { Container, Row, Button, Col } from "react-bootstrap";
 
-import AdSense from "react-adsense";
-{
-  /* <AdSense.Google
-style={{ width: "100%", display: "block" }}
-client="ca-pub-9583663176602133"
-slot="4428685352"
-format="auto"
-responsive="true"
-layoutKey="-gw-1+2a-9x+5c"
-/> */
-}
-
 class QuizSummary extends Component {
   constructor(props) {
     super(props);

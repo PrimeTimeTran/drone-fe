@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 
 import "./styles.css";

@@ -16,7 +16,7 @@ const shuffledPlaceholders = placeHolders
   .sort((a, b) => a.sort - b.sort)
   .map((a) => a.value);
 
-const InputQuestions = (props) => {
+const CreateQuestion = (props) => {
   const [question, setQuestion] = useState({
     answer: "",
     optionA: "",
@@ -133,4 +133,4 @@ const InputQuestions = (props) => {
   );
 };
 
-export default withRouter(InputQuestions);
+export default withRouter(CreateQuestion);
