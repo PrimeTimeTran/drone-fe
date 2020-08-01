@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 
 import { withRouter } from "react-router-dom";
-import { postQuestion } from '../api'
+import { postQuestion } from "../api";
 
 const placeHolders = [
-  "Possible Answer",
+  "Incorrect Answer",
   "Incorrect Answer",
   "Plausible Answer",
   "Correct Answer",
@@ -63,7 +63,7 @@ const CreateQuestion = (props) => {
                     onChange={onChange}
                     className="form-control"
                     value={question.optionA}
-                    placeholder={shuffledPlaceholders[1]}
+                    placeholder={shuffledPlaceholders[0]}
                   />
                 </Form.Group>
               </Col>
@@ -75,7 +75,7 @@ const CreateQuestion = (props) => {
                     onChange={onChange}
                     className="form-control"
                     value={question.optionB}
-                    placeholder={shuffledPlaceholders[2]}
+                    placeholder={shuffledPlaceholders[1]}
                   />
                 </Form.Group>
               </Col>
@@ -89,7 +89,7 @@ const CreateQuestion = (props) => {
                     onChange={onChange}
                     className="form-control"
                     value={question.optionC}
-                    placeholder={shuffledPlaceholders[3]}
+                    placeholder={shuffledPlaceholders[2]}
                   />
                 </Form.Group>
               </Col>
@@ -100,16 +100,14 @@ const CreateQuestion = (props) => {
                     onChange={onChange}
                     value={question.optionD}
                     className="form-control"
-                    placeholder={shuffledPlaceholders[0]}
+                    placeholder={shuffledPlaceholders[3]}
                   />
                 </Form.Group>
               </Col>
             </Row>
 
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>
-                Answer
-              </Form.Label>
+              <Form.Label>Answer</Form.Label>
               <Form.Control
                 rows="3"
                 name="answer"
