@@ -18,17 +18,26 @@ export const postQuizScore = async (stats) => {
 
 export const getQuestions = async () => {
   try {
-    const response = await api().get("/questions/me");
-    return response.data;
+    const resp = await api().get("/questions/me");
+    return resp.data;
   } catch (e) {
     console.log("Error:", e);
   }
 };
 
+export const deleteQuestion = async (id) => {
+  try {
+    const resp = await api().delete("/questions/" + id);
+    return resp;
+  } catch (e) {
+    console.log("Error:", e);
+  }
+}
+
 export const getQuizHistory = async () => {
   try {
-    const response = await api().get("/quizzes");
-    return response.data;
+    const resp = await api().get("/quizzes");
+    return resp.data;
   } catch (e) {
     console.log("Error:", e);
   }
@@ -36,8 +45,8 @@ export const getQuizHistory = async () => {
 
 export const confirmEmail = async (email) => {
   try {
-    const response = await api().get(`/users/check-email?email=${email}`);
-    const json = await response.data;
+    const resp = await api().get(`/users/check-email?email=${email}`);
+    const json = await resp.data;
     return json;
   } catch (e) {
     console.log("Error: ", e);
@@ -45,19 +54,10 @@ export const confirmEmail = async (email) => {
 };
 
 export const postQuestion = async (newQuestion) => {
-  console.log({newQuestion})
-  const body = {
-    question: newQuestion.question,
-    optionA: newQuestion.optionA,
-    optionB: newQuestion.optionB,
-    optionC: newQuestion.optionC,
-    optionD: newQuestion.optionD,
-    answer: newQuestion.answer,
-  };
   try {
-    await api().post("/questions", body);
+    const resp = await api().post("/questions", newQuestion);
+    return resp
   } catch (e) {
     console.log("Error:", e);
   }
-  
 };

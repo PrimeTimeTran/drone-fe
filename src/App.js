@@ -28,7 +28,7 @@ function App() {
         },
       });
       const { data } = await resp.json();
-      console.log('sososo')
+      console.log({ data });
       window.fb.logEvent("page_view", {
         email: data.email,
       });

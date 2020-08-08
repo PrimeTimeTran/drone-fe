@@ -17,9 +17,9 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gam
   }, [currentQuestion]);
 
   const renderAnswerOptions = () => {
-    return answerOptions.map((answer) => {
+    return answerOptions.map((answer, idx) => {
       return (
-        <Col sm="6" key={answer}>
+        <Col sm="6" key={idx}>
           <div
             onClick={() => handleSelectAnswer(answer)}
             className="d-flex justify-content-center align-items-center border option answer-button m-1"

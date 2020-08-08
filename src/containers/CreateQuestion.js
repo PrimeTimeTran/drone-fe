@@ -33,8 +33,17 @@ const CreateQuestion = (props) => {
   const addQuestion = (e) => {
     e.preventDefault();
 
-    postQuestion(question).then((res) => {
-      props.history.push("/home");
+    postQuestion(question).then((resp) => {
+      if (resp.status === 201) {
+        setQuestion({
+          answer: "",
+          optionA: "",
+          optionB: "",
+          optionC: "",
+          optionD: "",
+          question: "",
+        })
+      }
     });
   };
 

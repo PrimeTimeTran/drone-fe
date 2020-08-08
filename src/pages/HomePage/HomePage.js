@@ -61,7 +61,7 @@ class HomePage extends Component {
                 </Tab.Pane>
                 <Tab.Pane eventKey="second" className="p-5">
                   <h1>My Questions</h1>
-                  <QuestionsContainer />
+                  <QuestionsContainer user={this.props.user}/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <h1>History</h1>
