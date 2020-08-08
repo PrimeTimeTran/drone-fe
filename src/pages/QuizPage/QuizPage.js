@@ -20,6 +20,7 @@ export default class QuizPage extends React.Component {
 
   async componentDidMount() {
     const questions = await getQuestions();
+    window.fb.logEvent("quiz_start");
     this.setState({ questions }, this.startGame);
   }
 

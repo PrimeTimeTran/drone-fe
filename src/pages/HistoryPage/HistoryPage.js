@@ -6,9 +6,10 @@ import Chart from "../../components/Chart";
 
 import { getQuizHistory } from "../../api";
 
-export default function() {
+export default function () {
   const [quizzes, setQuizzes] = useState([]);
   useEffect(() => {
+    window.fb.logEvent("page_view", { value: "quiz_history" });
     async function getQuizzes() {
       const quizArray = await getQuizHistory();
       setQuizzes(quizArray);
