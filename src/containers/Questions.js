@@ -45,10 +45,10 @@ export default function Questions(props) {
 
   const removeItem = async (questionId) => {
     const resp = await deleteQuestion(questionId)
-    console.log({resp: resp})
     if (resp.status === 201) {
       const newQuestions = questions.filter(q => q._id !== questionId)
       setQuestions(newQuestions)
+      window.fb.logEvent("question_remove");
     }
   }
 
