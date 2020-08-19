@@ -8,6 +8,8 @@ import { HelpBar, AnswerOptions, ControlOptions, Toast } from "./containers";
 import { defaultState, showToast } from "./utils";
 import { postQuizScore, getQuestions } from "../../api";
 
+import "./style.css";
+
 export default class QuizPage extends React.Component {
   constructor(props) {
     super(props);
@@ -145,55 +147,6 @@ export default class QuizPage extends React.Component {
     }
   };
 
-  handleFiftyFifty = () => {
-    if (this.state.fiftyFifty > 0 && this.state.usedFiftyFifty === false) {
-      const options = document.querySelectorAll(".option");
-      const randomNumbers = [];
-      let indexOfAnswer;
-
-      options.forEach((option, index) => {
-        if (option.innerHTML.toLowerCase() === this.state.answer) {
-          indexOfAnswer = index;
-        }
-      });
-      let count = 0;
-      do {
-        const randomNumber = Math.round(Math.random() * 3);
-        if (randomNumber !== indexOfAnswer) {
-          if (
-            randomNumbers.length < 2 &&
-            !randomNumbers.includes(randomNumber) &&
-            !randomNumbers.includes(indexOfAnswer)
-          ) {
-            randomNumbers.push(randomNumber);
-            count++;
-          } else {
-            while (true) {
-              const newRandomNumber = Math.round(Math.random() * 3);
-              if (
-                !randomNumbers.includes(newRandomNumber) &&
-                !randomNumbers.includes(indexOfAnswer)
-              ) {
-                randomNumbers.push(newRandomNumber);
-                count++;
-                break;
-              }
-            }
-          }
-        }
-      } while (count < 2);
-      options.forEach((option, index) => {
-        if (randomNumbers.includes(index)) {
-          option.style.visibility = "hidden";
-        }
-      });
-      this.setState((prevState) => ({
-        usedFifty: true,
-        fiftyFifty: prevState.fiftyFifty - 1,
-      }));
-    }
-  };
-
   startTimer = () => {
     const fiveMinutes = 60 * 5;
     let timer = fiveMinutes,
@@ -235,7 +188,7 @@ export default class QuizPage extends React.Component {
       numberOfAnsweredQuestions,
     } = this.state;
 
-    const questionIds = questions.map(q => q._id)
+    const questionIds = questions.map((q) => q._id);
 
     const playerStats = {
       score,
@@ -266,6 +219,8 @@ export default class QuizPage extends React.Component {
       disablePreviousButton,
     } = this.state;
 
+    console.log({ currentQuestion });
+
     return (
       <Fragment>
         <audio ref={this.correctSound} src={correctSound}></audio>
@@ -274,7 +229,7 @@ export default class QuizPage extends React.Component {
         <Container className="border">
           <Toast />
           <Row>
-            <Col className="p-3">
+            <Col className="p-3 d-flex flex-column">
               <HelpBar
                 time={time}
                 hints={hints}
@@ -282,12 +237,16 @@ export default class QuizPage extends React.Component {
                 fiftyFifty={fiftyFifty}
                 handleHints={this.handleHints}
                 numberOfQuestions={numberOfQuestions}
-                handleFiftyFifty={this.handleFiftyFifty}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              <h1 className="m-5 p-5 text-center">
+              <h1 className="p-5 text-center border-bottom">
                 {currentQuestion.question}
               </h1>
+              <img
+                alt="question"
+                className="question-img my-3"
+                src={currentQuestion.photo_url}
+              />
               <AnswerOptions
                 currentQuestion={currentQuestion}
                 handleSelectAnswer={this.handleSelectAnswer}

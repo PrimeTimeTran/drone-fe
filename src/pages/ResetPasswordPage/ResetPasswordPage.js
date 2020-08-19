@@ -5,12 +5,13 @@ import { confirmEmail } from "../../api";
 
 export default function () {
   const [email, setEmail] = useState("");
+  const [prompt, setPrompt] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const resp = await confirmEmail(email);
     if (resp.emailFound) {
-      console.log("Found email!");
+      setPrompt('Please check your email to reset your password.')
     } else {
       console.log("Not found~!");
     }
@@ -19,6 +20,7 @@ export default function () {
   const onChange = (e) => {
     setEmail(e.target.value);
   };
+
   return (
     <Container>
       <Row>
@@ -29,13 +31,13 @@ export default function () {
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter email"
                 onChange={onChange}
+                placeholder="Enter email"
               />
-              <Form.Text className="text-muted">
-                Please enter your email
-              </Form.Text>
             </Form.Group>
+            {prompt && (<div className="my-1">
+              {prompt}
+            </div>)}
             <Button variant="primary" type="submit">
               Submit
             </Button>

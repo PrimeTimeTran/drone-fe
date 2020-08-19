@@ -4,7 +4,6 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 export default function HelpBar({
   time,
   hints,
-  fiftyFifty,
   handleHints,
   handleFiftyFifty,
   numberOfQuestions,
@@ -28,11 +27,6 @@ export default function HelpBar({
       </Container>
       <Container fluid>
         <Row>
-          <Col md={6} className="d-flex justify-content-center">
-            <Button onClick={handleFiftyFifty}>
-              <span>{fiftyFifty} 50 / 50</span>
-            </Button>
-          </Col>
           <Col md={6} className="d-flex justify-content-center">
             <Button onClick={handleHints}>
               <span>{hints} Remove 1</span>

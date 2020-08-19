@@ -1,0 +1,5 @@
+.question-img {
+  max-height: 25%;
+  object-fit: cover;
+  align-self: center;
+}
