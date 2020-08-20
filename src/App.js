@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import HistoryPage from "./pages/HistoryPage";
 import QuizSummaryPage from "./pages/QuizSummaryPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import UpdatePasswordPage from "./pages/UpdatePasswordPage";
 
 import Protected from "./components/Protected";
 import NavigationBar from "./containers/NavigationBar";
@@ -46,6 +47,7 @@ function App() {
       <NavigationBar user={user} />
       <Switch>
         <Route exact path="/reset-password" component={ResetPasswordPage} />
+        <Route exact path="/update-password" component={UpdatePasswordPage} />
         <Route
           exact
           user={user}
