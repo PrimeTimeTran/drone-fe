@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 
-export default function () {
+export default function (props) {
+
+  console.log({props}, props.match.params.token)
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 

@@ -47,7 +47,7 @@ function App() {
       <NavigationBar user={user} />
       <Switch>
         <Route exact path="/reset-password" component={ResetPasswordPage} />
-        <Route exact path="/update-password" component={UpdatePasswordPage} />
+        <Route exact path="/update-password/:token" component={UpdatePasswordPage} />
         <Route
           exact
           user={user}
