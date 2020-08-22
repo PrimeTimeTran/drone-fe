@@ -98,7 +98,6 @@ export default function Questions(props) {
                 {renderItem(answer, optionA)}
                 {renderItem(answer, optionB)}
                 {renderItem(answer, optionC)}
-                {renderItem(answer, optionD)}
               </ListGroup>
               <ListGroup>
                 <ListGroup.Item>{answer}</ListGroup.Item>
