@@ -70,3 +70,12 @@ export const updatePassword = async (password, token) => {
     console.log("Error:", e);
   }
 };
+
+export const updateQuestion = async(question) => {
+  try {
+    const resp = await api().put("/questions/" + question._id, JSON.stringify(question));
+    return resp
+  } catch (e) {
+    console.log("Error:", e);
+  }
+}

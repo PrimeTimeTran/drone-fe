@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 
-import { updatePassword} from '../../api'
+import { updatePassword } from "../../api";
 
 export default function (props) {
   const [password, setPassword] = useState("");
@@ -12,8 +12,11 @@ export default function (props) {
     e.preventDefault();
     if (password === confirmPassword) {
       setError("");
-      const response = await updatePassword({password}, props.match.params.token)
-      if (response.status === 200)  {
+      const response = await updatePassword(
+        { password },
+        props.match.params.token
+      );
+      if (response.status === 200) {
         window.location.replace(process.env.REACT_APP_SITE_URL);
       }
     } else {
