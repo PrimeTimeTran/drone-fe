@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 
+import { updatePassword} from '../../api'
+
 export default function (props) {
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (password === confirmPassword) {
+      setError("");
+      const response = await updatePassword({password}, props.match.params.token)
+      if (response.status === 200)  {
+        window.location.replace(process.env.REACT_APP_SITE_URL);
+      }
+    } else {
+      setError("Password doesn't match");
+    }
   };
 
   return (
@@ -35,6 +47,7 @@ export default function (props) {
                 }}
               />
             </Form.Group>
+            {error && <h6 style={{ color: "red" }}>Password Doesn't match</h6>}
             <Button variant="primary" type="submit">
               Update Password
             </Button>

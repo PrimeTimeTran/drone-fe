@@ -42,7 +42,7 @@ const LoginPage = (props) => {
                   </Card.Body>
                   <Card.Body className="text-right">
                     <Button
-                      className="mr-2"
+                      className="mr-2 login-button"
                       onClick={() => setShowLogin(!showLogin)}
                     >
                       Login

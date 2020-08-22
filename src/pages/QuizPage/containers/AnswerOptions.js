@@ -22,9 +22,9 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gam
         <Col sm="6" key={idx}>
           <div
             onClick={() => handleSelectAnswer(answer)}
-            className="d-flex justify-content-center align-items-center border option answer-button m-1"
+            className="d-flex justify-content-center align-items-center border option answer-button m-1 p-3"
           >
-            <h2>{answer}</h2>
+            <h4>{answer}</h4>
           </div>
         </Col>
       );

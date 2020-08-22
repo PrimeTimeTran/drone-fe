@@ -61,3 +61,12 @@ export const postQuestion = async (newQuestion) => {
     console.log("Error:", e);
   }
 };
+
+export const updatePassword = async (password, token) => {
+  try {
+    const resp = await api().post("/users/password/" + token, JSON.stringify(password));
+    return resp
+  } catch (e) {
+    console.log("Error:", e);
+  }
+};
