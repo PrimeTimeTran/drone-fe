@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { withRouter, Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
@@ -12,6 +12,19 @@ const Register = (props) => {
     last_name: "",
     first_name: "",
   });
+
+  useEffect(() => {
+    const container = document.getElementById("recaptcha");
+    if (container) {
+      setTimeout(() => {
+        const captchaContainer = container.firstChild;
+        if (captchaContainer) {
+          captchaContainer.classList.add("d-flex");
+          captchaContainer.classList.add("justify-content-center");
+        }
+      }, 100);
+    }
+  }, []);
 
   const onChange = (e) => {
     setUser({
@@ -88,16 +101,26 @@ const Register = (props) => {
                     placeholder="Enter password"
                   />
                 </div>
-                <Button variant="primary" type="submit">
-                  Register
-                </Button>
+                <ReCAPTCHA
+                  id="recaptcha"
+                  className="my-3"
+                  onChange={() => setCaptcha(true)}
+                  sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+                />
+                <Col className="d-flex flex-column">
+                  <Button variant="primary" type="submit">
+                    Register
+                  </Button>
+                  <Link
+                    className="text-right my-2"
+                    onClick={props.toggleRegisterLogin}
+                  >
+                    Have an account? Login
+                  </Link>
+                </Col>
               </form>
             </Card.Body>
           </Card>
-          <ReCAPTCHA
-            onChange={() => setCaptcha(true)}
-            sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
-          />
         </Col>
       </Row>
     </Container>

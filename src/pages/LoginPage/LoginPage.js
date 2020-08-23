@@ -76,20 +76,32 @@ const LoginPage = (props) => {
     );
   };
 
-  const renderRegister = () => {
-    if (showRegister) {
-      return <Register checkUser={props.checkUser} renderBack={renderBack} />;
-    }
+  const toggleRegisterLogin = () => {
+    setShowLogin(!showLogin);
+    setShowRegister(!showRegister);
   };
 
-  const showRegisterOption = () => {
-    setShowRegister(true);
-    setShowLogin(false);
+  const renderRegister = () => {
+    if (showRegister) {
+      return (
+        <Register
+          toggleRegisterLogin={toggleRegisterLogin}
+          checkUser={props.checkUser}
+          renderBack={renderBack}
+        />
+      );
+    }
   };
 
   const renderLogin = () => {
     if (showLogin) {
-      return <Login showRegisterOption={showRegisterOption} checkUser={props.checkUser} renderBack={renderBack} />;
+      return (
+        <Login
+          toggleRegisterLogin={toggleRegisterLogin}
+          checkUser={props.checkUser}
+          renderBack={renderBack}
+        />
+      );
     }
   };
 
