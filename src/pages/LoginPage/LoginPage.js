@@ -47,7 +47,10 @@ const LoginPage = (props) => {
                     >
                       Login
                     </Button>
-                    <Button onClick={() => setShowRegister(!showRegister)}>
+                    <Button
+                      id="register"
+                      onClick={() => setShowRegister(!showRegister)}
+                    >
                       Register
                     </Button>
                   </Card.Body>
@@ -79,9 +82,14 @@ const LoginPage = (props) => {
     }
   };
 
+  const showRegisterOption = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+  };
+
   const renderLogin = () => {
     if (showLogin) {
-      return <Login checkUser={props.checkUser} renderBack={renderBack} />;
+      return <Login showRegisterOption={showRegisterOption} checkUser={props.checkUser} renderBack={renderBack} />;
     }
   };
 
