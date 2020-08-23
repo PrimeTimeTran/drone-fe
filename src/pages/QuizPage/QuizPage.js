@@ -219,9 +219,6 @@ export default class QuizPage extends React.Component {
       disablePreviousButton,
     } = this.state;
 
-
-    console.log({currentQuestion})
-
     return (
       <Fragment>
         <audio ref={this.correctSound} src={correctSound}></audio>
@@ -240,11 +237,6 @@ export default class QuizPage extends React.Component {
                 numberOfQuestions={numberOfQuestions}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              <h1
-                className="p-5 text-center border-bottom"
-              >
-                {currentQuestion.question}
-              </h1>
               {currentQuestion.photo_url && (
                 <img
                   alt="question"
@@ -252,6 +244,9 @@ export default class QuizPage extends React.Component {
                   src={currentQuestion.photo_url}
                 />
               )}
+              <h1 className="p-5 text-center border-bottom">
+                {currentQuestion.question}
+              </h1>
               <AnswerOptions
                 currentQuestion={currentQuestion}
                 handleSelectAnswer={this.handleSelectAnswer}

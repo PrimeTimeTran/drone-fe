@@ -6,7 +6,6 @@ import { postQuestion } from "../api";
 
 const placeHolders = [
   "Incorrect Answer",
-  "Incorrect Answer",
   "Plausible Answer",
   "Correct Answer",
 ];
@@ -22,7 +21,6 @@ const CreateQuestion = (props) => {
     optionA: "",
     optionB: "",
     optionC: "",
-    optionD: "",
     question: "",
   });
 
@@ -41,9 +39,8 @@ const CreateQuestion = (props) => {
           optionA: "",
           optionB: "",
           optionC: "",
-          optionD: "",
           question: "",
-        })
+        });
       }
     });
   };
@@ -77,6 +74,8 @@ const CreateQuestion = (props) => {
                   />
                 </Form.Group>
               </Col>
+            </Row>
+            <Row>
               <Col>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                   <Form.Control
@@ -100,17 +99,6 @@ const CreateQuestion = (props) => {
                     className="form-control"
                     value={question.optionC}
                     placeholder={shuffledPlaceholders[2]}
-                  />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Control
-                    name="optionD"
-                    onChange={onChange}
-                    value={question.optionD}
-                    className="form-control"
-                    placeholder={shuffledPlaceholders[3]}
                   />
                 </Form.Group>
               </Col>
