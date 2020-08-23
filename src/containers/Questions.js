@@ -3,14 +3,15 @@ import { Row, Container } from "react-bootstrap";
 
 import QuestionCard from "./QuestionCard";
 
-import { getQuestions, deleteQuestion } from "../api";
+import { getMyQuestions, deleteQuestion } from "../api";
 
 export default function Questions(props) {
+  const [showAnswers, setShowAnswers] = useState(false);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     async function fetchQuestions() {
-      const questions = await getQuestions();
+      const questions = await getMyQuestions();
       setQuestions(questions);
     }
     fetchQuestions();
@@ -27,7 +28,7 @@ export default function Questions(props) {
 
   const updateItem = (question) => {
     const idx = questions.findIndex((q) => q._id === question._id);
-    const newQuestions = [...questions]
+    const newQuestions = [...questions];
     newQuestions[idx] = question;
     setQuestions(newQuestions);
   };
@@ -40,14 +41,18 @@ export default function Questions(props) {
           user={props.user}
           updateItem={updateItem}
           removeItem={removeItem}
+          showAnswers={showAnswers}
         />
       );
     });
   };
 
   return (
-    <Container className="p-5">
-      <Row>{renderQuestions()}</Row>
-    </Container>
+      <Container className="p-5">
+        <button onClick={() => setShowAnswers(!showAnswers)} className="absolute-answer-toggle">
+          Toggle Show Answer
+        </button>
+        <Row>{renderQuestions()}</Row>
+      </Container>
   );
 }

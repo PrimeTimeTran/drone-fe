@@ -18,7 +18,16 @@ export const postQuizScore = async (stats) => {
 
 export const getQuestions = async () => {
   try {
-    const resp = await api().get("/questions/me");
+    const resp = await api().get("/questions/quiz");
+    return resp.data;
+  } catch (e) {
+    console.log("Error:", e);
+  }
+};
+
+export const getMyQuestions = async () => {
+  try {
+    const resp = await api().get("/questions/mine");
     return resp.data;
   } catch (e) {
     console.log("Error:", e);

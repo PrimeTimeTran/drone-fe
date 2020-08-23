@@ -24,6 +24,7 @@ export default function QuestionCard({
   photo_url,
   removeItem,
   updateItem,
+  showAnswers,
 }) {
   const [editing, setEditing] = useState(false);
   const [updatedQuestion, setUpdatedQuestion] = useState({
@@ -68,7 +69,7 @@ export default function QuestionCard({
       <ListGroup.Item>
         <FontAwesomeIcon
           className={classNames}
-          icon={correct ? faCheckCircle : faTimesCircle}
+          icon={showAnswers && (correct ? faCheckCircle : faTimesCircle)}
         />
         {option}
       </ListGroup.Item>
@@ -158,12 +159,16 @@ export default function QuestionCard({
           </ListGroup>
           {photo_url && (
             <ListGroup>
-              <a rel="noopener noreferrer" href={photo_url} target="_blank">Image</a>
+              <a rel="noopener noreferrer" href={photo_url} target="_blank">
+                Image
+              </a>
             </ListGroup>
           )}
-          <ListGroup>
-            <ListGroup.Item>{answer}</ListGroup.Item>
-          </ListGroup>
+          {showAnswers && (
+            <ListGroup>
+              <ListGroup.Item>{answer}</ListGroup.Item>
+            </ListGroup>
+          )}
         </Card>
       </Col>
     );

@@ -55,8 +55,8 @@ function App() {
         />
         <Route
           exact
-          user={user}
           path="/"
+          user={user}
           render={() => <LoginPage checkUser={checkUser} />}
         />
         <Protected
@@ -67,8 +67,8 @@ function App() {
         />
 
         <Protected exact user={user} path="/home" component={HomePage} />
-        <Protected exact user={user} path="/history" component={HistoryPage} />
         <Protected exact user={user} path="/quiz" component={QuizPage} />
+        <Protected exact user={user} path="/history" component={HistoryPage} />
       </Switch>
     </Router>
   );
