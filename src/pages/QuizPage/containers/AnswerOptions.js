@@ -6,8 +6,8 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gam
   const [answerOptions, setAnswerOptions] = useState([]);
 
   useEffect(() => {
-    const { optionA, optionB, optionC, optionD } = currentQuestion;
-    const notShuffled = [optionA, optionB, optionC, optionD];
+    const { optionA, optionB, optionC } = currentQuestion;
+    const notShuffled = [optionA, optionB, optionC];
 
     const shuffled = notShuffled
       .map((a) => ({ sort: Math.random(), value: a }))
@@ -19,7 +19,7 @@ export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gam
   const renderAnswerOptions = () => {
     return answerOptions.map((answer, idx) => {
       return (
-        <Col sm="6" key={idx}>
+        <Col sm="12" key={idx}>
           <div
             onClick={() => handleSelectAnswer(answer)}
             className="d-flex justify-content-center align-items-center border option answer-button m-1 p-3"

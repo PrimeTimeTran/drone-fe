@@ -219,6 +219,9 @@ export default class QuizPage extends React.Component {
       disablePreviousButton,
     } = this.state;
 
+
+    console.log({currentQuestion})
+
     return (
       <Fragment>
         <audio ref={this.correctSound} src={correctSound}></audio>
