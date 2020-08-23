@@ -23,7 +23,6 @@ class HomePage extends Component {
   }
 
   onChangeKey = (key) => {
-    console.log({key})
     this.setState({key})
   }
 

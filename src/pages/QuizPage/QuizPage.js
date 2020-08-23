@@ -31,6 +31,10 @@ export default class QuizPage extends React.Component {
     this.displayQuestions();
   };
 
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  }
+
   displayQuestions = () => {
     const { currentQuestionIdx, questions } = this.state;
     const currentQuestion = questions[currentQuestionIdx];

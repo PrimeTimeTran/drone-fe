@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Card, Form, Button, ListGroup, Dropdown } from "react-bootstrap";
 import {
@@ -20,6 +21,7 @@ export default function QuestionCard({
   optionB,
   optionC,
   question,
+  photo_url,
   removeItem,
   updateItem,
 }) {
@@ -80,12 +82,14 @@ export default function QuestionCard({
 
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
-    const resp = await updateQuestion(updatedQuestion)
+    const resp = await updateQuestion(updatedQuestion);
     if (resp.status === 201) {
-      updateItem(resp.data)
-      setEditing(!editing)
+      updateItem(resp.data);
+      setEditing(!editing);
     }
   };
+
+  console.log(question);
 
   if (editing) {
     return (
@@ -152,6 +156,11 @@ export default function QuestionCard({
             {renderItem(answer, optionB)}
             {renderItem(answer, optionC)}
           </ListGroup>
+          {photo_url && (
+            <ListGroup>
+              <a rel="noopener noreferrer" href={photo_url} target="_blank">Image</a>
+            </ListGroup>
+          )}
           <ListGroup>
             <ListGroup.Item>{answer}</ListGroup.Item>
           </ListGroup>

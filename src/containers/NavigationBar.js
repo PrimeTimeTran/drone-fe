@@ -26,9 +26,9 @@ const NavigationBar = (props) => {
             <Link className="dropdown-item" to="/history">
               <FontAwesomeIcon className="mr-2" icon={faHistory} /> Quiz History
             </Link>
-            <NavDropdown.Item href="#action/3.3">
+            {/* <NavDropdown.Item href="#action/3.3">
               <FontAwesomeIcon className="mr-2" icon={faCog} /> Settings
-            </NavDropdown.Item>
+            </NavDropdown.Item> */}
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logOut}>
               <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} />

@@ -22,6 +22,7 @@ const CreateQuestion = (props) => {
     optionB: "",
     optionC: "",
     question: "",
+    photo_url: "",
   });
 
   const onChange = (e) => {
@@ -40,6 +41,7 @@ const CreateQuestion = (props) => {
           optionB: "",
           optionC: "",
           question: "",
+          photo_url: "",
         });
       }
     });
@@ -104,6 +106,17 @@ const CreateQuestion = (props) => {
               </Col>
             </Row>
 
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Photo URL</Form.Label>
+              <Form.Control
+                rows="3"
+                name="photo_url"
+                onChange={onChange}
+                className="form-control"
+                value={question.photo_url}
+                placeholder="Image URL"
+              />
+            </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Answer</Form.Label>
               <Form.Control
