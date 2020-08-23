@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {
-  Tab,
-  Row,
-  Col,
-  Nav,
-  Container,
-} from "react-bootstrap";
+import { Tab, Row, Col, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -21,12 +15,27 @@ import CreateQuestion from "../../containers/CreateQuestion";
 import QuestionsContainer from "../../containers/Questions";
 
 class HomePage extends Component {
+  state = {
+    key: 'first'
+  }
   componentDidMount() {
     if (!this.props.user) return this.props.history.push("/");
   }
+
+  onChangeKey = (key) => {
+    console.log({key})
+    this.setState({key})
+  }
+
   render() {
     return (
-      <Tab.Container id="main" defaultActiveKey="first" className="border mt-5">
+      <Tab.Container
+        id="main"
+        defaultActiveKey="first"
+        className="border mt-5"
+        activeKey={this.state.key}
+        onSelect={this.onChangeKey}
+      >
         <Container fluid>
           <Row>
             <Col sm={2} className="pt-sm-3">
@@ -52,16 +61,16 @@ class HomePage extends Component {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div className="container pt-5">
-                    <QuizInstructions name={this.props.user.first_name}/>
+                    <QuizInstructions name={this.props.user.first_name} onChangeKey={this.onChangeKey} />
                     <h2 style={{ textAlign: "center" }}>
                       Create New Questions Here!
                     </h2>
-                    <CreateQuestion user={this.props.user}/>
+                    <CreateQuestion user={this.props.user} />
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second" className="p-5">
                   <h1>My Questions</h1>
-                  <QuestionsContainer user={this.props.user}/>
+                  <QuestionsContainer user={this.props.user} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <h1>History</h1>
