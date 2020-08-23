@@ -148,7 +148,7 @@ export default class QuizPage extends React.Component {
   };
 
   startTimer = () => {
-    const fiveMinutes = 60 * 5;
+    const fiveMinutes = 60 * 12;
     let timer = fiveMinutes,
       minutes,
       seconds;

@@ -26,7 +26,6 @@ export default function Questions(props) {
   };
 
   const updateItem = (question) => {
-    console.log('updateItem')
     const idx = questions.findIndex((q) => q._id === question._id);
     const newQuestions = [...questions]
     newQuestions[idx] = question;
