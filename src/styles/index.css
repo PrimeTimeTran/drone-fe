@@ -1,9 +1,12 @@
-body {
+body { 
   padding-top: 5%;
 }
 
-section#login {
-  min-height: 50vh;
+#root {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #login {

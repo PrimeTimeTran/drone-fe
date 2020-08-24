@@ -94,12 +94,17 @@ const Login = (props) => {
                     <Button variant="primary" type="submit">
                       Login
                     </Button>
-                    <Link onClick={props.toggleRegisterLogin} className="text-right my-2">
-                      Register
-                    </Link>
-                    <Link to="/reset-password" className="text-right">
-                      Forgot Password?
-                    </Link>
+                    <Row className="d-flex justify-content-between mx-5 my-3">
+                      <Link
+                        onClick={props.toggleRegisterLogin}
+                        className="text-right my-2"
+                      >
+                        Need an account? Register
+                      </Link>
+                      <Link to="/reset-password" className="text-right">
+                        Forgot Password?
+                      </Link>
+                    </Row>
                   </Col>
                 </Row>
               </form>
