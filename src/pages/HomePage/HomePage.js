@@ -16,6 +16,7 @@ import QuestionsContainer from "../../containers/Questions";
 
 class HomePage extends Component {
   state = {
+    counter: 0,
     key: 'first'
   }
   componentDidMount() {
@@ -26,7 +27,12 @@ class HomePage extends Component {
     this.setState({key})
   }
 
+  onCreateQuestion = () => {
+    this.setState({counter: this.state.counter +1})
+  }
+
   render() {
+    console.log({counter: this.state.counter})
     return (
       <Tab.Container
         id="main"
@@ -64,12 +70,12 @@ class HomePage extends Component {
                     <h2 style={{ textAlign: "center" }}>
                       Create New Questions Here!
                     </h2>
-                    <CreateQuestion user={this.props.user} />
+                    <CreateQuestion onCreateQuestion={this.onCreateQuestion}user={this.props.user} />
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second" className="p-5">
                   <h1>My Questions</h1>
-                  <QuestionsContainer user={this.props.user} />
+                  <QuestionsContainer counter={this.state.counter} user={this.props.user} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <h1>History</h1>

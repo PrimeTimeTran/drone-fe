@@ -67,10 +67,12 @@ export default function QuestionCard({
     const classNames = "mr-3 " + (correct ? "text-success" : "text-danger");
     return (
       <ListGroup.Item>
-        <FontAwesomeIcon
-          className={classNames}
-          icon={showAnswers && (correct ? faCheckCircle : faTimesCircle)}
-        />
+        {showAnswers && (
+          <FontAwesomeIcon
+            className={classNames}
+            icon={correct ? faCheckCircle : faTimesCircle}
+          />
+        )}
         {option}
       </ListGroup.Item>
     );
@@ -89,8 +91,6 @@ export default function QuestionCard({
       setEditing(!editing);
     }
   };
-
-  console.log(question);
 
   if (editing) {
     return (

@@ -5,6 +5,12 @@ import QuestionCard from "./QuestionCard";
 
 import { getMyQuestions, deleteQuestion } from "../api";
 
+const shuffle = (data) => {
+  return data.map((a) => ({ sort: Math.random(), value: a }))
+  .sort((a, b) => a.sort - b.sort)
+  .map((a) => a.value);
+}
+
 export default function Questions(props) {
   const [showAnswers, setShowAnswers] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -15,7 +21,7 @@ export default function Questions(props) {
       setQuestions(questions);
     }
     fetchQuestions();
-  }, []);
+  }, [props.counter]);
 
   const removeItem = async (questionId) => {
     const resp = await deleteQuestion(questionId);
@@ -32,6 +38,11 @@ export default function Questions(props) {
     newQuestions[idx] = question;
     setQuestions(newQuestions);
   };
+
+  const onShuffleQuestions = () => {
+    const shuffledQuestions = shuffle(questions)
+    setQuestions(shuffledQuestions)
+  }
 
   const renderQuestions = () => {
     return questions.map((question) => {
@@ -51,6 +62,9 @@ export default function Questions(props) {
       <Container className="p-5">
         <button onClick={() => setShowAnswers(!showAnswers)} className="absolute-answer-toggle">
           Toggle Show Answer
+        </button>
+        <button onClick={onShuffleQuestions} className="absolute-question-shuffle">
+          Shuffle
         </button>
         <Row>{renderQuestions()}</Row>
       </Container>

@@ -4,11 +4,7 @@ import { Form, Container, Row, Col } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { postQuestion } from "../api";
 
-const placeHolders = [
-  "Incorrect Answer",
-  "Plausible Answer",
-  "Correct Answer",
-];
+const placeHolders = ["Incorrect Answer", "Plausible Answer", "Correct Answer"];
 
 const shuffledPlaceholders = placeHolders
   .map((a) => ({ sort: Math.random(), value: a }))
@@ -43,6 +39,7 @@ const CreateQuestion = (props) => {
           question: "",
           photo_url: "",
         });
+        props.onCreateQuestion();
       }
     });
   };

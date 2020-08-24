@@ -16,14 +16,25 @@ section#login {
 }
 
 .absolute-answer-toggle {
-  position: fixed;
+  z-index: 1;
   top: 100px;
   right: 10px;
   width: 100px;
   height: 100px;
-  -webkit-transition: all 2s ease-in-out;
+  position: fixed;
   transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+}
+
+.absolute-question-shuffle {
   z-index: 1;
+  top: 299px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
 }
 
 @media only screen and (max-width: 600px) {
