@@ -9,12 +9,12 @@ export default function ControlOptions({
 }) {
   return (
     <Container className="d-flex justify-content-sm-around">
-      <Button disabled={disablePrevButton} onClick={handleNav}>
+      {/* <Button disabled={disablePrevButton} onClick={handleNav}>
         Previous
       </Button>
       <Button disabled={disableNextButton} onClick={() => handleNav("forward")}>
         Next
-      </Button>
+      </Button> */}
       <Button onClick={handleQuit} className="btn-danger">
         Quit
       </Button>

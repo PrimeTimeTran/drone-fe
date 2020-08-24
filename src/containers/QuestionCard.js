@@ -6,8 +6,10 @@ import {
   faCog,
   faEdit,
   faTrash,
+  faCircle,
   faCheckCircle,
   faTimesCircle,
+  faDotCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { updateQuestion } from "../api";
@@ -64,15 +66,17 @@ export default function QuestionCard({
 
   const renderItem = (answer, option) => {
     const correct = option.toLowerCase() === answer.toLowerCase();
-    const classNames = "mr-3 " + (correct ? "text-success" : "text-danger");
+    const classNames =
+      "mr-3 text-black " +
+      (showAnswers && (correct ? "text-success" : "text-danger"));
+    const icon = showAnswers
+      ? correct
+        ? faCheckCircle
+        : faTimesCircle
+      : faDotCircle;
     return (
       <ListGroup.Item>
-        {showAnswers && (
-          <FontAwesomeIcon
-            className={classNames}
-            icon={correct ? faCheckCircle : faTimesCircle}
-          />
-        )}
+        <FontAwesomeIcon icon={icon} className={classNames} />
         {option}
       </ListGroup.Item>
     );
@@ -164,11 +168,9 @@ export default function QuestionCard({
               </a>
             </ListGroup>
           )}
-          {showAnswers && (
-            <ListGroup>
-              <ListGroup.Item>{answer}</ListGroup.Item>
-            </ListGroup>
-          )}
+          <ListGroup>
+            <ListGroup.Item>{showAnswers ? answer : "?"}</ListGroup.Item>
+          </ListGroup>
         </Card>
       </Col>
     );
