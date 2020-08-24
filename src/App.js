@@ -45,7 +45,6 @@ function App() {
   return (
     <Router>
       {user && <NavigationBar user={user} />}
-
       <Switch>
         <Route exact path="/reset-password" component={ResetPasswordPage} />
         <Route

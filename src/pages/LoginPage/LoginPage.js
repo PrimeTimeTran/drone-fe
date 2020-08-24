@@ -26,39 +26,35 @@ const LoginPage = (props) => {
   const renderLoginChoices = () => {
     if (!showLogin && !showRegister) {
       return (
-        <section id="login">
-          <Container>
-            <Row>
-              <Col>
-                <Card className="m-5 p-5">
-                  <Card.Body>
-                    <Card.Title>
-                      PART 107 - Commercial UAS Study Guide
-                    </Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Body className="text-right">
-                    <Button
-                      className="mr-2 login-button"
-                      onClick={() => setShowLogin(!showLogin)}
-                    >
-                      Login
-                    </Button>
-                    <Button
-                      id="register"
-                      onClick={() => setShowRegister(!showRegister)}
-                    >
-                      Register
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </section>
+        <Container>
+          <Row>
+            <Col>
+              <Card className="m-5 p-5">
+                <Card.Body>
+                  <Card.Title>PART 107 - Commercial UAS Study Guide</Card.Title>
+                  <Card.Text>
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+                <Card.Body className="text-right">
+                  <Button
+                    className="mr-2 login-button"
+                    onClick={() => setShowLogin(!showLogin)}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    id="register"
+                    onClick={() => setShowRegister(!showRegister)}
+                  >
+                    Register
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       );
     }
   };
@@ -112,9 +108,11 @@ const LoginPage = (props) => {
       <Helmet>
         <title>PART 107 - Commercial UAS Study Guide</title>
       </Helmet>
-      {renderLoginChoices()}
-      {renderRegister()}
-      {renderLogin()}
+      <section id="login">
+        {renderLoginChoices()}
+        {renderRegister()}
+        {renderLogin()}
+      </section>
     </Fragment>
   );
 };
