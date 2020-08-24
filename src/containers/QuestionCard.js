@@ -6,7 +6,6 @@ import {
   faCog,
   faEdit,
   faTrash,
-  faCircle,
   faCheckCircle,
   faTimesCircle,
   faDotCircle,
@@ -23,6 +22,7 @@ export default function QuestionCard({
   optionB,
   optionC,
   question,
+  subtitle,
   photo_url,
   removeItem,
   updateItem,
@@ -156,11 +156,8 @@ export default function QuestionCard({
             {question}
             {renderOwnerOptions(owner, _id)}
           </Card.Header>
-          <ListGroup>
-            {renderItem(answer, optionA)}
-            {renderItem(answer, optionB)}
-            {renderItem(answer, optionC)}
-          </ListGroup>
+          <Card.Header className="font-weight-bold d-flex justify-content-between">
+          {subtitle}
           {photo_url && (
             <ListGroup>
               <a rel="noopener noreferrer" href={photo_url} target="_blank">
@@ -168,6 +165,13 @@ export default function QuestionCard({
               </a>
             </ListGroup>
           )}
+          </Card.Header>
+          <ListGroup>
+            {renderItem(answer, optionA)}
+            {renderItem(answer, optionB)}
+            {renderItem(answer, optionC)}
+          </ListGroup>
+          
           <ListGroup>
             <ListGroup.Item>{showAnswers ? answer : "?"}</ListGroup.Item>
           </ListGroup>

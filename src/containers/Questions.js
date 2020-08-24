@@ -46,6 +46,7 @@ export default function Questions(props) {
 
   const renderQuestions = () => {
     return questions.map((question) => {
+      console.log({question})
       return (
         <QuestionCard
           {...question}
