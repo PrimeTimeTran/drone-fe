@@ -94,7 +94,7 @@ const Login = (props) => {
                     <Button variant="primary" type="submit">
                       Login
                     </Button>
-                    <Row className="d-flex justify-content-between mx-5 my-3">
+                    <Row className="d-flex justify-content-between mx-5 my-3 align-items-center">
                       <Link
                         onClick={props.toggleRegisterLogin}
                         className="text-right my-2"
