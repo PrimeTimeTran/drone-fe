@@ -17,7 +17,7 @@ import QuestionsContainer from "../../containers/Questions";
 class HomePage extends Component {
   state = {
     counter: 0,
-    key: "second",
+    key: "first",
   };
   componentDidMount() {
     if (!this.props.user) return this.props.history.push("/");

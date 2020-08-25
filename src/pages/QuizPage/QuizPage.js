@@ -210,6 +210,17 @@ export default class QuizPage extends React.Component {
     }, 1000);
   };
 
+  renderSubtitle() {
+    const { currentQuestion } = this.state
+    if (currentQuestion.subtitle) {
+      return (
+        <a href={currentQuestion.photo_url}>
+          {currentQuestion.subtitle}
+        </a>
+      )
+    }
+  }
+
   render() {
     const {
       time,
@@ -248,6 +259,7 @@ export default class QuizPage extends React.Component {
                   src={currentQuestion.photo_url}
                 />
               )}
+              {this.renderSubtitle()}
               <h1 className="p-5 text-center border-bottom">
                 {currentQuestion.question}
               </h1>

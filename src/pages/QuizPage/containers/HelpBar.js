@@ -5,7 +5,6 @@ export default function HelpBar({
   time,
   hints,
   handleHints,
-  handleFiftyFifty,
   numberOfQuestions,
   currentQuestionIdx,
 }) {
@@ -29,7 +28,7 @@ export default function HelpBar({
         <Row>
           <Col md={6} className="d-flex justify-content-center">
             <Button onClick={handleHints}>
-              <span>{hints} Remove 1</span>
+              <span>Hints({hints})</span>
             </Button>
           </Col>
         </Row>
