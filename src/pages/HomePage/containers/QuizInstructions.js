@@ -11,29 +11,26 @@ const QuizInstructions = (props) => (
       <p>
         Getting Started Each test lasts for 12 minutes and ends when your time
         elapses. Every question contains 3 possible answers. Although you don't
-        have such a feature on the real Part 107 test. 
+        have such a feature on the real Part 107 test.
         <br />
-        The quiz comes with 5
-        hints, use them wisely. You may quit the test at any time. However in
-        order to receive a score, you must finish all 30 questions. timer starts
-        as soon as the game loads! Goodluck and Happy Studies!
+        <br />
+        The quiz comes with 5 hints, use them wisely. You may quit the test at
+        any time. However in order to receive a score, you must finish all 30
+        questions. timer starts as soon as the game loads! Goodluck and Happy
+        Studies!
       </p>
       <Col className="d-flex flex-column">
         <Button variant="primary" className="btn btn-block btn-primary btn-lg">
-          <Link
-            to="/quiz"
-            className="ml-auto text-align-right"
-            className="text-white"
-          >
+          <Link to="/quiz" className="text-white">
             <FontAwesomeIcon icon={faPlay} /> Take Test
           </Link>
         </Button>
         <Button
-          onClick={() => props.onChangeKey("second")}
           variant="primary"
+          onClick={() => props.onChangeKey("second")}
           className="btn btn-block btn-primary btn-lg"
         >
-          <Link className="ml-auto text-align-right" className="text-white">
+          <Link className="text-white">
             <FontAwesomeIcon icon={faGraduationCap} /> Study
           </Link>
         </Button>
