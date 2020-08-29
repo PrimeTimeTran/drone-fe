@@ -33,8 +33,7 @@ const LoginPage = (props) => {
                 <Card.Body>
                   <Card.Title>PART 107 - Commercial UAS Study Guide</Card.Title>
                   <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    Prepare and pass your Commercial Drone License exam the FIRST TIME!
                   </Card.Text>
                 </Card.Body>
                 <Card.Body className="text-right">

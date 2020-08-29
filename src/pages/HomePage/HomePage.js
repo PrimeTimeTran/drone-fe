@@ -67,7 +67,7 @@ class HomePage extends Component {
                   <div className="container pt-5">
                     <QuizInstructions name={this.props.user.first_name} onChangeKey={this.onChangeKey} />
                     <h2 style={{ textAlign: "center" }}>
-                      Create New Questions Here!
+                      Have a question you don't see? Create it here!
                     </h2>
                     <CreateQuestion onCreateQuestion={this.onCreateQuestion}user={this.props.user} />
                   </div>

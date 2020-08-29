@@ -50,7 +50,7 @@ const CreateQuestion = (props) => {
         <Col>
           <Form noValidate onSubmit={addQuestion}>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>Question Body</Form.Label>
+              <Form.Label>Add New Question Body</Form.Label>
               <Form.Control
                 type="text"
                 name="question"

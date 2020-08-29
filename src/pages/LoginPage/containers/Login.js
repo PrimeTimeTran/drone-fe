@@ -57,8 +57,7 @@ const Login = (props) => {
             <Card.Body>
               <Card.Title>Log In</Card.Title>
               <Card.Text>
-                Get back to studying to get your certification and change your
-                life with drones.
+                Get back to studying and get your Part 107 remote pilot licence.
               </Card.Text>
               <form noValidate onSubmit={onSubmit}>
                 <div className="form-group">
