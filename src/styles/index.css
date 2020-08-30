@@ -47,4 +47,15 @@ body {
   h4.option {
     font-size: 0.8rem;
   }
+  div[role="tablist"] {
+    margin-top: 1.5rem !important;
+  }
+  #main-tabpane-second {
+    padding: 0px !important;
+  }
+  div.answer-button {
+    min-height: 50px;
+    text-align: center;
+    padding: 2rem !important;
+  }
 }

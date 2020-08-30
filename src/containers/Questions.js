@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 import QuestionCard from "./QuestionCard";
 
@@ -59,14 +59,14 @@ export default function Questions(props) {
   };
 
   return (
-      <Container className="p-5">
+      <Container>
         <button onClick={() => setShowAnswers(!showAnswers)} className="absolute-answer-toggle">
           Toggle Show Answer
         </button>
         <button onClick={onShuffleQuestions} className="absolute-question-shuffle">
           Shuffle
         </button>
-        <Row>{renderQuestions()}</Row>
+        <Row><Col>{renderQuestions()}</Col></Row>
       </Container>
   );
 }
