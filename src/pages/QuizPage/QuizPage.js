@@ -214,7 +214,12 @@ export default class QuizPage extends React.Component {
     const { currentQuestion } = this.state;
     if (currentQuestion.subtitle) {
       return (
-        <a href={currentQuestion.photo_url} rel="noopener noreferrer" target="_blank">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={currentQuestion.photo_url}
+          style={{alignSelf: 'flex-end'}}
+        >
           {currentQuestion.subtitle}
         </a>
       );
@@ -259,10 +264,11 @@ export default class QuizPage extends React.Component {
                   src={currentQuestion.photo_url}
                 />
               )} */}
-              {this.renderSubtitle()}
-              <h1 className="p-5 text-center border-bottom">
+
+              <h1 className="p-5 text-center border-bottom" id="quiz-question">
                 {currentQuestion.question}
               </h1>
+              {this.renderSubtitle()}
               <AnswerOptions
                 currentQuestion={currentQuestion}
                 handleSelectAnswer={this.handleSelectAnswer}

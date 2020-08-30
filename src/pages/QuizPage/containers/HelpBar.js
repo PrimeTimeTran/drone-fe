@@ -14,19 +14,19 @@ export default function HelpBar({
     <>
       <Container fluid>
         <Row>
-          <Col md={6} className="d-flex justify-content-start">
+          <Col>
             <h1>
               {number} of {numberOfQuestions}
             </h1>
           </Col>
-          <Col md={6} className="d-flex justify-content-end">
+          <Col className="d-flex justify-content-end">
             <h1>{time}</h1>
           </Col>
         </Row>
       </Container>
       <Container fluid>
         <Row>
-          <Col md={6} className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-center">
             <Button onClick={handleHints}>
               <span>Hints({hints})</span>
             </Button>

@@ -16,7 +16,7 @@ const QuizInstructions = (props) => (
         <br />
         The quiz comes with 5 hints, use them wisely. You may quit the test at
         any time. However in order to receive a score, you must finish all 30
-        questions. timer starts as soon as the game loads! Goodluck and Happy
+        questions. timer starts as soon as the game loads! Good luck and Happy
         Studies!
       </p>
       <Col className="d-flex flex-column">
