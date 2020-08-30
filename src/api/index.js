@@ -55,8 +55,7 @@ export const getQuizHistory = async () => {
 export const confirmEmail = async (email) => {
   try {
     const resp = await api().get(`/users/check-email?email=${email}`);
-    const json = await resp.data;
-    return json;
+    return resp;
   } catch (e) {
     console.log("Error: ", e);
   }

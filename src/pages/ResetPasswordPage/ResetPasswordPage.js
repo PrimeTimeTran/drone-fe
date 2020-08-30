@@ -10,10 +10,10 @@ export default function () {
   const onSubmit = async (e) => {
     e.preventDefault();
     const resp = await confirmEmail(email);
-    if (resp.emailFound) {
-      setPrompt('Please check your email to reset your password.')
-    } else {
-      console.log("Not found~!");
+    if (resp.data.emailFound) {
+      setPrompt("Please check your email to reset your password.");
+    } else if (resp.status === 201) {
+      setPrompt("Email not found. Please try again.");
     }
   };
 
@@ -35,9 +35,7 @@ export default function () {
                 placeholder="Enter email"
               />
             </Form.Group>
-            {prompt && (<div className="my-1">
-              {prompt}
-            </div>)}
+            {prompt && <div className="my-1">{prompt}</div>}
             <Button variant="primary" type="submit">
               Submit
             </Button>
