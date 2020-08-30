@@ -33,7 +33,7 @@ export default class QuizPage extends React.Component {
 
   componentWillUnmount = () => {
     clearInterval(this.interval);
-  }
+  };
 
   displayQuestions = () => {
     const { currentQuestionIdx, questions } = this.state;
@@ -211,13 +211,13 @@ export default class QuizPage extends React.Component {
   };
 
   renderSubtitle() {
-    const { currentQuestion } = this.state
+    const { currentQuestion } = this.state;
     if (currentQuestion.subtitle) {
       return (
-        <a href={currentQuestion.photo_url}>
+        <a href={currentQuestion.photo_url} rel="noopener noreferrer" target="_blank">
           {currentQuestion.subtitle}
         </a>
-      )
+      );
     }
   }
 
@@ -252,13 +252,13 @@ export default class QuizPage extends React.Component {
                 numberOfQuestions={numberOfQuestions}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              {currentQuestion.photo_url && (
+              {/* {currentQuestion.photo_url && (
                 <img
                   alt="question"
                   className="question-img my-3"
                   src={currentQuestion.photo_url}
                 />
-              )}
+              )} */}
               {this.renderSubtitle()}
               <h1 className="p-5 text-center border-bottom">
                 {currentQuestion.question}
