@@ -58,4 +58,7 @@ body {
     text-align: center;
     padding: 2rem !important;
   }
+  #toast {
+    margin-left: -175px;
+  }
 }
