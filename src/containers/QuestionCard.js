@@ -153,7 +153,7 @@ export default function QuestionCard({
       <Col md={12} key={_id}>
         <Card className="mb-3">
           <Card.Header className="font-weight-bold d-flex justify-content-between">
-    {idx}) {question}
+            {idx}) {question}
             {renderOwnerOptions(owner, _id)}
           </Card.Header>
           {photo_url && (
@@ -161,7 +161,7 @@ export default function QuestionCard({
               {photo_url && (
                 <ListGroup>
                   <a rel="noopener noreferrer" href={photo_url} target="_blank">
-                    {subtitle}
+                    {subtitle || 'Image'}
                   </a>
                 </ListGroup>
               )}
@@ -171,13 +171,10 @@ export default function QuestionCard({
             {renderItem(answer, optionA)}
             {renderItem(answer, optionB)}
             {renderItem(answer, optionC)}
-            <ListGroup.Item className="text-center font-italic">
+            <ListGroup.Item className="text-center font-italic text-success">
               {showAnswers ? answer : "?"}
             </ListGroup.Item>
           </ListGroup>
-          {/* <ListGroup className="align-items-center">
-
-          </ListGroup> */}
         </Card>
       </Col>
     );

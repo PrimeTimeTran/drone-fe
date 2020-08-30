@@ -3,6 +3,8 @@ import { Form, Container, Row, Col } from "react-bootstrap";
 
 import { withRouter } from "react-router-dom";
 import { postQuestion } from "../api";
+import { showToast } from "../utils";
+import Toast from "../components/Toast";
 
 const placeHolders = ["Incorrect Answer", "Plausible Answer", "Correct Answer"];
 
@@ -40,6 +42,7 @@ const CreateQuestion = (props) => {
           photo_url: "",
         });
         props.onCreateQuestion();
+        showToast(true, 'Question Created!');
       }
     });
   };
@@ -132,6 +135,7 @@ const CreateQuestion = (props) => {
             >
               Create
             </button>
+            <Toast />
           </Form>
         </Col>
       </Row>

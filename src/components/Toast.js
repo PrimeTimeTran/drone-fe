@@ -2,7 +2,7 @@ import React from "react";
 
 import { Toast } from "react-bootstrap";
 
-import "./toast.css";
+import './toast.css'
 
 export default function Toastt() {
   return (
@@ -13,7 +13,6 @@ export default function Toastt() {
             Bootstrap
           </strong>
         </Toast.Header>
-        {/* <Toast.Body>See? Just like this.</Toast.Body> */}
       </Toast>
     </div>
   );

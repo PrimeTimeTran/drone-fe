@@ -3,10 +3,12 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { correctSound, wrongSound, selectSound } from "../../assets/audio";
 
-import { HelpBar, AnswerOptions, ControlOptions, Toast } from "./containers";
+import { HelpBar, AnswerOptions, ControlOptions } from "./containers";
+import Toast from "../../components/Toast";
 
-import { defaultState, showToast } from "./utils";
+import { defaultState } from "./utils";
 import { postQuizScore, getQuestions } from "../../api";
+import { showToast } from "../../utils";
 
 import "./style.css";
 
@@ -61,7 +63,7 @@ export default class QuizPage extends React.Component {
     const correct = choice.toLowerCase() === this.state.answer;
     if (correct) {
       this.correctSound.current.play();
-      showToast(true);
+      showToast(true, "Correct!");
     } else {
       this.wrongSound.current.play();
       navigator.vibrate(1000);
@@ -218,7 +220,7 @@ export default class QuizPage extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
           href={currentQuestion.photo_url}
-          style={{alignSelf: 'flex-end'}}
+          style={{ alignSelf: "flex-end" }}
         >
           {currentQuestion.subtitle}
         </a>
@@ -257,14 +259,6 @@ export default class QuizPage extends React.Component {
                 numberOfQuestions={numberOfQuestions}
                 currentQuestionIdx={currentQuestionIdx}
               />
-              {/* {currentQuestion.photo_url && (
-                <img
-                  alt="question"
-                  className="question-img my-3"
-                  src={currentQuestion.photo_url}
-                />
-              )} */}
-
               <h1 className="p-5 text-center border-bottom" id="quiz-question">
                 {currentQuestion.question}
               </h1>
