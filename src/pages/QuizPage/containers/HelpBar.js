@@ -8,9 +8,8 @@ export default function HelpBar({
   numberOfQuestions,
   currentQuestionIdx,
 }) {
-  let number = currentQuestionIdx + 1
-  if (currentQuestionIdx === numberOfQuestions) number = numberOfQuestions
-
+  let number = currentQuestionIdx + 1;
+  if (currentQuestionIdx >= numberOfQuestions) number = numberOfQuestions;
   return (
     <>
       <Container fluid>
