@@ -14,6 +14,7 @@ import { updateQuestion } from "../api";
 
 export default function QuestionCard({
   _id,
+  idx,
   user,
   owner,
   answer,
@@ -152,7 +153,7 @@ export default function QuestionCard({
       <Col md={12} key={_id}>
         <Card className="mb-3">
           <Card.Header className="font-weight-bold d-flex justify-content-between">
-            {question}
+    {idx}) {question}
             {renderOwnerOptions(owner, _id)}
           </Card.Header>
           {photo_url && (

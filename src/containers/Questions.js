@@ -45,9 +45,10 @@ export default function Questions(props) {
   }
 
   const renderQuestions = () => {
-    return questions.map((question) => {
+    return questions.map((question, idx) => {
       return (
         <QuestionCard
+          idx={idx + 1}
           {...question}
           user={props.user}
           updateItem={updateItem}
