@@ -61,7 +61,7 @@ export default function Questions(props) {
   return (
       <Container>
         <button onClick={() => setShowAnswers(!showAnswers)} className="absolute-answer-toggle">
-          Toggle Show Answer
+          Toggle Answers
         </button>
         <button onClick={onShuffleQuestions} className="absolute-question-shuffle">
           Shuffle

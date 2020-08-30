@@ -155,25 +155,28 @@ export default function QuestionCard({
             {question}
             {renderOwnerOptions(owner, _id)}
           </Card.Header>
-          <Card.Header className="font-weight-bold d-flex justify-content-between">
-          {subtitle}
           {photo_url && (
-            <ListGroup>
-              <a rel="noopener noreferrer" href={photo_url} target="_blank">
-                Image
-              </a>
-            </ListGroup>
+            <Card.Header className="d-flex justify-content-end">
+              {photo_url && (
+                <ListGroup>
+                  <a rel="noopener noreferrer" href={photo_url} target="_blank">
+                    {subtitle}
+                  </a>
+                </ListGroup>
+              )}
+            </Card.Header>
           )}
-          </Card.Header>
           <ListGroup>
             {renderItem(answer, optionA)}
             {renderItem(answer, optionB)}
             {renderItem(answer, optionC)}
+            <ListGroup.Item className="text-center font-italic">
+              {showAnswers ? answer : "?"}
+            </ListGroup.Item>
           </ListGroup>
-          
-          <ListGroup>
-            <ListGroup.Item>{showAnswers ? answer : "?"}</ListGroup.Item>
-          </ListGroup>
+          {/* <ListGroup className="align-items-center">
+
+          </ListGroup> */}
         </Card>
       </Col>
     );
