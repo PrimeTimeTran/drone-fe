@@ -7,7 +7,7 @@ import { faPlay, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 const QuizInstructions = (props) => (
   <Fragment>
     <Jumbotron>
-      <h1>Welcome {props.name}</h1>
+      <h1>Welcome {props.name || 'Anonymous'}</h1>
       <p>
         Getting Started Each test lasts for 12 minutes and ends when your time
         elapses. Every question contains 3 possible answers. Although you don't

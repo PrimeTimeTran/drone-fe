@@ -1,6 +1,10 @@
 import app from "firebase/app";
 import "firebase/auth";
 
+// import { signinWithAuthProvider } from "../../api";
+
+import {signinWithAuthProvider} from '../../pages/LoginPage/containers/UserFunctions'
+
 let firebase;
 
 const config = {
@@ -20,27 +24,33 @@ class Firebase {
     this.auth = app.auth();
     this.app = app;
   }
+
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
+
   doSignOut = () => this.auth.signOut();
   doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);
 
-  googleSignIn = () => {
-    console.log({ app, internalApp: this.app, internalAuth: this.auth });
+  googleSignIn = (checkUser, push) => {
     const provider = new this.app.auth.GoogleAuthProvider();
     this.app
       .auth()
       .signInWithPopup(provider)
-      .then(function (result) {
-        var token = result.credential.accessToken;
+      .then(async function (result) {
+        // var token = result.credential.accessToken;
         var user = result.user;
-        console.log({ user, token });
+        const resp = await signinWithAuthProvider(user.email);
+        if (resp) {
+          checkUser()
+          push("/home")
+        }
+        return resp;
       })
       .catch(function (error) {
         var errorCode = error.code;
@@ -50,24 +60,27 @@ class Firebase {
         console.log({ errorMessage, errorCode });
       });
   };
-  fbSignIn = () => {
-    console.log("fbSignIn");
-    console.log({ app, internalApp: this.app, internalAuth: this.auth });
+
+  fbSignIn = (checkUser, push) => {
     const provider = new this.app.auth.FacebookAuthProvider();
     this.app
       .auth()
       .signInWithPopup(provider)
-      .then(function (result) {
-        var token = result.credential.accessToken;
+      .then(async function (result) {
+        // var token = result.credential.accessToken;
         var user = result.user;
-        console.log({ user, token });
+        const resp = await signinWithAuthProvider(user.email);
+        if (resp) {
+          checkUser()
+          push("/home")
+        }
+        return resp;
       })
       .catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
-
         console.log({ errorMessage, errorCode });
       });
   };

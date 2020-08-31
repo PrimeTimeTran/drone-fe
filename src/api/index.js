@@ -1,6 +1,6 @@
 import api from "./config";
 
-const produceScoreSummary = ({ score, numberOfQuestions, questionIds } ) => {
+const produceScoreSummary = ({ score, numberOfQuestions, questionIds }) => {
   const body = {
     questionIds,
     score: (score / numberOfQuestions) * 100,
@@ -41,7 +41,7 @@ export const deleteQuestion = async (id) => {
   } catch (e) {
     console.log("Error:", e);
   }
-}
+};
 
 export const getQuizHistory = async () => {
   try {
@@ -64,26 +64,32 @@ export const confirmEmail = async (email) => {
 export const postQuestion = async (newQuestion) => {
   try {
     const resp = await api().post("/questions", newQuestion);
-    return resp
+    return resp;
   } catch (e) {
-    console.log("Error:", e);
+    console.log("Error: ", e);
   }
 };
 
 export const updatePassword = async (password, token) => {
   try {
-    const resp = await api().post("/users/password/" + token, JSON.stringify(password));
-    return resp
+    const resp = await api().post(
+      "/users/password/" + token,
+      JSON.stringify(password)
+    );
+    return resp;
   } catch (e) {
-    console.log("Error:", e);
+    console.log("Error: ", e);
   }
 };
 
-export const updateQuestion = async(question) => {
+export const updateQuestion = async (question) => {
   try {
-    const resp = await api().put("/questions/" + question._id, JSON.stringify(question));
-    return resp
+    const resp = await api().put(
+      "/questions/" + question._id,
+      JSON.stringify(question)
+    );
+    return resp;
   } catch (e) {
-    console.log("Error:", e);
+    console.log("Error: ", e);
   }
-}
+};

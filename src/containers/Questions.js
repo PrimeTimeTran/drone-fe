@@ -6,10 +6,11 @@ import QuestionCard from "./QuestionCard";
 import { getMyQuestions, deleteQuestion } from "../api";
 
 const shuffle = (data) => {
-  return data.map((a) => ({ sort: Math.random(), value: a }))
-  .sort((a, b) => a.sort - b.sort)
-  .map((a) => a.value);
-}
+  return data
+    .map((a) => ({ sort: Math.random(), value: a }))
+    .sort((a, b) => a.sort - b.sort)
+    .map((a) => a.value);
+};
 
 export default function Questions(props) {
   const [showAnswers, setShowAnswers] = useState(false);
@@ -40,34 +41,44 @@ export default function Questions(props) {
   };
 
   const onShuffleQuestions = () => {
-    const shuffledQuestions = shuffle(questions)
-    setQuestions(shuffledQuestions)
-  }
+    const shuffledQuestions = shuffle(questions);
+    setQuestions(shuffledQuestions);
+  };
 
   const renderQuestions = () => {
-    return questions.map((question, idx) => {
-      return (
-        <QuestionCard
-          idx={idx + 1}
-          {...question}
-          user={props.user}
-          updateItem={updateItem}
-          removeItem={removeItem}
-          showAnswers={showAnswers}
-        />
-      );
-    });
+    if (questions && questions.length > 0) {
+      return questions.map((question, idx) => {
+        return (
+          <QuestionCard
+            idx={idx + 1}
+            {...question}
+            user={props.user}
+            updateItem={updateItem}
+            removeItem={removeItem}
+            showAnswers={showAnswers}
+          />
+        );
+      });
+    }
   };
 
   return (
-      <Container>
-        <button onClick={() => setShowAnswers(!showAnswers)} className="absolute-answer-toggle">
-          Toggle Answers
-        </button>
-        <button onClick={onShuffleQuestions} className="absolute-question-shuffle">
-          Shuffle
-        </button>
-        <Row><Col>{renderQuestions()}</Col></Row>
-      </Container>
+    <Container>
+      <button
+        onClick={() => setShowAnswers(!showAnswers)}
+        className="absolute-answer-toggle"
+      >
+        Toggle Answers
+      </button>
+      <button
+        onClick={onShuffleQuestions}
+        className="absolute-question-shuffle"
+      >
+        Shuffle
+      </button>
+      <Row>
+        <Col>{renderQuestions()}</Col>
+      </Row>
+    </Container>
   );
 }

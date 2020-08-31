@@ -11,7 +11,9 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 const NavigationBar = (props) => {
   const logOut = () => {
     localStorage.removeItem("userToken");
-    window.location.replace(process.env.REACT_APP_SITE_URL);
+    setTimeout(() => {
+      window.location.replace(process.env.REACT_APP_SITE_URL);
+    }, 500)
   };
 
   const renderRightToolBar = () => {
@@ -25,9 +27,6 @@ const NavigationBar = (props) => {
             <Link className="dropdown-item" to="/history">
               <FontAwesomeIcon className="mr-2" icon={faHistory} /> Quiz History
             </Link>
-            {/* <NavDropdown.Item href="#action/3.3">
-              <FontAwesomeIcon className="mr-2" icon={faCog} /> Settings
-            </NavDropdown.Item> */}
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={logOut}>
               <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} />

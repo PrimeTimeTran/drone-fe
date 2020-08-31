@@ -26,17 +26,9 @@ const Login = (props) => {
           captchaContainer.classList.add("d-flex");
           captchaContainer.classList.add("justify-content-center");
         }
-      }, 100);
+      }, 250);
     }
   }, []);
-
-  const onGoogleSignIn = () => {
-    fb.googleSignIn();
-  };
-
-  const onFBSignin = () => {
-    fb.fbSignIn();
-  };
 
   const onChange = (e) => {
     setUser({
@@ -58,6 +50,14 @@ const Login = (props) => {
       });
     }
   };
+
+  const onFbLogin = () => {
+    fb.fbSignIn(props.checkUser, props.history.push)
+  }
+
+  const onGoogleSignin = () => {
+    fb.googleSignIn(props.checkUser, props.history.push)
+  }
 
   return (
     <Container>
@@ -108,7 +108,7 @@ const Login = (props) => {
                       <Col className="d-flex justify-content-center align-items-center">
                         <Button
                           variant="primary"
-                          onClick={fb.fbSignIn}
+                          onClick={onFbLogin}
                           className="btn btn-block"
                         >
                           <FontAwesomeIcon
@@ -122,7 +122,7 @@ const Login = (props) => {
                       <Col className="d-flex justify-content-center align-items-center">
                         <Button
                           variant="primary"
-                          onClick={fb.googleSignIn}
+                          onClick={onGoogleSignin}
                           className="btn btn-block"
                         >
                           <FontAwesomeIcon
