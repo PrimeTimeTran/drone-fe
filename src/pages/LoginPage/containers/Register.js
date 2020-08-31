@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { register } from "./UserFunctions";
+import fb from "../../../utils/Firebase";
 
 const Register = (props) => {
   const [captcha, setCaptcha] = useState(false);
@@ -42,6 +44,14 @@ const Register = (props) => {
         window.fb.logEvent("register");
       });
     }
+  };
+
+  const onFbLogin = () => {
+    fb.fbSignIn(props.checkUser, props.history.push);
+  };
+
+  const onGoogleSignin = () => {
+    fb.googleSignIn(props.checkUser, props.history.push);
   };
 
   return (
@@ -118,6 +128,36 @@ const Register = (props) => {
                     Have an account? Login
                   </Link>
                 </Col>
+                <Row className="p-3">
+                  <Col className="d-flex justify-content-center align-items-center">
+                    <Button
+                      variant="primary"
+                      onClick={onFbLogin}
+                      className="btn btn-block"
+                    >
+                      <FontAwesomeIcon
+                        color="white"
+                        icon={["fab", "facebook"]}
+                        className="mr-1"
+                      />
+                      Facebook
+                    </Button>
+                  </Col>
+                  <Col className="d-flex justify-content-center align-items-center">
+                    <Button
+                      variant="primary"
+                      onClick={onGoogleSignin}
+                      className="btn btn-block"
+                    >
+                      <FontAwesomeIcon
+                        color="white"
+                        icon={["fab", "google"]}
+                        className="mr-1"
+                      />
+                      Google
+                    </Button>
+                  </Col>
+                </Row>
               </form>
             </Card.Body>
           </Card>

@@ -43,9 +43,9 @@ class Firebase {
       .auth()
       .signInWithPopup(provider)
       .then(async function (result) {
-        // var token = result.credential.accessToken;
+        var token = result.credential.accessToken;
         var user = result.user;
-        const resp = await signinWithAuthProvider(user.email);
+        const resp = await signinWithAuthProvider(user.email, token);
         if (resp) {
           checkUser()
           push("/home")

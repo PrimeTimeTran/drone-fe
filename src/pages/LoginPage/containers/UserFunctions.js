@@ -22,9 +22,9 @@ export const login = (user) => {
     });
 };
 
-export const signinWithAuthProvider = async (email) => {
+export const signinWithAuthProvider = async (email, token) => {
   return axios
-    .post(process.env.REACT_APP_SERVER_URL + "/users/auth-login", { email })
+    .post(process.env.REACT_APP_SERVER_URL + "/users/auth-login", { email, password: token })
     .then((res) => {
       const { token } = res.data;
       localStorage.setItem("userToken", token);
