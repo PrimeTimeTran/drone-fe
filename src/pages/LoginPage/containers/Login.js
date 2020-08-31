@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import fb from "../../../utils/Firebase";
 
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
@@ -26,6 +29,14 @@ const Login = (props) => {
       }, 100);
     }
   }, []);
+
+  const onGoogleSignIn = () => {
+    fb.googleSignIn();
+  };
+
+  const onFBSignin = () => {
+    fb.fbSignIn();
+  };
 
   const onChange = (e) => {
     setUser({
@@ -93,6 +104,36 @@ const Login = (props) => {
                     <Button variant="primary" type="submit">
                       Login
                     </Button>
+                    <Row className="p-3">
+                      <Col className="d-flex justify-content-center align-items-center">
+                        <Button
+                          variant="primary"
+                          onClick={fb.fbSignIn}
+                          className="btn btn-block"
+                        >
+                          <FontAwesomeIcon
+                            color="white"
+                            icon={["fab", "facebook"]}
+                            className="mr-1"
+                          />
+                          Facebook
+                        </Button>
+                      </Col>
+                      <Col className="d-flex justify-content-center align-items-center">
+                        <Button
+                          variant="primary"
+                          onClick={fb.googleSignIn}
+                          className="btn btn-block"
+                        >
+                          <FontAwesomeIcon
+                            color="white"
+                            icon={["fab", "google"]}
+                            className="mr-1"
+                          />
+                          Google
+                        </Button>
+                      </Col>
+                    </Row>
                     <Row className="d-flex justify-content-between mx-5 my-3 align-items-center">
                       <Link
                         onClick={props.toggleRegisterLogin}

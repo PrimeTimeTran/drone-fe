@@ -12,6 +12,10 @@ import UpdatePasswordPage from "./pages/UpdatePasswordPage";
 import Protected from "./components/Protected";
 import NavigationBar from "./containers/NavigationBar";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fab)
+
 function App() {
   const [user, setUser] = useState(null);
 

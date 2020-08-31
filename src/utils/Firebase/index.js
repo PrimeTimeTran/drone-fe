@@ -1,7 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 
-let firebase
+let firebase;
 
 const config = {
   appId: process.env.REACT_APP_APP_ID,
@@ -14,12 +14,11 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
-
 class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
-    this.app = app
+    this.app = app;
   }
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -27,21 +26,58 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
   doSignOut = () => this.auth.signOut();
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
- 
-  doPasswordUpdate = password =>
+  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+
+  doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);
 
-  yay = () => {
-    console.log('hjshshshshsh')
-  }
+  googleSignIn = () => {
+    console.log({ app, internalApp: this.app, internalAuth: this.auth });
+    const provider = new this.app.auth.GoogleAuthProvider();
+    this.app
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        console.log({ user, token });
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        console.log({ errorMessage, errorCode });
+      });
+  };
+  fbSignIn = () => {
+    console.log("fbSignIn");
+    console.log({ app, internalApp: this.app, internalAuth: this.auth });
+    const provider = new this.app.auth.FacebookAuthProvider();
+    this.app
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        console.log({ user, token });
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+
+        console.log({ errorMessage, errorCode });
+      });
+  };
 }
 
 if (!firebase) {
-  console.log('New Firebase')
-  firebase = new Firebase()
+  console.log("New Firebase");
+  firebase = new Firebase();
 } else {
-  console.log('Already have firebase instance')
+  console.log("Already have firebase instance");
 }
 
 export default firebase;
