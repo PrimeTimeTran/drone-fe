@@ -43,6 +43,7 @@ body {
     font-size: 1rem;
   }
   h4.option {
+    cursor: pointer !important;
     font-size: 0.8rem;
   }
   div[role="tablist"] {
