@@ -63,7 +63,7 @@ export default function Questions(props) {
   };
 
   return (
-    <Container>
+    <Container className="px-xs-0">
       <button
         onClick={() => setShowAnswers(!showAnswers)}
         className="absolute-answer-toggle"
@@ -77,7 +77,7 @@ export default function Questions(props) {
         Shuffle
       </button>
       <Row>
-        <Col>{renderQuestions()}</Col>
+        <Col className="px-xs-0">{renderQuestions()}</Col>
       </Row>
     </Container>
   );
