@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-export default function AnswerOptions({ currentQuestion, handleSelectAnswer, gameOver }) {
+export default function AnswerOptions({
+  currentQuestion,
+  handleSelectAnswer,
+  gameOver,
+}) {
   const [answerOptions, setAnswerOptions] = useState([]);
 
   useEffect(() => {
