@@ -51,7 +51,7 @@ class QuizSummary extends Component {
 
     if (state !== undefined) {
       stats = (
-        <Container>
+        <Container className="pt-5">
           <div>
             <span
               style={{ display: "flex", justifyContent: "center" }}
