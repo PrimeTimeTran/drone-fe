@@ -92,7 +92,6 @@ class QuizSummary extends Component {
           </div>
           <Container>
             <Row className="justify-content-sm-center">
-              <Col></Col>
               <Col>
                 <Link to="/home" className="btn btn-block">
                   <Button block size="lg" variant="primary">
@@ -105,7 +104,6 @@ class QuizSummary extends Component {
                   </Button>
                 </Link>
               </Col>
-              <Col></Col>
             </Row>
           </Container>
         </Container>
@@ -114,14 +112,9 @@ class QuizSummary extends Component {
       stats = (
         <section>
           <h1 className="no-stats">No Statistics Available</h1>
-          <ul>
-            <li>
+
               <Link to="/quiz"> Take a Quiz</Link>
-            </li>
-            <li>
               <Link to="/"> Back to Home</Link>
-            </li>
-          </ul>
         </section>
       );
     }
