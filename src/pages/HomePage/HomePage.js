@@ -56,7 +56,13 @@ class HomePage extends Component {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="third">
-                    <FontAwesomeIcon icon={faHistory} /> History
+                    {/* <FontAwesomeIcon icon={faHistory} />  */}
+                    <span
+                      className="iconify mr-1"
+                      data-inline="false"
+                      data-icon="mdi-quadcopter"
+                    ></span>
+                    History
                   </Nav.Link>
                 </Nav.Item>
               </Nav>
@@ -65,16 +71,25 @@ class HomePage extends Component {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div className="container pt-5">
-                    <QuizInstructions name={this.props.user.first_name} onChangeKey={this.onChangeKey} />
+                    <QuizInstructions
+                      name={this.props.user.first_name}
+                      onChangeKey={this.onChangeKey}
+                    />
                     <h2 style={{ textAlign: "center" }}>
                       Have a question you don't see? Create it here!
                     </h2>
-                    <CreateQuestion onCreateQuestion={this.onCreateQuestion}user={this.props.user} />
+                    <CreateQuestion
+                      onCreateQuestion={this.onCreateQuestion}
+                      user={this.props.user}
+                    />
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second" className="p-5">
                   <h1>My Questions</h1>
-                  <QuestionsContainer counter={this.state.counter} user={this.props.user} />
+                  <QuestionsContainer
+                    counter={this.state.counter}
+                    user={this.props.user}
+                  />
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <h1>History</h1>

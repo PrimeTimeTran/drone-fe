@@ -9,12 +9,9 @@ const QuizInstructions = (props) => (
     <Jumbotron>
       <h1>Welcome {props.name || 'Anonymous'}</h1>
       <p>
-        Getting Started Each test lasts for 12 minutes and ends when your time
+        Each test lasts for 12 minutes and ends when your time
         elapses. Every question contains 3 possible answers. Although you don't
-        have such a feature on the real Part 107 test.
-        <br />
-        <br />
-        The quiz comes with 5 hints, use them wisely. You may quit the test at
+        have such a feature on the real Part 107 test. The quiz comes with 5 hints, use them wisely. You may quit the test at
         any time. However in order to receive a score, you must finish all 30
         questions. timer starts as soon as the game loads! Good luck and Happy
         Studies!
