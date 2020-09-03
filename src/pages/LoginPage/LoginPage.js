@@ -29,11 +29,12 @@ const LoginPage = (props) => {
         <Container>
           <Row>
             <Col>
-              <Card className="m-5 p-5">
+              <Card className="m-5 p-md-5 p-xs-0" id="landing">
                 <Card.Body>
                   <Card.Title>PART 107 - Commercial UAS Study Guide</Card.Title>
                   <Card.Text>
-                    Prepare and pass your Commercial Drone License exam the FIRST TIME!
+                    Prepare and pass your Commercial Drone License exam the
+                    FIRST TIME!
                   </Card.Text>
                 </Card.Body>
                 <Card.Body className="text-right">
