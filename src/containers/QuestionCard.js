@@ -70,9 +70,6 @@ export default function QuestionCard({
       "mr-3 text-black " +
       (showAnswers && (correct ? "text-success" : "text-danger"));
 
-    console.log({ classNames });
-
-    const txtClasses = showAnswers && (correct ? "text-success" : "text-danger")
     const icon = showAnswers
       ? correct
         ? faCheckCircle
@@ -81,7 +78,7 @@ export default function QuestionCard({
     return (
       <ListGroup.Item className="d-flex flex-row">
         <FontAwesomeIcon icon={icon} className={classNames} />
-        <div className={txtClasses}> {option}</div>
+        <div className={classNames}> {option}</div>
       </ListGroup.Item>
     );
   };
