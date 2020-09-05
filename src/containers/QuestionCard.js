@@ -69,15 +69,19 @@ export default function QuestionCard({
     const classNames =
       "mr-3 text-black " +
       (showAnswers && (correct ? "text-success" : "text-danger"));
+
+    console.log({ classNames });
+
+    const txtClasses = showAnswers && (correct ? "text-success" : "text-danger")
     const icon = showAnswers
       ? correct
         ? faCheckCircle
         : faTimesCircle
       : faDotCircle;
     return (
-      <ListGroup.Item>
+      <ListGroup.Item className="d-flex flex-row">
         <FontAwesomeIcon icon={icon} className={classNames} />
-        {option}
+        <div className={txtClasses}> {option}</div>
       </ListGroup.Item>
     );
   };
@@ -132,15 +136,6 @@ export default function QuestionCard({
                 />
               </ListGroup.Item>
             </ListGroup>
-            <ListGroup>
-              <ListGroup.Item>
-                <Form.Control
-                  name="answer"
-                  onChange={handleChange}
-                  value={updatedQuestion.answer}
-                />
-              </ListGroup.Item>
-            </ListGroup>
             <Button type="submit" className="m-3">
               Save
             </Button>
@@ -161,7 +156,7 @@ export default function QuestionCard({
               {photo_url && (
                 <ListGroup>
                   <a rel="noopener noreferrer" href={photo_url} target="_blank">
-                    {subtitle || 'Image'}
+                    {subtitle || "Image"}
                   </a>
                 </ListGroup>
               )}
@@ -171,9 +166,6 @@ export default function QuestionCard({
             {renderItem(answer, optionA)}
             {renderItem(answer, optionB)}
             {renderItem(answer, optionC)}
-            <ListGroup.Item className="text-center font-italic text-success">
-              {showAnswers ? answer : "?"}
-            </ListGroup.Item>
           </ListGroup>
         </Card>
       </Col>
