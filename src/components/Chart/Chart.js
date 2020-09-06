@@ -5,10 +5,9 @@ import { produceChartData } from "./utils";
 
 const Chart = ({ data: quizData = [] }) => {
   const onSelectQuiz = (el) => {
-    // const idx = el[0]._index;
-    // const quiz = quizData[idx];
   };
   const data = produceChartData(quizData);
+  console.log({data})
   return (
     <div className="chart">
       <Bar data={data} options={{}} getElementAtEvent={onSelectQuiz} />

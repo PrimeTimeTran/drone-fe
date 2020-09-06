@@ -3,7 +3,9 @@ import moment from "moment";
 export const produceChartData = (data) => {
   const labels = [];
   const scoreData = [];
+  const colors = []
   Array.isArray(data) && data.forEach(quiz => {
+    colors.push("#333399")
     scoreData.push(quiz.score);
     labels.push(moment(quiz.createdAt).format("LL"));
   })
@@ -14,22 +16,8 @@ export const produceChartData = (data) => {
       {
         label: "% Score of Quiz Taken",
         data: scoreData,
-        backgroundColor: [
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-        ],
-        borderColor: [
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-          "#333399",
-        ],
+        backgroundColor: colors,
+        borderColor: colors,
         borderWidth: 1,
       },
     ],
