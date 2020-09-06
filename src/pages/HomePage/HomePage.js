@@ -58,8 +58,8 @@ class HomePage extends Component {
                   <Nav.Link eventKey="third">
                     {/* <FontAwesomeIcon icon={faHistory} />  */}
                     <span
-                      className="iconify mr-1"
                       data-inline="false"
+                      className="iconify mr-1"
                       data-icon="mdi-quadcopter"
                     ></span>
                     History
