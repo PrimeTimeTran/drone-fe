@@ -81,9 +81,9 @@ const LoginPage = (props) => {
     if (showRegister) {
       return (
         <Register
-          toggleRegisterLogin={toggleRegisterLogin}
-          checkUser={props.checkUser}
           renderBack={renderBack}
+          checkUser={props.checkUser}
+          toggleRegisterLogin={toggleRegisterLogin}
         />
       );
     }
@@ -93,9 +93,9 @@ const LoginPage = (props) => {
     if (showLogin) {
       return (
         <Login
-          toggleRegisterLogin={toggleRegisterLogin}
-          checkUser={props.checkUser}
           renderBack={renderBack}
+          checkUser={props.checkUser}
+          toggleRegisterLogin={toggleRegisterLogin}
         />
       );
     }
