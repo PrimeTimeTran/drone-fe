@@ -66,7 +66,6 @@ export default class QuizPage extends React.Component {
       showToast(true, "Correct!");
     } else {
       this.wrongSound.current.play();
-      // navigator.vibrate(1000);
       showToast(false);
     }
     this.updateScore(correct);
