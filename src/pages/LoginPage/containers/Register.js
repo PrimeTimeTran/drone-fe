@@ -41,7 +41,7 @@ const Register = (props) => {
       register(user).then((res) => {
         props.checkUser();
         window.location.replace(process.env.REACT_APP_SITE_URL);
-        window.fb.logEvent("register");
+        // window.fb.logEvent("register");
       });
     }
   };

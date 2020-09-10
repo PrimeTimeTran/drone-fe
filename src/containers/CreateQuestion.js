@@ -32,7 +32,7 @@ const CreateQuestion = (props) => {
 
     postQuestion(question).then((resp) => {
       if (resp.status === 201) {
-        window.fb.logEvent("question_create");
+        // window.fb.logEvent("question_create");
         setQuestion({
           answer: "",
           optionA: "",

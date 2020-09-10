@@ -29,7 +29,7 @@ export default function Questions(props) {
     if (resp.status === 201) {
       const newQuestions = questions.filter((q) => q._id !== questionId);
       setQuestions(newQuestions);
-      window.fb.logEvent("question_remove");
+      // window.fb.logEvent("question_remove");
     }
   };
 

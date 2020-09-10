@@ -39,7 +39,7 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    window.fb.logEvent("log_in");
+    // window.fb.logEvent("log_in");
 
     if (captcha) {
       login(user).then((res) => {

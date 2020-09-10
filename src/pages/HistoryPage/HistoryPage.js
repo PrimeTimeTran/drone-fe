@@ -9,7 +9,7 @@ import { getQuizHistory } from "../../api";
 export default function () {
   const [quizzes, setQuizzes] = useState([]);
   useEffect(() => {
-    window.fb.logEvent("page_view", { value: "quiz_history" });
+    // window.fb.logEvent("page_view", { value: "quiz_history" });
     async function getQuizzes() {
       const quizArray = await getQuizHistory();
       setQuizzes(quizArray);

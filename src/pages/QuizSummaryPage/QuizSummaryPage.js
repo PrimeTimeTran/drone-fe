@@ -18,7 +18,7 @@ class QuizSummary extends Component {
   }
 
   componentDidMount() {
-    window.fb.logEvent("quiz_end");
+    // window.fb.logEvent("quiz_end");
     const { state } = this.props.location;
     if (state) {
       this.setState({
