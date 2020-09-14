@@ -51,10 +51,16 @@ class Firebase {
         return resp;
       })
       .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        // var email = error.email;
+        // var credential = error.credential;
+        const {
+          email,
+          credential,
+          code: errorCode,
+          message: errorMessage,
+        } = error;
         console.log({ errorMessage, errorCode });
       });
   };
@@ -66,7 +72,7 @@ class Firebase {
       .signInWithPopup(provider)
       .then(async function (result) {
         // var token = result.credential.accessToken;
-        var user = result.user;
+        const user = result.user;
         const resp = await signinWithAuthProvider(user.email);
         if (resp) {
           checkUser();
@@ -75,7 +81,7 @@ class Firebase {
         return resp;
       })
       .catch(function (error) {
-        var {
+        const {
           email,
           credential,
           code: errorCode,
