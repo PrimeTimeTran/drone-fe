@@ -1,9 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 
-// import { signinWithAuthProvider } from "../../api";
-
-import {signinWithAuthProvider} from '../../pages/LoginPage/containers/UserFunctions'
+import { signinWithAuthProvider } from "../../pages/LoginPage/containers/UserFunctions";
 
 let firebase;
 
@@ -47,8 +45,8 @@ class Firebase {
         var user = result.user;
         const resp = await signinWithAuthProvider(user.email, token);
         if (resp) {
-          checkUser()
-          push("/home")
+          checkUser();
+          push("/home");
         }
         return resp;
       })
@@ -71,8 +69,8 @@ class Firebase {
         var user = result.user;
         const resp = await signinWithAuthProvider(user.email);
         if (resp) {
-          checkUser()
-          push("/home")
+          checkUser();
+          push("/home");
         }
         return resp;
       })
