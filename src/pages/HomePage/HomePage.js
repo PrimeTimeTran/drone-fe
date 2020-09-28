@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tab, Row, Col, Nav, Container } from "react-bootstrap";
+import { Tabs, Tab, Row, Col, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -56,13 +56,17 @@ class HomePage extends Component {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="third">
-                    {/* <FontAwesomeIcon icon={faHistory} />  */}
                     <span
                       data-inline="false"
                       className="iconify mr-1"
                       data-icon="mdi-quadcopter"
                     ></span>
                     History
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="fourth">
+                    <FontAwesomeIcon icon={faQuestionCircle} /> Questions
                   </Nav.Link>
                 </Nav.Item>
               </Nav>
@@ -94,6 +98,24 @@ class HomePage extends Component {
                 <Tab.Pane eventKey="third">
                   <h1>History</h1>
                   <QuizHistoryPage />
+                </Tab.Pane>
+                <Tab.Pane eventKey="fourth">
+                  <h1>Hello World</h1>
+                  <Tabs
+                    id="controlled-tab-example"
+                    activeKey={'Home'}
+                    onSelect={(k) => k}
+                  >
+                    <Tab eventKey="home" title="Home">
+                      Hello
+                    </Tab>
+                    <Tab eventKey="profile" title="Profile">
+                    World
+                    </Tab>
+                    <Tab eventKey="contact" title="Contact">
+                      Test
+                    </Tab>
+                  </Tabs>
                 </Tab.Pane>
               </Tab.Content>
             </Col>

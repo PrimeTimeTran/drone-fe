@@ -242,7 +242,7 @@ export default class QuizPage extends React.Component {
     } = this.state;
 
     return (
-      <Fragment>
+      <>
         <audio ref={this.correctSound} src={correctSound}></audio>
         <audio ref={this.wrongSound} src={wrongSound}></audio>
         <audio ref={this.buttonSound} src={selectSound}></audio>
@@ -276,7 +276,7 @@ export default class QuizPage extends React.Component {
             </Col>
           </Row>
         </Container>
-      </Fragment>
+      </>
     );
   }
 }

@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import QuizPage from "./pages/QuizPage";
 import LoginPage from "./pages/LoginPage";
 import HistoryPage from "./pages/HistoryPage";
+import DashboardPage from "./pages/DashboardPage";
 import QuizSummaryPage from "./pages/QuizSummaryPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import UpdatePasswordPage from "./pages/UpdatePasswordPage";
@@ -18,7 +19,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fab)
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   async function checkUser() {
     const token = localStorage.getItem("userToken");
@@ -70,6 +71,7 @@ function App() {
           component={QuizSummaryPage}
         />
 
+        <Protected exact user={user} path="/dashboard" component={DashboardPage} />
         <Protected exact user={user} path="/home" component={HomePage} />
         <Protected exact user={user} path="/quiz" component={QuizPage} />
         <Protected exact user={user} path="/history" component={HistoryPage} />
