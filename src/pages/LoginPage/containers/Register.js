@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import { register } from "./UserFunctions";
 import fb from "../../../utils/Firebase";
@@ -112,8 +112,8 @@ const Register = (props) => {
                   />
                 </div>
                 <HCaptcha
+                  onVerify={token => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
-                  onVerify={token => console.log(token)}
                 />
                 {/* <ReCAPTCHA
                   id="recaptcha"

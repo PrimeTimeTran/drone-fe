@@ -94,8 +94,8 @@ const Login = (props) => {
                   />
                 </div>
                 <HCaptcha
+                  onVerify={token => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
-                  onVerify={token => console.log(token)}
                 />
                 {/* <ReCAPTCHA
                   id="recaptcha"
