@@ -112,9 +112,8 @@ class QuizSummary extends Component {
       stats = (
         <section>
           <h1 className="no-stats">No Statistics Available</h1>
-
-              <Link to="/quiz"> Take a Quiz</Link>
-              <Link to="/"> Back to Home</Link>
+          <Link to="/quiz"> Take a Quiz</Link>
+          <Link to="/"> Back to Home</Link>
         </section>
       );
     }

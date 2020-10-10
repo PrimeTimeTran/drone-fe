@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 import fb from "../../../utils/Firebase";
 
@@ -93,12 +94,16 @@ const Login = (props) => {
                     placeholder="Enter password"
                   />
                 </div>
-                <ReCAPTCHA
+                <HCaptcha
+                  sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
+                  onVerify={token => console.log(token)}
+                />
+                {/* <ReCAPTCHA
                   id="recaptcha"
                   className="my-3"
                   onChange={() => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
-                />
+                /> */}
                 <Row>
                   <Col className="d-flex flex-column">
                     <Button variant="primary" type="submit">
