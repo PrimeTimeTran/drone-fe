@@ -111,12 +111,16 @@ const Register = (props) => {
                     placeholder="Enter password"
                   />
                 </div>
-                <ReCAPTCHA
+                <HCaptcha
+                  sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
+                  onVerify={token => console.log(token)}
+                />
+                {/* <ReCAPTCHA
                   id="recaptcha"
                   className="my-3"
                   onChange={() => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
-                />
+                /> */}
                 <Col className="d-flex flex-column">
                   <Button variant="primary" type="submit">
                     Register
