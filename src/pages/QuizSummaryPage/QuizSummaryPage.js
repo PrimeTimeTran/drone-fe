@@ -8,12 +8,13 @@ class QuizSummary extends Component {
     super(props);
     this.state = {
       score: 0,
+      hintsUsed: 0,
+      wrongAnswers: 0,
+      videoSeen: false,
+      correctAnswers: 0,
+      fiftyFiftyUsed: 0,
       numberOfQuestions: 0,
       numberOfAnsweredQuestions: 0,
-      correctAnswers: 0,
-      wrongAnswers: 0,
-      hintsUsed: 0,
-      fiftyFiftyUsed: 0,
     };
   }
 
@@ -22,16 +23,31 @@ class QuizSummary extends Component {
     const { state } = this.props.location;
     if (state) {
       this.setState({
-        score: (state.score / state.numberOfQuestions) * 100,
-        numberOfQuestions: state.numberOfQuestions,
-        numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
-        correctAnswers: state.correctCount,
-        wrongAnswers: state.wrongCount,
         hintsUsed: state.hintsUsed,
+        wrongAnswers: state.wrongCount,
+        correctAnswers: state.correctCount,
         fiftyFiftyUsed: state.fiftyFiftyUsed,
+        numberOfQuestions: state.numberOfQuestions,
+        score: (state.score / state.numberOfQuestions) * 100,
+        numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
       });
     }
+    // const interval = setInterval(() => {
+    //   console.log("Interval");
+    //   const go = document.getElementsByTagName("video");
+    //   if (go[0] !== undefined) {
+    //     console.log({gogogo: go[0]})
+    //     document
+    //       .getElementsByTagName("video")[0]
+    //       .addEventListener("ended", this.myHandler, false);
+    //   }
+    // }, 3000);
+    // document.getElementsByTagName("video");
   }
+
+  // myHandler = (e) => {
+  //   console.log("video over!");
+  // };
 
   render() {
     const { state } = this.props.location;
@@ -52,6 +68,25 @@ class QuizSummary extends Component {
     if (state !== undefined) {
       stats = (
         <Container className="pt-5">
+          <h1>
+            View Quiz Summary after this short ad which supports our service.
+          </h1>
+          <iframe
+            allowfullscreen
+            frameborder="0"
+            id="djiVideoAdd"
+            title="djiVideoAdd"
+            src="//show.dji.com/videos/NDgyNTM2ODcxNDpGU3I5bFBxZg==/embed?autoplay=1&loop=1"
+            onLoad={() => {
+              console.log('loaded!')
+            }}
+            style={{
+              width: "100%",
+              height: "100%",
+              minWidth: "50vw",
+              minHeight: "40vh",
+            }}
+          ></iframe>
           <div>
             <span
               style={{ display: "flex", justifyContent: "center" }}
