@@ -72,13 +72,29 @@ class QuizSummary extends Component {
             View Quiz Summary after this short ad which supports our service.
           </h1>
           <iframe
-            allowfullscreen
-            frameborder="0"
+            allowFullScreen
+            frameBorder="0"
             id="djiVideoAdd"
             title="djiVideoAdd"
             src="//show.dji.com/videos/NDgyNTM2ODcxNDpGU3I5bFBxZg==/embed?autoplay=1&loop=1"
             onLoad={() => {
-              console.log('loaded!')
+              console.log("Loaded");
+              console.log(document.getElementsByClassName("arrow"));
+              const video = document.getElementsByTagName("video")[0];
+              console.log({ video });
+              if (video === undefined) {
+                setInterval(() => {
+                  console.log("looking for the video");
+                }, 500);
+              }
+              if (video && true) {
+                document
+                  .getElementsByTagName("video")[0]
+                  .setAttribute("muted", "muted");
+                document.getElementsByClassName("arrow") &&
+                  document.getElementsByClassName("arrow")[0] &&
+                  document.getElementsByClassName("arrow")[0].click();
+              }
             }}
             style={{
               width: "100%",
