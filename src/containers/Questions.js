@@ -63,7 +63,7 @@ export default function Questions(props) {
   };
 
   return (
-    <Container className="px-sm-0">
+    <Container className="px-sm-0 d-flex justify-content-center flex-column">
       <button
         onClick={() => setShowAnswers(!showAnswers)}
         className="absolute-answer-toggle"
@@ -76,6 +76,18 @@ export default function Questions(props) {
       >
         Shuffle
       </button>
+      <a
+        target="_blank"
+        className="align-self-center"
+        href="https://click.dji.com/AGlsT4x0qbq2wNwvR9ggBg?pm=ad_image"
+      >
+        <img
+          alt="ad"
+          style={{ margin: 15 }}
+          className="align-self-center"
+          src="https://u.djicdn.com/uploads/ad_image_file/file/4200/970-250-a_%E5%8F%8C%E4%BA%BA.jpg"
+        />
+      </a>
       <Row>
         <Col className="px-sm-0">{renderQuestions()}</Col>
       </Row>

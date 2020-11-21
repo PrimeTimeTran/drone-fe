@@ -68,10 +68,7 @@ class QuizSummary extends Component {
     if (state !== undefined) {
       stats = (
         <Container className="pt-5">
-          <h1>
-            View Quiz Summary after this short ad which supports our service.
-          </h1>
-          <iframe
+          {/* <iframe
             allowFullScreen
             frameBorder="0"
             id="djiVideoAdd"
@@ -102,7 +99,8 @@ class QuizSummary extends Component {
               minWidth: "50vw",
               minHeight: "40vh",
             }}
-          ></iframe>
+          ></iframe> */}
+          <a href="https://click.dji.com/AF65MGDd9f17kHVzABVwrw?pm=ad_image" target="_blank"><img src="https://u.djicdn.com/uploads/ad_image_file/file/4949/970x250.jpg"/></a>
           <div>
             <span
               style={{ display: "flex", justifyContent: "center" }}

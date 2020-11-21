@@ -18,7 +18,19 @@ export default function () {
   }, []);
 
   return (
-    <Container>
+    <Container className="d-flex justify-content-center flex-column">
+      <a
+        target="_blank"
+        className="align-self-center"
+        href="https://click.dji.com/AGlsT4x0qbq2wNwvR9ggBg?pm=ad_image"
+      >
+        <img
+          alt="ad"
+          style={{ margin: 15 }}
+          className="align-self-center"
+          src="https://u.djicdn.com/uploads/ad_image_file/file/4200/970-250-a_%E5%8F%8C%E4%BA%BA.jpg"
+        />
+      </a>
       <Row>
         <Col>
           <Chart data={quizzes} />;
