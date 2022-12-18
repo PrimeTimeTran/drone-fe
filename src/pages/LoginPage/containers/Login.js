@@ -93,10 +93,10 @@ const Login = (props) => {
                     placeholder="Enter password"
                   />
                 </div>
-                <HCaptcha
+                {/* <HCaptcha
                   onVerify={token => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
-                />
+                /> */}
                 {/* <ReCAPTCHA
                   id="recaptcha"
                   className="my-3"

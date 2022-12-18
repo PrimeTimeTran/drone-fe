@@ -4,7 +4,6 @@ import { Tab, Row, Col, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
-  faHistory,
   faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,6 +18,7 @@ class HomePage extends Component {
     counter: 0,
     key: "first",
   };
+
   componentDidMount() {
     if (!this.props.user) return this.props.history.push("/");
   }
