@@ -34,9 +34,6 @@ function App() {
         },
       });
       const { data } = await resp.json();
-      // window.fb.logEvent("page_view", {
-      //   email: data.email,
-      // });
       setUser(data);
     } catch (e) {
       console.log({ e });
