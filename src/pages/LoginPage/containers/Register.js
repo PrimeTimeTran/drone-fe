@@ -37,13 +37,11 @@ const Register = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (captcha) {
-      register(user).then((res) => {
-        props.checkUser();
-        window.location.replace(process.env.REACT_APP_SITE_URL);
-        // window.fb.logEvent("register");
-      });
-    }
+    register(user).then((res) => {
+      props.checkUser();
+      window.location.replace(process.env.REACT_APP_SITE_URL);
+      // window.fb.logEvent("register");
+    });
   };
 
   const onFbLogin = () => {
@@ -111,10 +109,10 @@ const Register = (props) => {
                     placeholder="Enter password"
                   />
                 </div>
-                <HCaptcha
+                {/* <HCaptcha
                   onVerify={token => setCaptcha(true)}
                   sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
-                />
+                /> */}
                 {/* <ReCAPTCHA
                   id="recaptcha"
                   className="my-3"
